@@ -54,5 +54,7 @@ public class DoUong extends LoaiDoUong{
     public void setSize(String Size) {
         this.Size = Size;
     }
-    
+    public enum Sizeall{
+        XL,L
+    }
 }
