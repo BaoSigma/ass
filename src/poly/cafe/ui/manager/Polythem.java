@@ -55,7 +55,7 @@ public class Polythem extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 70)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Đồ Uống");
+        jLabel9.setText("Thêm");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
