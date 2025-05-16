@@ -28,7 +28,6 @@ public class DoUongimpl implements DoUongDAO{
         du.setMaDU(XStr.getKey());
         Object[] values ={
             du.getMaDU(),du.getTen(),du.getAnhDoUong(),du.getSize(),du.getMaLDU()
-
          };
         XJdbc.executeUpdate(createsql, values);
         return du;
