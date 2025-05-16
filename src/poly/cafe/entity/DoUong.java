@@ -9,7 +9,7 @@ package poly.cafe.entity;
  * @author baoha
  */
 public class DoUong extends LoaiDoUong{
-        private String maDU;
+    private String maDU;
     private String tenDU;
     private String anhDoUong;
     private String Size;
