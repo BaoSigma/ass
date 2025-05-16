@@ -24,7 +24,7 @@ public interface NguoiDungDAO extends CRUDDAO<NguoiDung, Object> {
     
     @Override
     public default void deleteById(Object id){
-        list.removeIf(Pbh -> Pbh.getMaND().equals(id));
+        list.removeIf(nd -> nd.getMaND().equals(id));
     }
     
     @Override
@@ -44,7 +44,7 @@ public interface NguoiDungDAO extends CRUDDAO<NguoiDung, Object> {
     
     @Override
     public default NguoiDung findById(Object id) {
-        Optional<NguoiDung> NguoiDung = list.stream().filter(Pbh -> Pbh.getMaND().equals(id)).findFirst();
+        Optional<NguoiDung> NguoiDung = list.stream().filter(nd -> nd.getMaND().equals(id)).findFirst();
         return NguoiDung.orElse(null);
         }
     }
