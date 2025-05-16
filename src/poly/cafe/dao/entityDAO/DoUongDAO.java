@@ -16,6 +16,7 @@ import src.poly.cafe.dao.CRUDDAO;
  */
 public interface DoUongDAO extends CRUDDAO<DoUong, Object>{
     List<DoUong> list = new ArrayList<>();
+    
     @Override
     public default DoUong create(DoUong du) {
         list.add(du);
@@ -34,7 +35,7 @@ public interface DoUongDAO extends CRUDDAO<DoUong, Object>{
 
     @Override
     public default DoUong findById(Object id) {
-    Optional<DoUong> DoUong = list.stream().filter(du -> du.getMaLDU().equals(id)).findFirst();
+    Optional<DoUong> DoUong = list.stream().filter(du -> du.getMaDU().equals(id)).findFirst();
         return DoUong.orElse(null);
     }
 
