@@ -21,7 +21,7 @@ public class ChiTietPhieuBanimpl implements ChiTietPhieuBanDAO{
     private String deletsql = "DELETE FROM ChiTietPhieuBan WHERE ID =?";
     private String findallsql = "SELECT * FROM ChiTietPhieuBan";
     private String  findidsql = findallsql + "WHERE ID = ?";
-    private String updatesql = "UPDATE ChiTietPhieuBan SET maDU = ? WHERE maDU = ?";
+    private String updatesql = "UPDATE ChiTietPhieuBan SET maDU = ? WHERE ID = ?";
 
     @Override
     public ChiTietPhieuBan create(ChiTietPhieuBan ctpb) {
