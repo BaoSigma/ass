@@ -7,12 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import poly.cafe.entity.NguoiDung;
-/**
- * Lớp tiện ích hỗ trợ truy vấn và chuyển đổi sang đối tượng
- *
- * @author NghiemN
- * @version 1.0
- */
+
 public class XQuery {
 
     /**
@@ -88,12 +83,12 @@ public class XQuery {
     }
 
     private static void demo1() {
-        String sql = "SELECT * FROM Users WHERE Username=? AND Password=?";
-        User user = XQuery.getSingleBean(User.class, sql, "NghiemN", "123456");
+        String sql = "SELECT * FROM NguoiDung WHERE Username=? AND Password=?";
+        NguoiDung user = XQuery.getSingleBean(NguoiDung.class, sql, "NghiemN", "123456");
     }
 
     private static void demo2() {
-        String sql = "SELECT * FROM Users WHERE Fullname LIKE ?";
-            List<User> list = XQuery.getBeanList(User.class, sql, "%Nguyễn %");
+        String sql = "SELECT * FROM NguoiDung WHERE Fullname LIKE ?";
+            List<NguoiDung> list = XQuery.getBeanList(NguoiDung.class, sql, "%Nguyễn %");
     }
 }
