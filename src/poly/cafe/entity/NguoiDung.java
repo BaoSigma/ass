@@ -11,12 +11,17 @@ import java.sql.Date;
  * @author baoha
  */
 public class NguoiDung {
+
+
     private Nhanvien nv;
     private String maND;
     private String tenND;
     private String matKhau;
     private String chucVu;
-    private String maNV = nv.getMaNV();
+    private String maNV;
+
+    public NguoiDung() {
+    }
 
     public NguoiDung(Nhanvien nv, String maND, String tenND, String matKhau, String chucVu) {
         this.nv = nv;
@@ -71,7 +76,11 @@ public class NguoiDung {
     }
 
     public void setMaNV(String maNV) {
-        this.maNV = maNV;
+        this.nv = nv;
+        if (nv != null) {
+        this.maNV = nv.getMaNV();
+    }
+
     }
     
     
