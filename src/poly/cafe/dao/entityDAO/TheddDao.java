@@ -7,17 +7,17 @@ package poly.cafe.dao.entityDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import poly.cafe.entity.TheDD;
+import poly.cafe.entity.TheDinhDanh;
 import src.poly.cafe.dao.CRUDDAO;
 
 /**
  *
  * @author baoha
  */
-public interface TheddDao extends CRUDDAO<TheDD, Object>{
-    List<Thedd> list = new ArrayList<>();
+public interface TheddDao extends CRUDDAO<TheDinhDanh, Object>{
+    List<TheDinhDanh> list = new ArrayList<>();
     @Override
-    public default Thedd create(Thedd dd) {
+    public default TheDinhDanh create(TheDinhDanh dd) {
         list.add(dd);
         return dd;
     }
@@ -28,18 +28,18 @@ public interface TheddDao extends CRUDDAO<TheDD, Object>{
     }
 
     @Override
-    public default List<Thedd> findAll() {
+    public default List<TheDinhDanh> findAll() {
         return list;
     }
 
     @Override
-    public default Thedd findById(Object id) {
-    Optional<Thedd> Thedd = list.stream().filter(dd -> dd.getMaLDU().equals(id)).findFirst();
+    public default TheDinhDanh findById(Object id) {
+    Optional<TheDinhDanh> Thedd = list.stream().filter(dd -> dd.getMaDD().equals(id)).findFirst();
         return Thedd.orElse(null);
     }
 
     @Override
-    public default void update(Thedd entity) {
+    public default void update(TheDinhDanh entity) {
         for (int i = 0; i < list.size(); i++) {
             if(list.get(i).getMaDD().equals(entity.getMaDD())){
                 list.set(i, entity);

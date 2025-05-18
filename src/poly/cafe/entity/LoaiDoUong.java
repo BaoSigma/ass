@@ -11,6 +11,9 @@ public class LoaiDoUong {
     private String maLDU;
     private String ten;
 
+    public LoaiDoUong() {
+    }
+
     public LoaiDoUong(String maLDU, String ten) {
         this.maLDU = maLDU;
         this.ten = ten;

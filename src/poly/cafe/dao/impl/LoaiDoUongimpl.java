@@ -5,8 +5,7 @@
 package poly.cafe.dao.impl;
 
 import java.util.List;
-import poly.cafe.dao.entityDAO.DoUongDAO;
-import poly.cafe.entity.DoUong;
+import poly.cafe.dao.entityDAO.LoaiDoUongDAO;
 import poly.cafe.entity.LoaiDoUong;
 import poly.cafe.util.XJdbc;
 import poly.cafe.util.XQuery;
@@ -15,7 +14,7 @@ import poly.cafe.util.XQuery;
  *
  * @author baoha
  */
-public class DoUongimpl implements DoUongDAO{
+public class LoaiDoUongimpl implements LoaiDoUongDAO{
     private final String createSql = "INSERT INTO LoaiDoUong(maLDU, ten) VALUES(?, ?)";
     private final String updateSql = "UPDATE LoaiDoUong SET ten=? WHERE maLDU=?";
     private final String deleteByIdSql = "DELETE FROM LoaiDoUong WHERE maLDU=?";
@@ -24,7 +23,7 @@ public class DoUongimpl implements DoUongDAO{
     private final String findByIdSql = findAllSql + " WHERE ten=?";
 
     @Override
-    public DoUong create(DoUong entity) {
+    public LoaiDoUong create(LoaiDoUong entity) {
         Object[] values = {
             entity.getMaLDU(),
             entity.getTen()
@@ -34,7 +33,7 @@ public class DoUongimpl implements DoUongDAO{
     }
 
     @Override
-    public void update(DoUong entity) {
+    public void update(LoaiDoUong entity) {
         Object[] values = {
             entity.getMaLDU(),
             entity.getTen()
@@ -43,12 +42,9 @@ public class DoUongimpl implements DoUongDAO{
     }
 
     @Override
-    public DoUong findById(Object id) {
-        return XQuery.getSingleBean(DoUong.class, findByIdSql, id);
-
+    public LoaiDoUong findById(Object id) {
+        return XQuery.getSingleBean(LoaiDoUong.class, findByIdSql, id);
     }
-
- 
 
     @Override
     public void deleteById(Object id) {
@@ -59,8 +55,9 @@ public class DoUongimpl implements DoUongDAO{
     
 
     @Override
-    public List<DoUong> findAll() {
-        return XQuery.getBeanList(DoUong.class, findAllSql);
+    public List<LoaiDoUong> findAll() {
+        return XQuery.getBeanList(LoaiDoUong.class, findAllSql);
     }
+
 
 }
