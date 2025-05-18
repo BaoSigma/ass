@@ -16,35 +16,5 @@ import src.poly.cafe.dao.CRUDDAO;
  */
 public interface NguoiDungDAO extends  CRUDDAO<NguoiDung, Object>{
     List<NguoiDung> list = new ArrayList<>();
-    @Override
-    public default NguoiDung create(NguoiDung Ldu) {
-        list.add(Ldu);
-        return Ldu;
-    }
 
-    @Override
-    public default void deleteById(Object id) {
-        list.removeIf(ldu -> ldu.getMaND().equals(id));
-    }
-
-    @Override
-    public default void update(NguoiDung entity) {
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getMaND().equals(entity.getMaND())){
-                list.set(i, entity);
-                return;
-            }
-        }
-    }
-
-    @Override
-    public default List<NguoiDung> findAll() {
-        return list;
-    }
-
-    @Override
-    public default NguoiDung findById(Object id) {
-        Optional<NguoiDung> LoaiDoUong = list.stream().filter(ldu -> ldu.getTenND().equals(id)).findFirst();
-        return LoaiDoUong.orElse(null);
-    }
 }
