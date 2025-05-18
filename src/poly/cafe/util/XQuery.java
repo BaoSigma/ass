@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import poly.cafe.entity.NguoiDung;
 
 /**
  * Lớp tiện ích hỗ trợ truy vấn và chuyển đổi sang đối tượng
@@ -81,7 +82,7 @@ public class XQuery {
         }
         return bean;
     }
-    
+   
     public static void main(String[] args) {
 
     }
