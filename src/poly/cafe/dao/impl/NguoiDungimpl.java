@@ -38,8 +38,9 @@ public class NguoiDungimpl implements NguoiDungDAO{
     @Override
     public void update(NguoiDung entity) {
         Object[] values = {
-            entity.getMaND(),
+            
             entity.getMatKhau(),
+            entity.getMaND(),
         };
         XJdbc.executeUpdate(updateSql,values);
     }

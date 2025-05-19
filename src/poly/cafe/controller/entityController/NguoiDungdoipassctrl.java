@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package poly.cafe.controller.entityController;
 
@@ -12,7 +12,7 @@ import poly.cafe.util.XDialog;
  *
  * @author baoha
  */
-public interface NguoiDungCTRL{
+public interface NguoiDungdoipassctrl extends CRUDCTRL<NguoiDung>{
     void open();
     void login();
     default void exit(){
@@ -20,5 +20,5 @@ public interface NguoiDungCTRL{
             System.exit(0);
         }
     }
-
+    
 }

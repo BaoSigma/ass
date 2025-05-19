@@ -340,13 +340,11 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
 
     private void tblLoaiDoUongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLoaiDoUongMouseClicked
         // TODO add your handling code here:
-        int chon = tblLoaiDoUong.getSelectedRow();
-        if(chon>=0){
-            Nhan(chon);
-        }
-        if(evt.getClickCount()==2){
+        
+        
+
             this.edit();
-        }
+        
     }//GEN-LAST:event_tblLoaiDoUongMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -476,6 +474,7 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
 
     @Override
     public void edit() {
+        items = dao.findAll();
         LoaiDoUong entity = items.get(tblLoaiDoUong.getSelectedRow());
         this.setForm(entity);
         this.setEditable(true);
@@ -570,7 +569,7 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
     }
 
     @Override
-    public void moveLast() {
+    public void moveLast() {                 
         this.moveTo(tblLoaiDoUong.getRowCount()-1);
     }
 

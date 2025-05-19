@@ -11,9 +11,7 @@ import java.sql.Date;
  * @author baoha
  */
 public class NguoiDung {
-
-
-    private Nhanvien nv;
+ private Nhanvien nv;
     private String maND;
     private String tenND;
     private String matKhau;
@@ -23,12 +21,67 @@ public class NguoiDung {
     public NguoiDung() {
     }
 
-    public NguoiDung(Nhanvien nv, String maND, String tenND, String matKhau, String chucVu) {
+    public NguoiDung(Nhanvien nv, String maND, String tenND, String matKhau, String chucVu, String maNV) {
         this.nv = nv;
         this.maND = maND;
         this.tenND = tenND;
         this.matKhau = matKhau;
         this.chucVu = chucVu;
+        this.maNV = maNV;
+    }
+
+    private NguoiDung(Builder builder) {
+        this.nv = builder.nv;
+        this.maND = builder.maND;
+        this.tenND = builder.tenND;
+        this.matKhau = builder.matKhau;
+        this.chucVu = builder.chucVu;
+        this.maNV = builder.maNV;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private Nhanvien nv;
+        private String maND;
+        private String tenND;
+        private String matKhau;
+        private String chucVu;
+        private String maNV;
+
+        public Builder nv(Nhanvien nv) {
+            this.nv = nv;
+            if (nv != null) {
+                this.maNV = nv.getMaNV();
+            }
+            return this;
+        }
+
+        public Builder maND(String maND) {
+            this.maND = maND;
+            return this;
+        }
+
+        public Builder tenND(String tenND) {
+            this.tenND = tenND;
+            return this;
+        }
+
+        public Builder matKhau(String matKhau) {
+            this.matKhau = matKhau;
+            return this;
+        }
+
+        public Builder chucVu(String chucVu) {
+            this.chucVu = chucVu;
+            return this;
+        }
+
+        public NguoiDung build() {
+            return new NguoiDung(this);
+        }
     }
 
     public Nhanvien getNv() {
@@ -76,11 +129,7 @@ public class NguoiDung {
     }
 
     public void setMaNV(String maNV) {
-        this.nv = nv;
-        if (nv != null) {
-        this.maNV = nv.getMaNV();
-    }
-
+        this.maNV = maNV;
     }
     
     

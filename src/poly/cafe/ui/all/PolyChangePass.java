@@ -5,18 +5,20 @@
 package poly.cafe.ui.all;
 
 import java.util.List;
-import poly.cafe.controller.entityController.NguoiDungCTRL;
+
+import poly.cafe.controller.entityController.NguoiDungdoipassctrl;
 import poly.cafe.dao.entityDAO.NguoiDungDAO;
 import poly.cafe.dao.impl.NguoiDungimpl;
 import poly.cafe.entity.NguoiDung;
 import poly.cafe.ui.manager.Polynhanvien;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
  *
  * @author baoha
  */
-public class PolyChangePass extends javax.swing.JFrame implements NguoiDungCTRL{
+public class PolyChangePass extends javax.swing.JFrame implements NguoiDungdoipassctrl{
     NguoiDungDAO dao = new NguoiDungimpl();
     List<NguoiDung> items = List.of();
     /**
@@ -115,7 +117,9 @@ public class PolyChangePass extends javax.swing.JFrame implements NguoiDungCTRL{
             }
         });
 
-        txtName.setText("                             Nhập  mã người dùng");
+        txtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtName.setText("Nhập mã người dùng");
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -306,31 +310,52 @@ public class PolyChangePass extends javax.swing.JFrame implements NguoiDungCTRL{
     public void create() {
     }
 
-    @Override
-    public void update() {
-        
-        
-        String username = txtName.getText();
-        String passold = txtPassold.getText();
-        String passnew = txtPassnew.getText();
-        String passnewag = txtPassnewAg.getText();
-        NguoiDung dl = dao.findById(username);
-            if(username.equals(dl)){
-                if(passold.equals(dl.getMatKhau())){
-                    NguoiDung entity = this.getForm();
-                    dao.update(entity);
-                    XDialog.confirm("Bạn có muốn cập nhật lại mật khẩu không?");
-                }else if(passold == null || passold.isEmpty()){
-                    XDialog.alert("Bạn chưa nhập mật khẩu");
-                }else{
-                    XDialog.alert("Bạn Nhập sai mật khẩu");
-                }
-            }else if(username == null || username.isEmpty()){
-                XDialog.alert("Bạn chưa nhập tài khoản");
-            }else{
-                XDialog.alert("Bạn nhập sai tài khoản");
-            }
+@Override
+public void update() {
+    String username = txtName.getText();
+    String passold = txtPassold.getText();
+    String passnew = txtPassnew.getText();
+    String passnewag = txtPassnewAg.getText();
+
+    if (username == null || username.isEmpty()) {
+        XDialog.alert("Bạn chưa nhập tài khoản");
+        return;
     }
+
+    if (!username.equals(XAuth.user.getMaND())) {
+        XDialog.alert("Bạn nhập sai tài khoản");
+        return;
+    }
+
+    if (passold == null || passold.isEmpty()) {
+        XDialog.alert("Bạn chưa nhập mật khẩu cũ");
+        return;
+    }
+
+    if (!passold.equals(XAuth.user.getMatKhau())) {
+        XDialog.alert("Bạn nhập sai mật khẩu cũ");
+        return;
+    }
+
+    if (passnew == null || passnew.isEmpty() || passnewag == null || passnewag.isEmpty()) {
+        XDialog.alert("Mật khẩu mới không được để trống");
+        return;
+    }
+
+    if (!passnew.equals(passnewag)) {
+        XDialog.alert("Mật khẩu mới không khớp");
+        return;
+    }
+    
+    if (XDialog.confirm("Bạn có muốn cập nhật lại mật khẩu không?")) {
+        XAuth.user.setMatKhau(passnew);
+        dao.update(XAuth.user);
+        XDialog.alert("Cập nhật mật khẩu thành công");
+        new PolyLogin().setVisible(true);
+    }
+}
+
+
 
     @Override
     public void delete() {
