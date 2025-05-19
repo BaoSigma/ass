@@ -4,12 +4,21 @@
  */
 package poly.cafe.ui.manager;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import poly.cafe.controller.entityController.TheDinhDanhCTR;
+import poly.cafe.dao.entityDAO.TheddDao;
+import poly.cafe.dao.impl.TheDinhDanhimpl;
+import poly.cafe.entity.TheDinhDanh;
+import poly.cafe.util.XDialog;
+
 /**
  *
  * @author Admin
  */
-public class Polydinhdanh extends javax.swing.JFrame {
-
+public class Polydinhdanh extends javax.swing.JFrame implements TheDinhDanhCTR{
+    TheddDao dao = new TheDinhDanhimpl();
+    List<TheDinhDanh> items = List.of();
     /**
      * Creates new form Polydinhdanh
      */
@@ -34,19 +43,19 @@ public class Polydinhdanh extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMaDinhDanh = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMa = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        txtTrangThai = new javax.swing.JTextField();
+        btnXoa = new javax.swing.JButton();
+        btnCapnhat = new javax.swing.JButton();
+        btnDau = new javax.swing.JButton();
+        btnTruoc = new javax.swing.JButton();
+        btnSau = new javax.swing.JButton();
+        btnCuoi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +70,6 @@ public class Polydinhdanh extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Lê Doãn Thành");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -86,7 +94,6 @@ public class Polydinhdanh extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Quản lý");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -105,21 +112,20 @@ public class Polydinhdanh extends javax.swing.JFrame {
                 .addComponent(jLabel3))
         );
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Menu");
         jButton1.setBorder(null);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Thêm");
-        jButton2.setBorder(null);
+        btnThem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.setBorder(null);
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMaDinhDanh.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -130,50 +136,76 @@ public class Polydinhdanh extends javax.swing.JFrame {
                 "Mã định danh", "trạng thái"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblMaDinhDanh.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblMaDinhDanhAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(tblMaDinhDanh);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Mã định danh");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        txtMa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Trạng thái");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setText("Xóa");
-        jButton5.setBorder(null);
-
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("Cập nhật");
-        jButton6.setBorder(null);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnXoa.setText("Xóa");
+        btnXoa.setBorder(null);
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnXoaActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("jButton5");
+        btnCapnhat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCapnhat.setText("Cập nhật");
+        btnCapnhat.setBorder(null);
+        btnCapnhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapnhatActionPerformed(evt);
+            }
+        });
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("jButton5");
+        btnDau.setText("Đầu");
+        btnDau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDauActionPerformed(evt);
+            }
+        });
 
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("jButton5");
+        btnTruoc.setText("Trước");
+        btnTruoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTruocActionPerformed(evt);
+            }
+        });
 
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("jButton5");
+        btnSau.setText("Sau");
+        btnSau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSauActionPerformed(evt);
+            }
+        });
+
+        btnCuoi.setText("Cuối");
+        btnCuoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuoiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -181,13 +213,13 @@ public class Polydinhdanh extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(249, 249, 249)
-                .addComponent(jButton7)
+                .addComponent(btnDau)
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
+                .addComponent(btnTruoc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton10)
+                .addComponent(btnSau)
                 .addGap(18, 18, 18)
-                .addComponent(jButton11)
+                .addComponent(btnCuoi)
                 .addGap(33, 33, 33))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,22 +228,22 @@ public class Polydinhdanh extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(237, 237, 237))
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(24, 24, 24)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(btnCapnhat, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,26 +279,26 @@ public class Polydinhdanh extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(12, 12, 12)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCapnhat, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11))
+                    .addComponent(btnDau)
+                    .addComponent(btnTruoc)
+                    .addComponent(btnSau)
+                    .addComponent(btnCuoi))
                 .addContainerGap())
         );
 
@@ -284,9 +316,49 @@ public class Polydinhdanh extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnCapnhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapnhatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        this.update();
+    }//GEN-LAST:event_btnCapnhatActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        this.create();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        this.delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnDauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDauActionPerformed
+        // TODO add your handling code here:
+        this.moveFirst();
+    }//GEN-LAST:event_btnDauActionPerformed
+
+    private void btnTruocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTruocActionPerformed
+        // TODO add your handling code here:
+        this.movePrevious();
+    }//GEN-LAST:event_btnTruocActionPerformed
+
+    private void btnSauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSauActionPerformed
+        // TODO add your handling code here:
+        this.moveNext();
+    }//GEN-LAST:event_btnSauActionPerformed
+
+    private void btnCuoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuoiActionPerformed
+        // TODO add your handling code here:
+        this.moveLast();
+    }//GEN-LAST:event_btnCuoiActionPerformed
+
+    private void txtMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaActionPerformed
+
+    private void tblMaDinhDanhAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblMaDinhDanhAncestorAdded
+        // TODO add your handling code here:
+        fillToTable();
+    }//GEN-LAST:event_tblMaDinhDanhAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -324,14 +396,14 @@ public class Polydinhdanh extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCapnhat;
+    private javax.swing.JButton btnCuoi;
+    private javax.swing.JButton btnDau;
+    private javax.swing.JButton btnSau;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnTruoc;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -342,8 +414,164 @@ public class Polydinhdanh extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tblMaDinhDanh;
+    private javax.swing.JTextField txtMa;
+    private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void open() {
+        this.setLocationRelativeTo(null);
+        this.fillToTable();
+        this.clear();
+    }
+
+    @Override
+    public void setForm(TheDinhDanh entity) {
+        txtMa.setText(entity.getMaDD());
+        txtTrangThai.setText(entity.getTrangThai());
+    }
+
+    @Override
+    public void fillToTable() {
+        DefaultTableModel model = (DefaultTableModel) tblMaDinhDanh.getModel();
+        model.setRowCount(0);
+        items = dao.findAll();
+        items.forEach(mdd -> {
+            Object[] ToRow={
+            mdd.getMaDD(),
+            mdd.getTrangThai(),
+            false
+            };
+            model.addRow(ToRow);
+        });
+    }
+
+    @Override
+    public void edit() {
+        TheDinhDanh entity = items.get(tblMaDinhDanh.getSelectedRow());
+        this.setForm(entity);
+        this.setEditable(true);
+    }
+
+    @Override
+    public void create() {
+        TheDinhDanh entity = this.getForm();
+        dao.create(entity);
+        this.fillToTable();
+        this.clear();
+    }
+
+    @Override
+    public void update() {
+        TheDinhDanh entity = this.getForm();
+        dao.update(entity);
+        this.fillToTable();
+        this.clear();
+    }
+
+    @Override
+    public void delete() {
+        getForm();
+        if(XDialog.confirm("Bạn muốn xóa nó không?")){
+            String id = txtMa.getText();
+            dao.deleteById(id);
+            this.fillToTable();
+            this.clear();
+        }
+        
+    }
+
+    @Override
+    public void clear() {
+        this.setForm(new TheDinhDanh());
+        this.setEditable(false);
+    }
+
+    @Override
+    public void setEditable(boolean editable) {
+        txtMa.setEnabled(!editable);
+        btnThem.setEnabled(!editable);
+        btnCapnhat.setEnabled(!editable);
+        btnXoa.setEnabled(!editable);
+        int rowCount = tblMaDinhDanh.getRowCount();
+        btnDau.setEnabled(editable && rowCount>0);
+        btnTruoc.setEnabled(editable && rowCount>0);
+        btnSau.setEnabled(editable && rowCount>0);
+        btnCuoi.setEnabled(editable && rowCount>0);
+    }
+
+    @Override
+    public void checkAll() {
+        this.setCheckedAll(true);
+    }
+    private void setCheckedAll(boolean checked){
+        for(int i = 0; i<tblMaDinhDanh.getRowCount();i++){
+            tblMaDinhDanh.setValueAt(checked, i, 2);
+        }
+    }
+    @Override
+    public void uncheckAll() {
+        this.setCheckedAll(false);
+    }
+
+    @Override
+    public void deleteCheckedItems() {
+        if(XDialog.confirm("Bạn chắc chắn xóa nó chứ?")){
+            for(int i = 0;i<tblMaDinhDanh.getRowCount(); i++){
+                if((Boolean)tblMaDinhDanh.getValueAt(i, 2)){
+                    dao.deleteById(items.get(i).getMaDD());
+                }
+            }
+            this.fillToTable();
+        }
+    }
+
+    @Override
+    public void moveFirst() {
+        this.moveTo(0);
+    }
+
+    @Override
+    public void movePrevious() {
+        this.moveTo(tblMaDinhDanh.getSelectedRow()-1);
+    }
+
+    @Override
+    public void moveNext() {
+        this.moveTo(tblMaDinhDanh.getSelectedRow()+1);
+    }
+
+    @Override
+    public void moveLast() {
+        this.moveTo(tblMaDinhDanh.getRowCount()-1);
+    }
+
+    @Override
+    public void moveTo(int rowIndex) {
+        if(rowIndex<0){
+            this.moveLast();
+        }else if(rowIndex>=tblMaDinhDanh.getRowCount()){
+            this.moveFirst();
+        }else{
+            tblMaDinhDanh.clearSelection();
+            tblMaDinhDanh.setRowSelectionInterval(rowIndex, rowIndex);
+            this.edit();
+        }
+    }
+
+    @Override
+    public TheDinhDanh getForm() {
+        TheDinhDanh entity = new TheDinhDanh();
+        entity.setMaDD(txtMa.getText());
+        entity.setTrangThai(txtTrangThai.getText());
+        return entity;
+    }
+
+    public void windowOpened(java.awt.event.WindowEvent evt) {
+        this.open();
+    }
+    
+
 }
+

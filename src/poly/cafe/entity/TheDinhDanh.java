@@ -16,6 +16,9 @@ public class TheDinhDanh {
         this.trangThai = trangThai;
     }
 
+    public TheDinhDanh() {
+    }
+    
     public String getMaDD() {
         return maDD;
     }

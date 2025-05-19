@@ -166,6 +166,12 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Mã Loại đồ uống");
 
+        txtMa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaActionPerformed(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tên loại đồ uống");
@@ -373,6 +379,10 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
         // TODO add your handling code here:
         fillToTable();
     }//GEN-LAST:event_tblLoaiDoUongAncestorAdded
+
+    private void txtMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaActionPerformed
 
     /**
      * @param args the command line arguments
