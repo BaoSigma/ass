@@ -5,12 +5,14 @@
 package poly.cafe.ui.all;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import poly.cafe.controller.entityController.NguoiDungCTRL;
 import poly.cafe.dao.entityDAO.NguoiDungDAO;
 import poly.cafe.dao.impl.NguoiDungimpl;
 import poly.cafe.entity.NguoiDung;
 import poly.cafe.ui.manager.Polynhanvien;
 import poly.cafe.ui.manager.polyadmin;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
@@ -272,146 +274,54 @@ public class PolyLogin extends javax.swing.JFrame implements NguoiDungCTRL{
         setLocationRelativeTo(null);
     }
 
-    @Override
-    public void setForm(NguoiDung entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public NguoiDung getForm() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void fillToTable() {
-        items = dao.findAll();
-        for (NguoiDung item : items) {
-            Object [] hienthi = {
-                item.getChucVu(),
-                item.getMaND(),
-                item.getMaNV(),
-                item.getMatKhau(),
-                item.getNv(),
-                item.getTenND()
-            };
-            items.add(item);
-        }
-    }
-
-    @Override
-    public void edit() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void create() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void setEditable(boolean editable) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void checkAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void uncheckAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void deleteCheckedItems() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void moveFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void movePrevious() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void moveNext() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void moveLast() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void moveTo(int rowIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
     @Override
     public void login() {
-        items = dao.findAll();
-        String username = txtUser.getText();
-        String pass = txtPass.getText();
-       
-        NguoiDung user = dao.findById(username);
-        for (NguoiDung item : items) {
+    String username = txtUser.getText();
+    String pass = txtPass.getText();
 
-        if(username.equals(user.getMaND()) && user.getChucVu().equals("Quản lý")){
-            if(pass.equals(user.getMatKhau())){
-                new polyadmin().setVisible(true);
-                dispose();
-                break;
-            }else if(pass == null){
-                XDialog.alert("Chưa nhập mật khẩu");
-                break;
-            }else{
-                XDialog.alert("Sai mật khẩu");
-                break;
-            }
-        }else if(username.equals(user.getMaND())&& user.getChucVu().equals("Nhân viên")){
-           if(pass.equals(user.getMatKhau())){
-                new Polynhanvien().setVisible(true);
-                break;
-            }else if(pass == null){
-                XDialog.alert("Chưa nhập mật khẩu");
-                break;
-            }else{
-                XDialog.alert("Sai mật khẩu");
-                break;
-            }
-        }else if(user == null){
-            XDialog.alert("Bạn chưa nhập mã người dùng");
-            break;
-        }else{
-            XDialog.alert("Mã người dùng không tồn tại");
-            break;
+    if (username == null || username.isEmpty()) {
+        XDialog.alert("Bạn chưa nhập mã người dùng");
+        return;
+    }
+
+    NguoiDung user = dao.findById(username);
+
+    if (user == null) {
+        XDialog.alert("Mã người dùng không tồn tại");
+        return;
+    }
+
+    if (pass == null || pass.isEmpty()) {
+        XDialog.alert("Chưa nhập mật khẩu");
+        return;
+    }
+
+    if (!pass.equals(user.getMatKhau())) {
+        XDialog.alert("Sai mật khẩu");
+        return;
+    }
+
+    if (user.getChucVu().equals("Quản lý")) {
+        if(XDialog.confirm("Bạn muốn đăng nhập không?")){
+            new polyadmin().setVisible(true);
+            this.dispose();
         }
+    } else if (user.getChucVu().equals("Nhân viên")) {
+        if(XDialog.confirm("Bạn muốn đăng nhập không?")){
+        new Polynhanvien().setVisible(true);
+        this.dispose();
         }
+    } else {
+        XDialog.alert("Chức vụ không hợp lệ");
+        return;
+    }
     }
 
     @Override
     public void exit() {
         NguoiDungCTRL.super.exit(); 
     }
+
 }
