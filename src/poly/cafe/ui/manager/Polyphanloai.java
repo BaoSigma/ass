@@ -10,6 +10,7 @@ import poly.cafe.controller.entityController.LoaiDoUongCTR;
 import poly.cafe.dao.entityDAO.LoaiDoUongDAO;
 import poly.cafe.dao.impl.LoaiDoUongimpl;
 import poly.cafe.entity.LoaiDoUong;
+import poly.cafe.entity.NguoiDung;
 import poly.cafe.util.XDialog;
 
 /**
@@ -26,7 +27,12 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
         initComponents();
         
     }
-
+    private void Nhan(int i){
+        items = dao.findAll();
+        LoaiDoUong ldu = items.get(i);
+        txtMa.setText(ldu.getMaLDU());
+        txtTen.setText(ldu.getTen());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -334,6 +340,10 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
 
     private void tblLoaiDoUongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLoaiDoUongMouseClicked
         // TODO add your handling code here:
+        int chon = tblLoaiDoUong.getSelectedRow();
+        if(chon>=0){
+            Nhan(chon);
+        }
         if(evt.getClickCount()==2){
             this.edit();
         }
@@ -488,7 +498,8 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
     }
 
     @Override
-    public void delete() {
+    public void delete(){
+        getForm();
         if(XDialog.confirm("Bạn muốn xóa nó không?")){
             String id = txtMa.getText();
             dao.deleteById(id);
@@ -575,7 +586,6 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
             this.edit();
         }
     }
-
     @Override
     public LoaiDoUong getForm() {
         LoaiDoUong entity = new LoaiDoUong();

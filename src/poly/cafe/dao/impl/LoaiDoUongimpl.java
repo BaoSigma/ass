@@ -35,8 +35,9 @@ public class LoaiDoUongimpl implements LoaiDoUongDAO{
     @Override
     public void update(LoaiDoUong entity) {
         Object[] values = {
-            entity.getMaLDU(),
-            entity.getTen()
+            entity.getTen(),
+            entity.getMaLDU()
+            
         };
         XJdbc.executeUpdate(updateSql, values);
     }

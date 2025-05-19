@@ -17,7 +17,7 @@ import poly.cafe.util.XQuery;
  */
 public class NguoiDungimpl implements NguoiDungDAO{
     private final String createSql = "INSERT INTO NguoiDung(maND, tenND, matKhau, chucVu, maNV) VALUES(?, ?)";
-    private final String updateSql = "UPDATE NguoiDung SET tenND=? WHERE maND=?";
+    private final String updateSql = "UPDATE NguoiDung SET matKhau=? WHERE maND=?";
     private final String deleteByIdSql = "DELETE FROM NguoiDung WHERE maND=?";
     private final String findAllSql = "SELECT * FROM NguoiDung ";
     private final String findByIdSql = findAllSql + " WHERE maND=?";
@@ -39,12 +39,9 @@ public class NguoiDungimpl implements NguoiDungDAO{
     public void update(NguoiDung entity) {
         Object[] values = {
             entity.getMaND(),
-            entity.getTenND(),
-            entity.getMaNV(),
             entity.getMatKhau(),
-            entity.getChucVu()
         };
-        XJdbc.executeUpdate(updateSql, values);
+        XJdbc.executeUpdate(updateSql,values);
     }
 
     @Override
