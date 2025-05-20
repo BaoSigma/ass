@@ -13,6 +13,9 @@ public class DoanhThu {
     private int donDaTao;
     private String ghiChu;
 
+    public DoanhThu() {
+    }
+
     public DoanhThu(String maDT, double tongTien, int donDaTao, String ghiChu) {
         this.maDT = maDT;
         this.tongTien = tongTien;

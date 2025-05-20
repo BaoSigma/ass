@@ -11,19 +11,23 @@ import java.sql.Date;
  * @author baoha
  */
 public class Nhanvien {
+    
     private String maNV;
     private String hovaTen;
     private java.sql.Date namSinh;
     private String anh;
-    private DoanhThu dt;
-    private String maDT = dt.getMaDT();
+    private String maDT ;
 
-    public Nhanvien(String maNV, String hovaTen, Date namSinh, String anh, DoanhThu dt) {
+    public Nhanvien() {
+    }
+    
+    public Nhanvien(String maNV, String hovaTen, Date namSinh, String anh, String maDT) {
         this.maNV = maNV;
         this.hovaTen = hovaTen;
         this.namSinh = namSinh;
         this.anh = anh;
-        this.dt = dt;
+        this.maDT = maDT;
+        
     }
 
     public String getMaNV() {
@@ -58,13 +62,6 @@ public class Nhanvien {
         this.anh = anh;
     }
 
-    public DoanhThu getDt() {
-        return dt;
-    }
-
-    public void setDt(DoanhThu dt) {
-        this.dt = dt;
-    }
 
     public String getMaDT() {
         return maDT;

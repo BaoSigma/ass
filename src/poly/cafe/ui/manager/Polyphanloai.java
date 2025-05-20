@@ -25,14 +25,9 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
      */
     public Polyphanloai() {
         initComponents();
-        
+        this.open();
     }
-    private void Nhan(int i){
-        items = dao.findAll();
-        LoaiDoUong ldu = items.get(i);
-        txtMa.setText(ldu.getMaLDU());
-        txtTen.setText(ldu.getTen());
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -603,9 +598,6 @@ public class Polyphanloai extends javax.swing.JFrame implements LoaiDoUongCTR {
         return entity;
     }
 
-    public void windowOpened(java.awt.event.WindowEvent evt) {
-        this.open();
-    }
     
 
 }

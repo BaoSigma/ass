@@ -11,7 +11,7 @@ import java.sql.Date;
  * @author baoha
  */
 public class NguoiDung {
- private Nhanvien nv;
+    private Nhanvien nv;
     private String maND;
     private String tenND;
     private String matKhau;
