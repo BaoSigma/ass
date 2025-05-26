@@ -4,15 +4,12 @@
  */
 package poly.cafe.util;
 
-import poly.cafe.entity.NguoiDung;
+import poly.cafe.entity.NhanVien;
 
 /**
  *
  * @author baoha
  */
 public class XAuth {
-    public static  NguoiDung user = NguoiDung.builder()
-            .maND("ND001")
-            .matKhau("pass123")
-            .build();
+    
 }
