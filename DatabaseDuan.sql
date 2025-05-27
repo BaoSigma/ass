@@ -188,10 +188,7 @@ EXEC ThemDoanhThu
 
 	EXEC ThemTheDD
     @trangThai ='?',
-    @maHD = '?',
-    @soLuong = '?',
-    @giaTien = '?',
-    @thanhTien = '?';
+    @maHD = '?';
 
 	EXEC ThemLoaiDoUong
     @tenLDU = '?';
