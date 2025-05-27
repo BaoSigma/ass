@@ -1,3 +1,7 @@
+create database Duan;
+go;
+use Duan;
+go;
 ﻿Create table Nhanvien(
 maNV VARCHAR(5) PRIMARY KEY,
 hoTen NVARCHAR(50),
@@ -28,10 +32,8 @@ thanhTien money)
 CREATE TABLE TheDD(
 ID int identity(1,1) PRIMARY KEY,
 trangThai nvarchar(50),
-maHD VARCHAR(5) FOREIGN KEY REFERENCES Hoadon(maHD),
-soLuong int,
-giaTien money,
-thanhTien money)
+maHD VARCHAR(5) FOREIGN KEY REFERENCES Hoadon(maHD)
+)
 
 CREATE TABLE LoaiDoUong(
 maLDU int identity(1,1) primary key,
@@ -47,7 +49,7 @@ CREATE TABLE Chitiethoadon (
 maCT int identity(1,1) primary key,
 maHD VARCHAR(5) FOREIGN KEY REFERENCES Hoadon(maHD),
 maDU VARCHAR(5) FOREIGN KEY REFERENCES DoUong(maDU),
-soLuong money,
+soLuong int,
 giaTien money,
 thanhTien money)
 
@@ -135,14 +137,11 @@ END;
 
 CREATE PROCEDURE ThemTheDD
     @trangThai NVARCHAR(50),
-    @maHD VARCHAR(5),
-    @soLuong INT,
-    @giaTien MONEY,
-    @thanhTien MONEY
+    @maHD VARCHAR(5)
 AS
 BEGIN
-    INSERT INTO TheDD(trangThai, maHD, soLuong, giaTien, thanhTien)
-    VALUES (@trangThai, @maHD, @soLuong, @giaTien, @thanhTien);
+    INSERT INTO TheDD(trangThai, maHD)
+    VALUES (@trangThai, @maHD);
 END;
 
 CREATE PROCEDURE ThemLoaiDoUong
