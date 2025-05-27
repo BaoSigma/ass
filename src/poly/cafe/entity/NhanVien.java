@@ -4,7 +4,7 @@
  */
 package poly.cafe.entity;
 
-import com.microsoft.sqlserver.jdbc.SqlAuthenticationToken;
+
 import java.util.Date;
 
 /**
