@@ -11,14 +11,13 @@ package poly.cafe.entity;
  */
 public class HoaDon {
     private String maHD;
-    private String maNV;
+    private NhanVien nv = new NhanVien();
     private String ghiChu;
     private String ngayTao;
     private Double thanhTien;
 
-    public HoaDon(String maHD, String maNV, String ghiChu, String ngayTao, Double thanhTien) {
+    public HoaDon(String maHD, String ghiChu, String ngayTao, Double thanhTien) {
         this.maHD = maHD;
-        this.maNV = maNV;
         this.ghiChu = ghiChu;
         this.ngayTao = ngayTao;
         this.thanhTien = thanhTien;
@@ -35,12 +34,12 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
-    public String getMaNV() {
-        return maNV;
+    public NhanVien getNv() {
+        return nv;
     }
 
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
+    public void setNv(NhanVien nv) {
+        this.nv = nv;
     }
 
     public String getGhiChu() {
@@ -66,6 +65,6 @@ public class HoaDon {
     public void setThanhTien(Double thanhTien) {
         this.thanhTien = thanhTien;
     }
-    
-    
+
+        
 }
