@@ -19,6 +19,7 @@ public class NhanVien {
     private String email;
     private String matKhau;
     private String chucVu;
+    
 
     public NhanVien(String maNV, String hoTen, String namSinh, String sdt, String email, String matKhau, String chucVu) {
         this.maNV = maNV;

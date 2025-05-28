@@ -16,6 +16,7 @@ public class HoaDon {
     private String ngayTao;
     private Double thanhTien;
 
+
     public HoaDon(String maHD, String ghiChu, String ngayTao, Double thanhTien) {
         this.maHD = maHD;
         this.ghiChu = ghiChu;
@@ -34,12 +35,12 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
-    public NhanVien getNv() {
-        return nv;
+    public String getMaNV() {
+        return nv.getMaNV();
     }
 
-    public void setNv(NhanVien nv) {
-        this.nv = nv;
+    public void setMaNV(String maNV) {
+        nv.setMaNV(maNV);
     }
 
     public String getGhiChu() {
