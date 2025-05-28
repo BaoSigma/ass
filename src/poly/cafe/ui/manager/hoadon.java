@@ -44,15 +44,15 @@ public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
         jLabel14 = new javax.swing.JLabel();
         txtHD = new javax.swing.JTextField();
         txtNgayTao = new javax.swing.JTextField();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnDele = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         txtThanhTien = new javax.swing.JTextField();
-        jButton22 = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         txtNV = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -103,20 +103,20 @@ public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
 
         txtNgayTao.setForeground(new java.awt.Color(51, 51, 51));
 
-        jButton15.setBackground(new java.awt.Color(88, 151, 225));
-        jButton15.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jButton15.setText("Thêm");
+        btnAdd.setBackground(new java.awt.Color(88, 151, 225));
+        btnAdd.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd.setText("Thêm");
 
-        jButton16.setBackground(new java.awt.Color(88, 151, 225));
-        jButton16.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jButton16.setForeground(new java.awt.Color(255, 255, 255));
-        jButton16.setText("Xóa");
+        btnDele.setBackground(new java.awt.Color(88, 151, 225));
+        btnDele.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnDele.setForeground(new java.awt.Color(255, 255, 255));
+        btnDele.setText("Xóa");
 
-        jButton17.setBackground(new java.awt.Color(88, 151, 225));
-        jButton17.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jButton17.setForeground(new java.awt.Color(255, 255, 255));
-        jButton17.setText("Cập nhật");
+        btnUpdate.setBackground(new java.awt.Color(88, 151, 225));
+        btnUpdate.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setText("Cập nhật");
 
         jButton18.setForeground(new java.awt.Color(255, 255, 255));
         jButton18.setText("jButton7");
@@ -132,10 +132,10 @@ public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
 
         txtThanhTien.setForeground(new java.awt.Color(51, 51, 51));
 
-        jButton22.setBackground(new java.awt.Color(88, 151, 225));
-        jButton22.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        jButton22.setForeground(new java.awt.Color(255, 255, 255));
-        jButton22.setText("Làm mới");
+        btnClear.setBackground(new java.awt.Color(88, 151, 225));
+        btnClear.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
+        btnClear.setText("Làm mới");
 
         txtNV.setForeground(new java.awt.Color(51, 51, 51));
 
@@ -187,13 +187,13 @@ public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
                                 .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52)
-                                .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDele, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
-                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(316, 316, 316)
                         .addComponent(jLabel1)))
@@ -227,10 +227,10 @@ public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
                     .addComponent(jTextField10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDele, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -263,14 +263,14 @@ public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDele;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -345,23 +345,27 @@ public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
     @Override
     public void delete() {
         if(XDialog.confirm("Bạn thực sự muốn xóa?")){
-            String id = 
+            String hd = txtHD.getText();
+            dao.deleteById(hd);
+            fillToTable();
+            clear();
         }
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        setForm(new HoaDon());
+        setEditable(false);
     }
 
     @Override
     public void setEditable(boolean editable) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     @Override
     public void checkAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     @Override
@@ -376,26 +380,34 @@ public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
 
     @Override
     public void moveFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        moveTo(0);
     }
 
     @Override
     public void movePrevious() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        moveTo(tblHoaDon.getSelectedRow()-1);
     }
 
     @Override
     public void moveNext() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        moveTo(tblHoaDon.getSelectedRow()+1);
     }
 
     @Override
     public void moveLast() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        moveTo(tblHoaDon.getRowCount()-1);
     }
 
     @Override
     public void moveTo(int rowIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(rowIndex<0){
+            moveLast();
+        }else if(rowIndex>=tblHoaDon.getRowCount()){
+            moveFirst();
+        }else{
+            tblHoaDon.clearSelection();
+            tblHoaDon.setRowSelectionInterval(rowIndex, rowIndex);
+            edit();
+        }
     }
 }
