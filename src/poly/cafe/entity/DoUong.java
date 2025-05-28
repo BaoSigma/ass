@@ -11,13 +11,13 @@ package poly.cafe.entity;
  */
 public class DoUong {
     private String maDU;
-    private int maLDU;
+    private LoaiDoUong LDU;
     private String tenDU;
     private Double giaDU;
 
-    public DoUong(String maDU, int maLDU, String tenDU, Double giaDU) {
+    public DoUong(String maDU, LoaiDoUong LDU, String tenDU, Double giaDU) {
         this.maDU = maDU;
-        this.maLDU = maLDU;
+        this.LDU = LDU;
         this.tenDU = tenDU;
         this.giaDU = giaDU;
     }
@@ -33,12 +33,12 @@ public class DoUong {
         this.maDU = maDU;
     }
 
-    public int getMaLDU() {
-        return maLDU;
+    public LoaiDoUong getLDU() {
+        return LDU;
     }
 
-    public void setMaLDU(int maLDU) {
-        this.maLDU = maLDU;
+    public void setLDU(LoaiDoUong LDU) {
+        this.LDU = LDU;
     }
 
     public String getTenDU() {
