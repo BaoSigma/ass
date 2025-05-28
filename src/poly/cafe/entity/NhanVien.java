@@ -4,7 +4,7 @@
  */
 package poly.cafe.entity;
 
-import com.microsoft.sqlserver.jdbc.SqlAuthenticationToken;
+
 import java.util.Date;
 
 /**
@@ -12,7 +12,7 @@ import java.util.Date;
  * @author baoha
  */
 public class NhanVien {
-    private String maNV;
+    private String maNV ;
     private String hoTen;
     private String namSinh;
     private String sdt;
