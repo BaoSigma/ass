@@ -28,7 +28,7 @@ public class HoaDonimpl implements HoaDonDAO{
     public HoaDon create(HoaDon entity) {
     Object[] values = {
     entity.getMaHD(),
-    entity.getNv(),
+    entity.getMaNV(),
     entity.getNgayTao(),
     entity.getThanhTien(),
     entity.getGhiChu()
@@ -41,7 +41,7 @@ public class HoaDonimpl implements HoaDonDAO{
     public void update(HoaDon entity) {
         Object[] values = {
     entity.getMaHD(),
-    entity.getNv(),
+    entity.getMaNV(),
     entity.getNgayTao(),
     entity.getThanhTien(),
     entity.getGhiChu()
