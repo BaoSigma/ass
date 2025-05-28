@@ -4,12 +4,21 @@
  */
 package poly.cafe.ui.manager;
 
+import poly.cafe.controller.entityController.HoaDonCTR;
+import poly.cafe.dao.entityDAO.HoaDonDAO;
+import poly.cafe.dao.impl.HoaDonimpl;
+import poly.cafe.entity.HoaDon;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import poly.cafe.util.XDialog;
 /**
  *
  * @author Admin
  */
-public class hoadon extends javax.swing.JPanel {
-
+public class hoadon extends javax.swing.JPanel implements HoaDonCTR{
+    HoaDonDAO dao = new HoaDonimpl();
+    List<HoaDon>items = new ArrayList<>();
     /**
      * Creates new form hoadon
      */
@@ -29,12 +38,12 @@ public class hoadon extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblHoaDon = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtHD = new javax.swing.JTextField();
+        txtNgayTao = new javax.swing.JTextField();
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
@@ -42,9 +51,9 @@ public class hoadon extends javax.swing.JPanel {
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
+        txtThanhTien = new javax.swing.JTextField();
         jButton22 = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
+        txtNV = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
@@ -56,8 +65,7 @@ public class hoadon extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Hóa đơn");
 
-        jTable3.setBackground(new java.awt.Color(255, 255, 255));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -68,7 +76,16 @@ public class hoadon extends javax.swing.JPanel {
                 "Mã hóa đơn", "Mã nhân viên", "Ngày tạo", "Thành tiền", "Ghi chú"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        tblHoaDon.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblHoaDonAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane3.setViewportView(tblHoaDon);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,11 +99,9 @@ public class hoadon extends javax.swing.JPanel {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Thành tiền");
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setForeground(new java.awt.Color(51, 51, 51));
+        txtHD.setForeground(new java.awt.Color(51, 51, 51));
 
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setForeground(new java.awt.Color(51, 51, 51));
+        txtNgayTao.setForeground(new java.awt.Color(51, 51, 51));
 
         jButton15.setBackground(new java.awt.Color(88, 151, 225));
         jButton15.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
@@ -115,16 +130,14 @@ public class hoadon extends javax.swing.JPanel {
         jButton21.setForeground(new java.awt.Color(255, 255, 255));
         jButton21.setText("jButton10");
 
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setForeground(new java.awt.Color(51, 51, 51));
+        txtThanhTien.setForeground(new java.awt.Color(51, 51, 51));
 
         jButton22.setBackground(new java.awt.Color(88, 151, 225));
         jButton22.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jButton22.setForeground(new java.awt.Color(255, 255, 255));
         jButton22.setText("Làm mới");
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setForeground(new java.awt.Color(51, 51, 51));
+        txtNV.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,7 +147,6 @@ public class hoadon extends javax.swing.JPanel {
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Ghi chú");
 
-        jTextField10.setBackground(new java.awt.Color(255, 255, 255));
         jTextField10.setForeground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -165,10 +177,10 @@ public class hoadon extends javax.swing.JPanel {
                                     .addComponent(jLabel15))
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField6))
+                                    .addComponent(txtNgayTao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                    .addComponent(txtNV, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtHD, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtThanhTien))
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel16)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -196,19 +208,19 @@ public class hoadon extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtThanhTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel14)))
                             .addComponent(jLabel13)))
                     .addComponent(jLabel16)
@@ -244,6 +256,11 @@ public class hoadon extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblHoaDonAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblHoaDonAncestorAdded
+        // TODO add your handling code here:
+        fillToTable();
+    }//GEN-LAST:event_tblHoaDonAncestorAdded
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton15;
@@ -262,11 +279,123 @@ public class hoadon extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTable tblHoaDon;
+    private javax.swing.JTextField txtHD;
+    private javax.swing.JTextField txtNV;
+    private javax.swing.JTextField txtNgayTao;
+    private javax.swing.JTextField txtThanhTien;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void open() {
+       
+    }
+
+    @Override
+    public void setForm(HoaDon entity) {
+        
+    }
+
+    @Override
+    public HoaDon getForm() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void fillToTable() {
+        DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
+        model.setRowCount(0);
+        items = dao.findAll();
+        items.forEach(hd->{
+            Object[] rowData ={
+                hd.getMaHD(),
+                hd.getNv(),
+                hd.getGhiChu(),
+                hd.getNgayTao(),
+                hd.getThanhTien(),
+                    false
+            };
+            model.addRow(rowData);
+        });
+    }
+
+    @Override
+    public void edit() {
+        HoaDon entity = items.get(tblHoaDon.getSelectedRow());
+        setForm(entity);
+        setEditable(true);
+    }
+
+    @Override
+    public void create() {
+        HoaDon entity = getForm();
+        dao.create(entity);
+        fillToTable();
+        clear(); 
+    }
+
+    @Override
+    public void update() {
+        HoaDon entity =this.getForm();
+        dao.update(entity);
+        this.fillToTable();
+    }
+
+    @Override
+    public void delete() {
+        if(XDialog.confirm("Bạn thực sự muốn xóa?")){
+            String id = 
+        }
+    }
+
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setEditable(boolean editable) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void checkAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void uncheckAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void deleteCheckedItems() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void moveFirst() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void movePrevious() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void moveNext() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void moveLast() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void moveTo(int rowIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
