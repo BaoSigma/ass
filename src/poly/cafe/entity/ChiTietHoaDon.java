@@ -14,15 +14,13 @@ public class ChiTietHoaDon {
     private String maDU;
     private int soLuong;
     private double giaTien;
-    private double thanhTien; 
 
-    public ChiTietHoaDon(int maCT, String maHD, String maDU, int soLuong, double giaTien, double thanhTien) {
+    public ChiTietHoaDon(int maCT, String maHD, String maDU, int soLuong, double giaTien) {
         this.maCT = maCT;
         this.maHD = maHD;
         this.maDU = maDU;
         this.soLuong = soLuong;
         this.giaTien = giaTien;
-        this.thanhTien = thanhTien;
     }
 
     public ChiTietHoaDon() {
@@ -68,12 +66,4 @@ public class ChiTietHoaDon {
         this.giaTien = giaTien;
     }
 
-    public double getThanhTien() {
-        return thanhTien;
-    }
-
-    public void setThanhTien(double thanhTien) {
-        this.thanhTien = thanhTien;
-    }
-    
 }

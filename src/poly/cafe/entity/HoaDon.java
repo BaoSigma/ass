@@ -14,14 +14,13 @@ public class HoaDon {
     private NhanVien nv = new NhanVien();
     private String ghiChu;
     private String ngayTao;
-    private Double thanhTien;
 
 
-    public HoaDon(String maHD, String ghiChu, String ngayTao, Double thanhTien) {
+    public HoaDon(String maHD, String ghiChu, String ngayTao) {
         this.maHD = maHD;
         this.ghiChu = ghiChu;
         this.ngayTao = ngayTao;
-        this.thanhTien = thanhTien;
+
     }
 
     public HoaDon() {
@@ -59,13 +58,6 @@ public class HoaDon {
         this.ngayTao = ngayTao;
     }
 
-    public Double getThanhTien() {
-        return thanhTien;
-    }
-
-    public void setThanhTien(Double thanhTien) {
-        this.thanhTien = thanhTien;
-    }
 
         
 }

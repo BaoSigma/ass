@@ -11,14 +11,9 @@ email varchar(355),
 matKhau varchar(100),
 chucVu nvarchar(50))
 
-CREATE TABLE Doanhthu(
-ID int identity(1,1),
-maNV VARCHAR(5) FOREIGN KEY REFERENCES Nhanvien(maNV),
-soDonDaTao NVARCHAR(30),
-tongThuNhap money)
 
 CREATE TABLE Calam(
-buoi nvarchar(30) primary key,
+maCL nvarchar(30) primary key,
 maNV VARCHAR(5) FOREIGN KEY REFERENCES Nhanvien(maNV),
 hoTenNV NVARCHAR(50))
 
@@ -27,7 +22,7 @@ maHD VARCHAR(5) PRIMARY KEY,
 maNV VARCHAR(5) FOREIGN KEY REFERENCES Nhanvien(maNV),
 ghiChu NVARCHAR(50),
 ngayTao DATE,
-thanhTien money)
+)
 
 CREATE TABLE TheDD(
 ID int identity(1,1) PRIMARY KEY,
@@ -35,25 +30,24 @@ trangThai nvarchar(50),
 maHD VARCHAR(5) FOREIGN KEY REFERENCES Hoadon(maHD)
 )
 
-CREATE TABLE LoaiDoUong(
-maLDU int identity(1,1) primary key,
+CREATE TABLE LoaiSanPham(
+maLSP int identity(1,1) primary key,
 tenLDU NVARCHAR(50))
 
-CREATE TABLE DoUong(
-maDU VARCHAR(5) PRIMARY KEY,
-maLDU int FOREIGN KEY REFERENCES LoaiDoUong(maLDU),
+CREATE TABLE SanPham(
+maSP VARCHAR(5) PRIMARY KEY,
+maLSP int FOREIGN KEY REFERENCES LoaiSanPham(maLSP),
 tenDU nvarchar(50),
 giaDU money)
 
 CREATE TABLE Chitiethoadon (
 maCT int identity(1,1) primary key,
 maHD VARCHAR(5) FOREIGN KEY REFERENCES Hoadon(maHD),
-maDU VARCHAR(5) FOREIGN KEY REFERENCES DoUong(maDU),
+maSP VARCHAR(5) FOREIGN KEY REFERENCES SanPham(maSP),
 soLuong int,
-giaTien money,
-thanhTien money)
-
-CREATE PROCEDURE ThemNhanVien
+giaTien money
+)
+CREATE PROCEDURE Insert_NhanVien
     @hoTen NVARCHAR(50),
     @namSinh DATE,
     @sdt VARCHAR(10),
@@ -62,160 +56,143 @@ CREATE PROCEDURE ThemNhanVien
     @chucVu NVARCHAR(50)
 AS
 BEGIN
-    DECLARE @maCuoi VARCHAR(5)
-    DECLARE @soThuTu INT
-    DECLARE @maNVmoi VARCHAR(5)
+    DECLARE @newMaNV VARCHAR(5)
+    DECLARE @lastNum INT
 
-    -- Lấy mã cuối cùng (cao nhất) từ bảng Nhanvien
-    SELECT @maCuoi = MAX(maNV) FROM Nhanvien
+    SELECT @lastNum = 
+        CAST(SUBSTRING(MAX(maNV), 3, 3) AS INT)
+    FROM Nhanvien
 
-    -- Tách số từ mã cũ
-    IF @maCuoi IS NULL
-        SET @soThuTu = 1
-    ELSE
-        SET @soThuTu = CAST(SUBSTRING(@maCuoi, 3, 3) AS INT) + 1
+    SET @lastNum = ISNULL(@lastNum, 0) + 1
+    SET @newMaNV = 'NV' + RIGHT('000' + CAST(@lastNum AS VARCHAR), 3)
 
-    -- Ghép mã mới dạng NV001
-    SET @maNVmoi = 'NV' + RIGHT('000' + CAST(@soThuTu AS VARCHAR), 3)
-
-    -- Thêm dòng mới
-    INSERT INTO Nhanvien (maNV, hoTen, namSinh, sdt, email, matKhau, chucVu)
-    VALUES (@maNVmoi, @hoTen, @namSinh, @sdt, @email, @matKhau, @chucVu)
+    INSERT INTO Nhanvien(maNV, hoTen, namSinh, sdt, email, matKhau, chucVu)
+    VALUES (@newMaNV, @hoTen, @namSinh, @sdt, @email, @matKhau, @chucVu)
 END
 
-
-
-	CREATE PROCEDURE ThemHoaDon
-    @maNV VARCHAR(5),
-    @ghiChu NVARCHAR(50),
-    @ngayTao DATE,
-    @thanhTien MONEY
-AS
-BEGIN
-    DECLARE @maCuoi VARCHAR(5);
-    DECLARE @soThuTu INT;
-    DECLARE @maHDmoi VARCHAR(5);
-
-    -- Lấy mã hóa đơn cuối cùng
-    SELECT @maCuoi = MAX(maHD) FROM Hoadon;
-
-    -- Tính số tiếp theo
-    IF @maCuoi IS NULL
-        SET @soThuTu = 1;
-    ELSE
-        SET @soThuTu = CAST(SUBSTRING(@maCuoi, 3, 3) AS INT) + 1;
-
-    -- Sinh mã mới dạng HD001
-    SET @maHDmoi = 'HD' + RIGHT('000' + CAST(@soThuTu AS VARCHAR), 3);
-
-    -- Thêm hóa đơn mới
-    INSERT INTO Hoadon (maHD, maNV, ghiChu, ngayTao, thanhTien)
-    VALUES (@maHDmoi, @maNV, @ghiChu, @ngayTao, @thanhTien);
-END;
-
-
-
-	CREATE PROCEDURE ThemDoanhThu
-    @maNV VARCHAR(5),
-    @soDonDaTao NVARCHAR(30),
-    @tongThuNhap MONEY
-AS
-BEGIN
-    INSERT INTO Doanhthu(maNV, soDonDaTao, tongThuNhap)
-    VALUES (@maNV, @soDonDaTao, @tongThuNhap);
-END;
-
-CREATE PROCEDURE ThemCaLam
-    @buoi NVARCHAR(30),
+CREATE PROCEDURE Insert_Calam
+    @maCL NVARCHAR(30),
     @maNV VARCHAR(5),
     @hoTenNV NVARCHAR(50)
 AS
 BEGIN
-    INSERT INTO Calam(buoi, maNV, hoTenNV)
-    VALUES (@buoi, @maNV, @hoTenNV);
-END;
+    INSERT INTO Calam(maCL, maNV, hoTenNV)
+    VALUES (@maCL, @maNV, @hoTenNV)
+END
 
-CREATE PROCEDURE ThemTheDD
+CREATE PROCEDURE Insert_HoaDon
+    @maNV VARCHAR(5),
+    @ghiChu NVARCHAR(50),
+    @ngayTao DATE
+AS
+BEGIN
+    DECLARE @newMaHD VARCHAR(5)
+    DECLARE @lastNum INT
+
+    SELECT @lastNum = 
+        CAST(SUBSTRING(MAX(maHD), 3, 3) AS INT)
+    FROM Hoadon
+
+    SET @lastNum = ISNULL(@lastNum, 0) + 1
+    SET @newMaHD = 'HD' + RIGHT('000' + CAST(@lastNum AS VARCHAR), 3)
+
+    INSERT INTO Hoadon(maHD, maNV, ghiChu, ngayTao)
+    VALUES (@newMaHD, @maNV, @ghiChu, @ngayTao)
+END
+
+CREATE PROCEDURE Insert_TheDD
     @trangThai NVARCHAR(50),
     @maHD VARCHAR(5)
 AS
 BEGIN
     INSERT INTO TheDD(trangThai, maHD)
-    VALUES (@trangThai, @maHD);
-END;
+    VALUES (@trangThai, @maHD)
+END
 
-CREATE PROCEDURE ThemLoaiDoUong
+CREATE PROCEDURE Insert_LoaiSanPham
     @tenLDU NVARCHAR(50)
 AS
 BEGIN
-    INSERT INTO LoaiDoUong(tenLDU)
-    VALUES (@tenLDU);
-END;
+    INSERT INTO LoaiSanPham(tenLDU)
+    VALUES (@tenLDU)
+END
 
-CREATE PROCEDURE ThemDoUong
-    @maDU VARCHAR(5),
-    @maLDU INT,
+CREATE PROCEDURE Insert_SanPham
+    @maLSP INT,
     @tenDU NVARCHAR(50),
     @giaDU MONEY
 AS
 BEGIN
-    INSERT INTO DoUong(maDU, maLDU, tenDU, giaDU)
-    VALUES (@maDU, @maLDU, @tenDU, @giaDU);
-END;
+    DECLARE @newMaSP VARCHAR(5)
+    DECLARE @lastNum INT
 
-CREATE PROCEDURE ThemChiTietHoaDon
+    SELECT @lastNum = 
+        CAST(SUBSTRING(MAX(maSP), 3, 3) AS INT)
+    FROM SanPham
+
+    SET @lastNum = ISNULL(@lastNum, 0) + 1
+    SET @newMaSP = 'SP' + RIGHT('000' + CAST(@lastNum AS VARCHAR), 3)
+
+    INSERT INTO SanPham(maSP, maLSP, tenDU, giaDU)
+    VALUES (@newMaSP, @maLSP, @tenDU, @giaDU)
+END
+
+CREATE PROCEDURE Insert_ChiTietHoaDon
     @maHD VARCHAR(5),
-    @maDU VARCHAR(5),
-    @soLuong MONEY,
-    @giaTien MONEY,
-    @thanhTien MONEY
+    @maSP VARCHAR(5),
+    @soLuong INT,
+    @giaTien MONEY
 AS
 BEGIN
-    INSERT INTO Chitiethoadon(maHD, maDU, soLuong, giaTien, thanhTien)
-    VALUES (@maHD, @maDU, @soLuong, @giaTien, @thanhTien);
-END;
+    INSERT INTO Chitiethoadon(maHD, maSP, soLuong, giaTien)
+    VALUES (@maHD, @maSP, @soLuong, @giaTien)
+END
 
-EXEC ThemDoanhThu 
-    @maNV = '?',
-    @soDonDaTao = '?',
-    @tongThuNhap = '?';
+EXEC Insert_NhanVien N'Nguyễn Văn A', '1990-01-01', '0911111111', 'a@gmail.com', 'mk123', N'Quản lý';
+EXEC Insert_NhanVien N'Lê Thị B', '1992-05-12', '0922222222', 'b@gmail.com', 'mk456', N'Nhân viên';
+EXEC Insert_NhanVien N'Trần Văn C', '1995-07-23', '0933333333', 'c@gmail.com', 'mk789', N'Nhân viên';
+EXEC Insert_NhanVien N'Phạm Thị D', '1998-09-15', '0944444444', 'd@gmail.com', 'mk101', N'Nhân viên';
+EXEC Insert_NhanVien N'Huỳnh Văn E', '2000-12-30', '0955555555', 'e@gmail.com', 'mk202', N'Phục vụ';
 
-	EXEC ThemCaLam
-    @buoi = '?',
-    @maNV = '?',
-    @hoTenNV = '?';
+EXEC Insert_Calam N'CL001', 'NV001', N'Nguyễn Văn A';
+EXEC Insert_Calam N'CL002', 'NV002', N'Lê Thị B';
+EXEC Insert_Calam N'CL003', 'NV003', N'Trần Văn C';
+EXEC Insert_Calam N'CL004', 'NV004', N'Phạm Thị D';
+EXEC Insert_Calam N'CL005', 'NV005', N'Huỳnh Văn E';
 
+EXEC Insert_HoaDon 'NV001', N'Hóa đơn bán hàng 1', '2025-05-30';
+EXEC Insert_HoaDon 'NV002', N'Hóa đơn bán hàng 2', '2025-05-30';
+EXEC Insert_HoaDon 'NV003', N'Hóa đơn bán hàng 3', '2025-05-31';
+EXEC Insert_HoaDon 'NV004', N'Hóa đơn bán hàng 4', '2025-05-31';
+EXEC Insert_HoaDon 'NV005', N'Hóa đơn bán hàng 5', '2025-05-31';
 
-	EXEC ThemTheDD
-    @trangThai ='?',
-    @maHD = '?';
+EXEC Insert_HoaDon 'NV001', N'Hóa đơn bán hàng 1', '2025-05-30';
+EXEC Insert_HoaDon 'NV002', N'Hóa đơn bán hàng 2', '2025-05-30';
+EXEC Insert_HoaDon 'NV003', N'Hóa đơn bán hàng 3', '2025-05-31';
+EXEC Insert_HoaDon 'NV004', N'Hóa đơn bán hàng 4', '2025-05-31';
+EXEC Insert_HoaDon 'NV005', N'Hóa đơn bán hàng 5', '2025-05-31';
 
-	EXEC ThemLoaiDoUong
-    @tenLDU = '?';
+EXEC Insert_TheDD N'Đã điểm danh', 'HD001';
+EXEC Insert_TheDD N'Chưa điểm danh', 'HD002';
+EXEC Insert_TheDD N'Đã điểm danh', 'HD003';
+EXEC Insert_TheDD N'Chưa điểm danh', 'HD004';
+EXEC Insert_TheDD N'Đã điểm danh', 'HD005';
 
-	EXEC ThemDoUong
-    @maDU = '?',
-    @maLDU = '?',
-    @tenDU = '?',
-    @giaDU = '?';
+EXEC Insert_LoaiSanPham N'Nước ngọt';
+EXEC Insert_LoaiSanPham N'Cà phê';
+EXEC Insert_LoaiSanPham N'Trà sữa';
+EXEC Insert_LoaiSanPham N'Sinh tố';
+EXEC Insert_LoaiSanPham N'Nước suối';
 
-	EXEC ThemChiTietHoaDon
-    @maHD = '?',
-    @maDU = '?',
-    @soLuong = '?',
-    @giaTien = '?',
-    @thanhTien = '?';
+EXEC Insert_SanPham 1, N'Coca Cola', 15000;
+EXEC Insert_SanPham 2, N'Cà phê sữa đá', 18000;
+EXEC Insert_SanPham 3, N'Trà sữa trân châu', 25000;
+EXEC Insert_SanPham 4, N'Sinh tố xoài', 30000;
+EXEC Insert_SanPham 5, N'LaVie', 10000;
 
-	EXEC ThemNhanVien 
-    @hoTen = '?',
-    @namSinh ='?',
-    @sdt = '?',
-    @email = '?',
-    @matKhau = '?',
-    @chucVu = '?';
+EXEC Insert_ChiTietHoaDon 'HD001', 'SP001', 2, 30000;
+EXEC Insert_ChiTietHoaDon 'HD002', 'SP002', 1, 18000;
+EXEC Insert_ChiTietHoaDon 'HD003', 'SP003', 3, 75000;
+EXEC Insert_ChiTietHoaDon 'HD004', 'SP004', 1, 30000;
+EXEC Insert_ChiTietHoaDon 'HD005', 'SP005', 5, 50000;
 
-	EXEC ThemHoaDon 
-	@maNV = '?',
-    @ghiChu = '?',
-    @ngayTao = '?',
-    @thanhTien = '?';
