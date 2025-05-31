@@ -30,7 +30,7 @@ public class HoaDonimpl implements HoaDonDAO{
     entity.getMaHD(),
     entity.getMaNV(),
     entity.getNgayTao(),
-    entity.getThanhTien(),
+   
     entity.getGhiChu()
     };
     XJdbc.executeUpdate(createsql, values);
@@ -43,7 +43,6 @@ public class HoaDonimpl implements HoaDonDAO{
     entity.getMaHD(),
     entity.getMaNV(),
     entity.getNgayTao(),
-    entity.getThanhTien(),
     entity.getGhiChu()
     };
     XJdbc.executeUpdate(UpdateSQL, values);

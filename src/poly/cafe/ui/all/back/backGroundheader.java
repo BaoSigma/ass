@@ -14,33 +14,31 @@ import java.awt.RenderingHints;
  *
  * @author baoha
  */
-public class PanelFP extends javax.swing.JPanel {
+public class backGroundheader extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelFP
+     * Creates new form backGroundheader
      */
-    public PanelFP() {
+    public backGroundheader() {
         initComponents();
         setOpaque(true);
     }
-
     @Override
     protected void paintChildren(Graphics g) {
+   
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         int width = getWidth();
         int height = getHeight();
     
-        GradientPaint gp = new GradientPaint(0, 0, Color.decode("#56CCF2"), 0, height, Color.decode("#2F80ED"));
+        GradientPaint gp = new GradientPaint(0, 0, Color.decode("#00c6ff"), 0, height, Color.decode("#0072ff"));
         g2.setPaint(gp);
         g2.fillRoundRect(0, 0, width, height, 5, 5);
 
         g2.dispose();
-        super.paintChildren(g);
+        super.paintChildren(g); 
     }
-
-
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,7 +53,7 @@ public class PanelFP extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

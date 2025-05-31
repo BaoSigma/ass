@@ -27,22 +27,5 @@ public class RoundedPanel extends JPanel{
         setOpaque(false); // Cho phép vẽ nền tùy chỉnh
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        int width = getWidth();
-        int height = getHeight();
-
-        // Gradient từ trên xuống dưới
-        GradientPaint gradient = new GradientPaint(0, 0, startColor, 0, height, endColor);
-        g2.setPaint(gradient);
-        g2.fillRoundRect(0, 0, width, height, cornerRadius, cornerRadius);
-
-        g2.dispose();
-
-        // Vẽ các component con (nút, label, v.v.)
-        super.paintComponent(g);
-    }
+    
 }

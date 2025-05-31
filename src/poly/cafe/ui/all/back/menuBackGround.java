@@ -14,12 +14,12 @@ import java.awt.RenderingHints;
  *
  * @author baoha
  */
-public class PanelFP extends javax.swing.JPanel {
+public class menuBackGround extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelFP
+     * Creates new form menuBackGround
      */
-    public PanelFP() {
+    public menuBackGround() {
         initComponents();
         setOpaque(true);
     }
@@ -32,15 +32,13 @@ public class PanelFP extends javax.swing.JPanel {
         int width = getWidth();
         int height = getHeight();
     
-        GradientPaint gp = new GradientPaint(0, 0, Color.decode("#56CCF2"), 0, height, Color.decode("#2F80ED"));
+        GradientPaint gp = new GradientPaint(0, 0, Color.decode("#1488cc"), 0, height, Color.decode("#2b32b2"));
         g2.setPaint(gp);
         g2.fillRoundRect(0, 0, width, height, 5, 5);
 
         g2.dispose();
-        super.paintChildren(g);
+        super.paintChildren(g); 
     }
-
-
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,7 +53,7 @@ public class PanelFP extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
