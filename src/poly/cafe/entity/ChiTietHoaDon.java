@@ -11,14 +11,14 @@ package poly.cafe.entity;
 public class ChiTietHoaDon {
     private int maCT;
     private String maHD;
-    private String maDU;
+    private String maSP;
     private int soLuong;
     private double giaTien;
 
-    public ChiTietHoaDon(int maCT, String maHD, String maDU, int soLuong, double giaTien) {
+    public ChiTietHoaDon(int maCT, String maHD, String maSP, int soLuong, double giaTien) {
         this.maCT = maCT;
         this.maHD = maHD;
-        this.maDU = maDU;
+        this.maSP = maSP;
         this.soLuong = soLuong;
         this.giaTien = giaTien;
     }
@@ -42,12 +42,12 @@ public class ChiTietHoaDon {
         this.maHD = maHD;
     }
 
-    public String getMaDU() {
-        return maDU;
+    public String getMaSP() {
+        return maSP;
     }
 
-    public void setMaDU(String maDU) {
-        this.maDU = maDU;
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
     }
 
     public int getSoLuong() {
@@ -65,5 +65,7 @@ public class ChiTietHoaDon {
     public void setGiaTien(double giaTien) {
         this.giaTien = giaTien;
     }
+
+    
 
 }

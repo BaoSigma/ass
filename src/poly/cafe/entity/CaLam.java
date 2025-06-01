@@ -9,30 +9,41 @@ package poly.cafe.entity;
  * @author PC
  */
 public class CaLam {
-    private String Buoi;
+    private String maCL;
     private NhanVien nv = new NhanVien();
+    private String hoTenNV;
 
-    public CaLam(String Buoi) {
-        this.Buoi = Buoi;
+    public CaLam(String maCL, String hoTenNV) {
+        this.maCL = maCL;
+        this.hoTenNV = hoTenNV;
     }
 
     public CaLam() {
     }
 
-    public String getBuoi() {
-        return Buoi;
+    public String getMaCL() {
+        return maCL;
     }
 
-    public void setBuoi(String Buoi) {
-        this.Buoi = Buoi;
+    public void setMaCL(String maCL) {
+        this.maCL = maCL;
     }
 
-    public NhanVien getNv() {
-        return nv;
+    public String getMaNV() {
+        return nv.getMaNV();
     }
 
-    public void setNv(NhanVien nv) {
-        this.nv = nv;
+    public void setMaNV(String MaNV) {
+        nv.setMaNV(MaNV);
     }
+
+    public String getHoTenNV() {
+        return hoTenNV;
+    }
+
+    public void setHoTenNV(String hoTenNV) {
+        this.hoTenNV = hoTenNV;
+    }
+
 
 }

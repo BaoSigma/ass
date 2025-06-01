@@ -9,5 +9,50 @@ package poly.cafe.entity;
  * @author baoha
  */
 public class SanPham {
+    private String maSP;
+    private LoaiSanPham lsp = new LoaiSanPham();
+    private String tenDU;
+    private Double giaDU;
+
+    public SanPham(String maSP, String tenDU, Double giaDU) {
+        this.maSP = maSP;
+        this.tenDU = tenDU;
+        this.giaDU = giaDU;
+    }
+
+    public SanPham() {
+    }
+
+    public String getMaSP() {
+        return maSP;
+    }
+
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
+    }
+
+    public LoaiSanPham getLsp() {
+        return lsp;
+    }
+
+    public void setLsp(LoaiSanPham lsp) {
+        this.lsp = lsp;
+    }
+
+    public String getTenDU() {
+        return tenDU;
+    }
+
+    public void setTenDU(String tenDU) {
+        this.tenDU = tenDU;
+    }
+
+    public Double getGiaDU() {
+        return giaDU;
+    }
+
+    public void setGiaDU(Double giaDU) {
+        this.giaDU = giaDU;
+    }     
     
 }
