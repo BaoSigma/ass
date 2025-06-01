@@ -15,52 +15,51 @@ import poly.cafe.util.XQuery;
  * @author baoha
  */
 public class HoaDonimpl implements HoaDonDAO{
-    private String createsql= "EXEC ThemHoaDon \n" +
-"	@maNV = '?',\n" +
-"    @ghiChu = '?',\n" +
-"    @ngayTao = '?',\n" +
-"    @thanhTien = '?';";
-    private String deleteByIdSQL = "DELETE FROM HoaDon Where maHD =?";
-    private String findAllSQL = "SELECT * FROM HoaDon";
-    private String findByIdSQL = findAllSQL + "Where maHD = ?";
-    private String UpdateSQL = "Update HoaDon set maNV = ?, ghiChu = ?, ngayTao = ?, thanhTien = ? WHERE maHD = ? ";
+    private String createsql= "EXEC Insert_HoaDon \n" +
+"    @maNV = ?, \n" +
+"    @ghiChu = ?, \n" +
+"    @ngayTao = ?";
+    private String deleteHoaDonByIdSQL = "DELETE FROM Hoadon WHERE maHD = ?";
+    private String findAllHoaDonSQL = "SELECT * FROM Hoadon";
+    private String findHoaDonByIdSQL = findAllHoaDonSQL + " WHERE maHD = ?";
+    private String updateHoaDonSQL = "UPDATE Hoadon SET maNV = ?, ghiChu = ?, ngayTao = ? WHERE maHD = ?";
+
     @Override
     public HoaDon create(HoaDon entity) {
-    Object[] values = {
-    entity.getMaHD(),
-    entity.getMaNV(),
-    entity.getNgayTao(),
-   
-    entity.getGhiChu()
-    };
-    XJdbc.executeUpdate(createsql, values);
-    return entity;
+        Object[] values = {
+            entity.getMaHD(),
+            entity.getMaNV(),
+            entity.getNgayTao(),
+            entity.getGhiChu()
+        };
+        XJdbc.executeUpdate(createsql, values);
+        return entity;
     }
 
     @Override
     public void update(HoaDon entity) {
         Object[] values = {
-    entity.getMaHD(),
-    entity.getMaNV(),
-    entity.getNgayTao(),
-    entity.getGhiChu()
-    };
-    XJdbc.executeUpdate(UpdateSQL, values);
+            entity.getMaNV(),
+            entity.getNgayTao(),
+            entity.getGhiChu(),
+            entity.getMaHD()
+        };
+        XJdbc.executeUpdate(updateHoaDonSQL, values);
     }
 
     @Override
     public void deleteById(Object id) {
-        XJdbc.executeUpdate(deleteByIdSQL, id);
+        XJdbc.executeUpdate(deleteHoaDonByIdSQL, id);
     }
 
     @Override
     public List<HoaDon> findAll() {
-        return XQuery.getBeanList(HoaDon.class, findAllSQL);
+        return XQuery.getBeanList(HoaDon.class, findAllHoaDonSQL);
     }
 
     @Override
     public HoaDon findById(Object id) {
-        return XQuery.getSingleBean(HoaDon.class, findByIdSQL, id);
+        return XQuery.getSingleBean(HoaDon.class, findHoaDonByIdSQL, id);
     }
-    
 }
+
