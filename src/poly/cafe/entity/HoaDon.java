@@ -5,6 +5,8 @@
 
 package poly.cafe.entity;
 
+import java.util.Date;
+
 /**
  *
  * @author Dong Khanh
@@ -13,10 +15,10 @@ public class HoaDon {
     private String maHD;
     private NhanVien nv = new NhanVien();
     private String ghiChu;
-    private String ngayTao;
+    private Date ngayTao;
 
 
-    public HoaDon(String maHD, String ghiChu, String ngayTao) {
+    public HoaDon(String maHD, String ghiChu, Date ngayTao) {
         this.maHD = maHD;
         this.ghiChu = ghiChu;
         this.ngayTao = ngayTao;
@@ -50,11 +52,11 @@ public class HoaDon {
         this.ghiChu = ghiChu;
     }
 
-    public String getNgayTao() {
+    public Date getNgayTao() {
         return ngayTao;
     }
 
-    public void setNgayTao(String ngayTao) {
+    public void setNgayTao(Date ngayTao) {
         this.ngayTao = ngayTao;
     }
 

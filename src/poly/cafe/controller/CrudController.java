@@ -21,7 +21,7 @@ public interface CrudController<Entity>{
     void delete(); // Xóa thực thể đang xem
     void clear(); // Xóa trắng form
     void setEditable(boolean editable); // Thay đổi trạng thái form
-    void checkAll(); // Tích chọn tất cả các hàng trên bảng
+    boolean checkAll(); // Tích chọn tất cả các hàng trên bảng
     void uncheckAll(); // Bỏ tích chọn tất cả các hàng trên bảng
     void deleteCheckedItems(); // Xóa các thực thể được tích chọn
     void moveFirst(); // Hiển thị thực thể đầu tiên

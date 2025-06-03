@@ -31,12 +31,12 @@ public class SanPham {
         this.maSP = maSP;
     }
 
-    public LoaiSanPham getLsp() {
-        return lsp;
+    public String getLsp() {
+        return lsp.getMaLSP();
     }
 
-    public void setLsp(LoaiSanPham lsp) {
-        this.lsp = lsp;
+    public void setLsp(String lsp) {
+        this.lsp.setMaLSP(maSP);
     }
 
     public String getTenDU() {

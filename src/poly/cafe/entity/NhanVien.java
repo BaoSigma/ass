@@ -6,22 +6,26 @@ package poly.cafe.entity;
 
 
 import java.util.Date;
+import lombok.Builder;
 
 /**
  *
  * @author baoha
  */
+@Builder
 public class NhanVien {
     private String maNV ;
     private String hoTen;
-    private String namSinh;
+    private Date namSinh;
     private String sdt;
     private String email;
     private String matKhau;
     private String chucVu;
-    
 
-    public NhanVien(String maNV, String hoTen, String namSinh, String sdt, String email, String matKhau, String chucVu) {
+    public NhanVien() {
+    }
+    
+    public NhanVien(String maNV, String hoTen, Date namSinh, String sdt, String email, String matKhau, String chucVu) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.namSinh = namSinh;
@@ -29,9 +33,6 @@ public class NhanVien {
         this.email = email;
         this.matKhau = matKhau;
         this.chucVu = chucVu;
-    }
-
-    public NhanVien() {
     }
 
     public String getMaNV() {
@@ -50,11 +51,11 @@ public class NhanVien {
         this.hoTen = hoTen;
     }
 
-    public String getNamSinh() {
+    public Date getNamSinh() {
         return namSinh;
     }
 
-    public void setNamSinh(String namSinh) {
+    public void setNamSinh(Date namSinh) {
         this.namSinh = namSinh;
     }
 
@@ -89,4 +90,7 @@ public class NhanVien {
     public void setChucVu(String chucVu) {
         this.chucVu = chucVu;
     }
+    
+    
+    
     }

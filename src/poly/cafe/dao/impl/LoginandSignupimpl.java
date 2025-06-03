@@ -6,7 +6,6 @@ package poly.cafe.dao.impl;
 
 import java.util.List;
 import poly.cafe.dao.entityDAO.NhanVienDAO;
-import poly.cafe.entity.HoaDon;
 import poly.cafe.entity.NhanVien;
 import poly.cafe.util.XJdbc;
 import poly.cafe.util.XQuery;
@@ -15,7 +14,7 @@ import poly.cafe.util.XQuery;
  *
  * @author baoha
  */
-public class NhanVienimpl implements NhanVienDAO{
+public class LoginandSignupimpl implements NhanVienDAO{
     private String createsql= "EXEC Insert_NhanVien \n" +
 "    @hoTen = ?, \n" +
 "    @namSinh = ?, \n" +
@@ -24,9 +23,9 @@ public class NhanVienimpl implements NhanVienDAO{
 "    @matKhau = ?, \n" +
 "    @chucVu = ?";
     private String deleteNhanVienByIdSQL = "DELETE FROM Nhanvien WHERE maNV = ?";
-    private String findAllNhanVienSQL = "SELECT maNV, hoTen, namSinh, sdt, email, chucVu FROM Nhanvien";
+    private String findAllNhanVienSQL = "SELECT maNV, matKhau, chucVu FROM Nhanvien";
     private String findNhanVienByIdSQL = findAllNhanVienSQL + " WHERE maNV = ?";
-    private String updateNhanVienSQL = "UPDATE Nhanvien SET hoTen = ?, namSinh = ?, sdt = ?, email = ?, matKhau = ?, chucVu = ? WHERE maNV = ?";
+    private String updateNhanVienSQL = "UPDATE Nhanvien SET  matKhau = ? WHERE maNV = ?";
 
         @Override
     public NhanVien create(NhanVien entity) {
@@ -45,12 +44,7 @@ public class NhanVienimpl implements NhanVienDAO{
     @Override
     public void update(NhanVien entity) {
         Object[] values = {
-            entity.getHoTen(),
-            entity.getNamSinh(),
-            entity.getSdt(),
-            entity.getEmail(),
             entity.getMatKhau(),
-            entity.getChucVu(),
             entity.getMaNV()
         };
         XJdbc.executeUpdate(updateNhanVienSQL, values);

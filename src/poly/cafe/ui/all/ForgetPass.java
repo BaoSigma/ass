@@ -6,13 +6,20 @@ package poly.cafe.ui.all;
 
 import java.awt.Color;
 import javax.swing.UIManager;
+import poly.cafe.controller.entityController.Forgetpass;
+import poly.cafe.dao.entityDAO.NhanVienDAO;
+import poly.cafe.dao.impl.LoginandSignupimpl;
+import poly.cafe.entity.NhanVien;
+import poly.cafe.util.XAuth;
+import poly.cafe.util.XDialog;
 
 /**
  *
  * @author baoha
  */
-public class ForgetPass extends javax.swing.JFrame {
-
+public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
+    NhanVienDAO dao = new LoginandSignupimpl();
+    
     /**
      * Creates new form ForgetPass
      */
@@ -42,6 +49,8 @@ public class ForgetPass extends javax.swing.JFrame {
         btnSignup = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtPassNew = new javax.swing.JPasswordField();
+        chkPassOld = new javax.swing.JCheckBox();
+        chkNewPass = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -72,11 +81,21 @@ public class ForgetPass extends javax.swing.JFrame {
                 btnLoginMouseClicked(evt);
             }
         });
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         btnClose.setText("Close");
         btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCloseMouseClicked(evt);
+            }
+        });
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
             }
         });
 
@@ -86,6 +105,11 @@ public class ForgetPass extends javax.swing.JFrame {
                 btnSignupMouseClicked(evt);
             }
         });
+        btnSignup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignupActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,34 +117,46 @@ public class ForgetPass extends javax.swing.JFrame {
 
         txtPassNew.setText("jPasswordField2");
 
+        chkPassOld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkPassOldActionPerformed(evt);
+            }
+        });
+
+        chkNewPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkNewPassActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelFP1Layout = new javax.swing.GroupLayout(panelFP1);
         panelFP1.setLayout(panelFP1Layout);
         panelFP1Layout.setHorizontalGroup(
             panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFP1Layout.createSequentialGroup()
+            .addGroup(panelFP1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7))
+                .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSignup)
+                    .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassOld, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                    .addComponent(txtUser)
-                    .addComponent(txtPassNew))
-                .addGap(24, 24, 24))
-            .addGroup(panelFP1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtPassNew)
+                        .addComponent(txtUser)
+                        .addComponent(txtPassOld))
+                    .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFP1Layout.createSequentialGroup()
-                        .addComponent(btnSignup)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnClose))
-                    .addGroup(panelFP1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(btnLogin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(chkPassOld)
+                    .addComponent(chkNewPass, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFP1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogin)
+                .addGap(92, 92, 92))
         );
         panelFP1Layout.setVerticalGroup(
             panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,23 +166,28 @@ public class ForgetPass extends javax.swing.JFrame {
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(33, 33, 33)
-                .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtPassOld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addComponent(chkPassOld))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(29, 29, 29)
-                .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSignup)
-                    .addComponent(btnClose))
+                .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFP1Layout.createSequentialGroup()
+                        .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPassNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(29, 29, 29)
+                        .addGroup(panelFP1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnClose)
+                            .addComponent(btnSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(chkNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogin)
                 .addGap(20, 20, 20))
         );
 
-        jPanel1.add(panelFP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 250, 300));
+        jPanel1.add(panelFP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 260, 300));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Background_1.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -161,7 +202,6 @@ public class ForgetPass extends javax.swing.JFrame {
 
     private void btnSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignupMouseClicked
         // TODO add your handling code here:
-        new PolyLogin().setVisible(true);
     }//GEN-LAST:event_btnSignupMouseClicked
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
@@ -173,6 +213,39 @@ public class ForgetPass extends javax.swing.JFrame {
         // TODO add your handling code here:
         new PolyLogin().setVisible(true);
     }//GEN-LAST:event_btnLoginMouseClicked
+
+    private void chkPassOldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPassOldActionPerformed
+        // TODO add your handling code here:
+        if (chkPassOld.isSelected()) {
+            txtPassOld.setEchoChar((char) 0); // Hiện mật khẩu
+        } else {
+            txtPassOld.setEchoChar('●'); // Ẩn mật khẩu bằng dấu chấm
+        }
+    }//GEN-LAST:event_chkPassOldActionPerformed
+
+    private void btnSignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignupActionPerformed
+        // TODO add your handling code here:
+        setPass();
+    }//GEN-LAST:event_btnSignupActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        new PolyLogin().setVisible(true);
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void chkNewPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkNewPassActionPerformed
+        // TODO add your handling code here:
+        if (chkNewPass.isSelected()) {
+            txtPassNew.setEchoChar((char) 0); // Hiện mật khẩu
+        } else {
+            txtPassNew.setEchoChar('●'); // Ẩn mật khẩu bằng dấu chấm
+        }
+    }//GEN-LAST:event_chkNewPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +291,8 @@ public class ForgetPass extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignup;
+    private javax.swing.JCheckBox chkNewPass;
+    private javax.swing.JCheckBox chkPassOld;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -230,4 +305,34 @@ public class ForgetPass extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassOld;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setPass() {
+        String username = txtUser.getText().trim();
+        String passOld = new String(txtPassOld.getPassword()).trim();
+        String newPass = new String(txtPassNew.getPassword()).trim();
+
+        if (!username.equals(XAuth.user.getMaNV())) {
+            XDialog.alert("Sai tài khoản!");
+        } else if (!passOld.equals(XAuth.user.getMatKhau())) {
+            XDialog.alert("Sai mật khẩu cũ!");
+        } else {
+            if (XDialog.confirm("Bạn có muốn cập nhật lại tài khoản không?")) {
+                XAuth.user.setMatKhau(newPass);
+                dao.update(XAuth.user);
+                XDialog.alert("Đổi mật khẩu thành công!");
+                dispose();
+            }
+        }
+    }
+
+    @Override
+    public void open() {
+        setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

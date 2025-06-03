@@ -37,12 +37,12 @@ public class theDD {
         this.trangThai = trangThai;
     }
 
-    public HoaDon getHd() {
-        return hd;
+    public String getHd() {
+        return hd.getMaHD();
     }
 
-    public void setHd(HoaDon hd) {
-        this.hd = hd;
+    public void setHd(String hd) {
+        this.hd.setMaHD(hd);
     }
 
 }

@@ -14,5 +14,5 @@ import poly.cafe.entity.CaLam;
  * @author micro
  */
 public interface CaLamDAO extends CrudDAO<CaLam, Object>{
-    List<CaLam> list = new ArrayList<>();    
+       List<CaLam> list = new ArrayList<>();
 }

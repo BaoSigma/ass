@@ -27,7 +27,6 @@ private String updateTheDDSQL = "UPDATE TheDD SET trangThai = ?, maHD = ? WHERE 
         @Override
     public theDD create(theDD entity) {
         Object[] values = {
-            entity.getID(),
             entity.getTrangThai(),
             entity.getHd(),
         };

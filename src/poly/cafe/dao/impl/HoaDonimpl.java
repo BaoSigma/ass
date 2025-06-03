@@ -27,7 +27,6 @@ public class HoaDonimpl implements HoaDonDAO{
     @Override
     public HoaDon create(HoaDon entity) {
         Object[] values = {
-            entity.getMaHD(),
             entity.getMaNV(),
             entity.getNgayTao(),
             entity.getGhiChu()

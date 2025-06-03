@@ -16,22 +16,18 @@ import poly.cafe.util.XQuery;
  * @author baoha
  */
 public class Calamimpl implements CaLamDAO{
-    private String createsql= "EXEC Insert_Calam \n" +
-"    @maCL = ?, \n" +
-"    @maNV = ?, \n" +
-"    @hoTenNV = ?";
-    private String deleteCalamByIdSQL = "DELETE FROM Calam WHERE maCL = ?";
-    private String findAllCalamSQL = "SELECT * FROM Calam";
+    private String createsql= "INSERT INTO Calam(Buoi,maNV,hoTen) values(?,?,?)";
+    private String deleteCalamByIdSQL = "DELETE FROM Calam WHERE ID = ?";
+    private String findAllCalamSQL = " SELECT cl.ID, cl.Buoi, nv.maNV, nv.hoTen from Calam cl INNER JOIN  Nhanvien nv on cl.maNV = nv.maNV";
     private String findCalamByIdSQL = findAllCalamSQL + " WHERE maCL = ?";
-    private String updateCalamSQL = "UPDATE Calam SET maNV = ?, hoTenNV = ? WHERE maCL = ?";
+    private String updateCalamSQL = "UPDATE Calam SET maNV = ?,Buoi = ?, hoTen = ? WHERE ID = ?";
 
         @Override
     public CaLam create(CaLam entity) {
         Object[] values = {
-            entity.getMaCL(),
+            entity.getBuoi(),
             entity.getMaNV(),
-            entity.getHoTenNV()
-
+            entity.getHoTen()
         };
         XJdbc.executeUpdate(createsql, values);
         return entity;
@@ -41,8 +37,9 @@ public class Calamimpl implements CaLamDAO{
     public void update(CaLam entity) {
         Object[] values = {
             entity.getMaNV(),
-            entity.getHoTenNV(),
-            entity.getMaCL(),
+            entity.getBuoi(),
+            entity.getHoTen(),
+            entity.getID()
         };
         XJdbc.executeUpdate(updateCalamSQL, values);
     }

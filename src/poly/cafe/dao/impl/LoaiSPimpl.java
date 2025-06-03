@@ -26,9 +26,7 @@ public class LoaiSPimpl implements LoaiSanPhamDAO{
         @Override
     public LoaiSanPham create(LoaiSanPham entity) {
         Object[] values = {
-            entity.getMaLSP(),
             entity.getTenLDU()
-            
         };
         XJdbc.executeUpdate(createsql, values);
         return entity;

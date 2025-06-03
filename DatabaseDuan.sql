@@ -13,9 +13,10 @@ chucVu nvarchar(50))
 
 
 CREATE TABLE Calam(
-maCL nvarchar(30) primary key,
+ID int identity(1,1) primary key,
+Buoi NVARCHAR(30),
 maNV VARCHAR(5) FOREIGN KEY REFERENCES Nhanvien(maNV),
-hoTenNV NVARCHAR(50))
+hoTen NVARCHAR(50))
 
 CREATE TABLE Hoadon(
 maHD VARCHAR(5) PRIMARY KEY,

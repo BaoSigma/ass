@@ -22,14 +22,13 @@ public class ChiTietImpl implements ChiTietHoaDonDAO {
 "    @soLuong = ?, \n" +
 "    @giaTien = ?";
     private String deleteChiTietHoaDonByIdSQL = "DELETE FROM Chitiethoadon WHERE maCT = ?";
-    private String findAllChiTietHoaDonSQL = "SELECT * FROM Chitiethoadon";
+    private String findAllChiTietHoaDonSQL = "SELECT maHD, maSP, soLuong, giaTien, (soLuong*giaTien) AS thanhTien FROM Chitiethoadon";
     private String findChiTietHoaDonByIdSQL = findAllChiTietHoaDonSQL + " WHERE maCT = ?";
     private String updateChiTietHoaDonSQL = "UPDATE Chitiethoadon SET maHD = ?, maSP = ?, soLuong = ?, giaTien = ? WHERE maCT = ?";
 
         @Override
     public ChiTietHoaDon create(ChiTietHoaDon entity) {
-        Object[] values = {
-            entity.getMaCT(),
+        Object[] values = {  
             entity.getMaHD(),
             entity.getMaSP(),
             entity.getSoLuong(),
