@@ -496,7 +496,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
     @Override
     public void update() {
-        if (XDialog.confirm("Bạn thực sự muốn thêm nhân viên này?")) {
+        if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         HoaDon entity = this.getForm();
         dao.create(entity);
         this.fillToTable();
@@ -538,11 +538,11 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
     HoaDon entity = new HoaDon();
 
     if (txtaGhiChu.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
+        XDialog.alert( "Vui lòng nhập ghi chú.");
 
     }
     if (date.getDate() == null) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
+        XDialog.alert( "Vui lòng chọn ngày.");
 
     }
     if (txtNV.getText().trim().isEmpty()) {
