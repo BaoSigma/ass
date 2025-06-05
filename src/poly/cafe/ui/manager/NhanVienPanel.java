@@ -549,7 +549,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
 
     @Override
     public void update() {
-        if (XDialog.confirm("Bạn thực sự muốn thêm nhân viên này?")) {
+        if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         NhanVien entity = this.getForm();
         dao.create(entity);
         this.fillToTable();
