@@ -484,7 +484,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
     @Override
     public void update() {
-        if (XDialog.confirm("Bạn thực sự muốn thêm nhân viên này?")) {
+        if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         ChiTietHoaDon entity = this.getForm();
         dao.create(entity);
         this.fillToTable();
@@ -527,13 +527,13 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         XDialog.alert("Vui lòng nhập hóa đơn");
     }
     if(!txtHD.getText().equals(entitỵ.getMaHD())){
-        XDialog.alert("Vui lòng nhập đúng hóa đơn");
+        XDialog.alert("Vui lòng nhập đúng mã hóa đơn");
     }
     if(txtSP.getText().equals(entitỵ.getMaSP())){
         XDialog.alert("Vui lòng nhập sản phẩm");
     }
     if(!txtSP.getText().trim().isEmpty()){
-        XDialog.alert("Vui lòng nhập đúng sản phẩm");
+        XDialog.alert("Vui lòng nhập đúng mã sản phẩm");
     }
     
     if (txtGiaTien.getText().trim().isEmpty()) {
