@@ -475,7 +475,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
     @Override
     public void update() {
-        if (XDialog.confirm("Bạn thực sự muốn thêm nhân viên này?")) {
+        if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         SanPham entity = this.getForm();
         dao.create(entity);
         this.fillToTable();
@@ -532,20 +532,20 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
     SanPham entity = new SanPham();
     if (txtDU.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
+        XDialog.alert( "Vui lòng nhập đơn vị.");
 
     }
     if (txtGia.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
+        XDialog.alert( "Vui lòng nhập giá.");
 
     }
 
     if (txtLoai.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
+        XDialog.alert( "Vui lòng nhập loại sản phẩm.");
 
     }
     if (!txtLoai.getText().equals(entity.getLsp())) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
+        XDialog.alert( "Vui lòng nhập đúng loại sản phẩm.");
 
     }
     return false;
