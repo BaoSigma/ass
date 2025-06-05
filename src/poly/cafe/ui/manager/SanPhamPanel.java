@@ -15,6 +15,7 @@ import poly.cafe.dao.impl.SanPhamimpl;
 import poly.cafe.entity.ChiTietHoaDon;
 import poly.cafe.entity.LoaiSanPham;
 import poly.cafe.entity.SanPham;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
@@ -29,6 +30,8 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
      */
     public SanPhamPanel() {
         initComponents();
+        fillToTable();
+        setQuyen();
     }
 
     /**
@@ -60,9 +63,9 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblSP = new javax.swing.JLabel();
-        lblLoai = new javax.swing.JLabel();
         txtDU = new javax.swing.JTextField();
         txtGia = new javax.swing.JTextField();
+        txtLoai = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -79,6 +82,11 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                 "Mã SP", "Mã Loại", "Tên đồ uống", "Giá đồ uống"
             }
         ));
+        tblSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSPMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSP);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -118,7 +126,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnMoveFirst)
@@ -197,34 +205,35 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         lblSP.setText("Mã SP");
 
-        lblLoai.setText("Mã Loại");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblLoai)
-                            .addComponent(lblSP)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblSP))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(txtLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDU)
+                            .addComponent(txtGia))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnRead)
                     .addComponent(btnDel, javax.swing.GroupLayout.Alignment.LEADING))
@@ -255,7 +264,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(lblLoai))
+                            .addComponent(txtLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -281,7 +290,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGap(0, 637, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -355,6 +364,11 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         XDialog.alert("Đã mở quyền");
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
+        // TODO add your handling code here:
+        edit();
+    }//GEN-LAST:event_tblSPMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnADD;
@@ -375,11 +389,11 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblLoai;
     private javax.swing.JLabel lblSP;
     private javax.swing.JTable tblSP;
     private javax.swing.JTextField txtDU;
     private javax.swing.JTextField txtGia;
+    private javax.swing.JTextField txtLoai;
     // End of variables declaration//GEN-END:variables
 @Override
     public void open() {
@@ -388,17 +402,38 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     @Override
     public void setForm(SanPham entity) {
         lblSP.setText(entity.getMaSP());
-        lblLoai.setText(entity.getLsp());
+        txtLoai.setText(entity.getLsp());
         txtDU.setText(entity.getTenDU());
         txtGia.setText(String.valueOf(entity.getGiaDU()));
         
     }
-
+     public void setQuyen() {
+    if (XAuth.isViewer()) {
+        // Phục vụ không được quyền gì
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    } else if (XAuth.isStaff()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    }else if (XAuth.isManager()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnDel.setEnabled(true);
+        btnRead.setEnabled(true);
+    }
+    // Quản lý thì không cần giới hạn
+}
     @Override
     public SanPham getForm() {
         SanPham entity = new SanPham();
         entity.setTenDU(txtDU.getText());
-        entity.setLsp(lblLoai.getText());
+        entity.setLsp(txtLoai.getText());
         entity.setTenDU(txtDU.getText());
         entity.setMaSP(lblSP.getText());
         return entity;
@@ -495,10 +530,22 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     @Override
     public boolean checkAll() {
 
-
+    SanPham entity = new SanPham();
     if (txtDU.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập họ tên.");
-        lblSP.requestFocus();
+
+    }
+    if (txtGia.getText().trim().isEmpty()) {
+        XDialog.alert( "Vui lòng nhập họ tên.");
+
+    }
+
+    if (txtLoai.getText().trim().isEmpty()) {
+        XDialog.alert( "Vui lòng nhập họ tên.");
+
+    }
+    if (!txtLoai.getText().equals(entity.getLsp())) {
+        XDialog.alert( "Vui lòng nhập họ tên.");
 
     }
     return false;

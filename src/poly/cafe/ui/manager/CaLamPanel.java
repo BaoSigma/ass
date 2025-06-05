@@ -12,6 +12,7 @@ import poly.cafe.dao.entityDAO.CaLamDAO;
 import poly.cafe.dao.impl.Calamimpl;
 import poly.cafe.entity.CaLam;
 import poly.cafe.entity.NhanVien;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
@@ -27,6 +28,8 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     public CaLamPanel() {
         initComponents();
           fillToTable();
+                 setQuyen();
+
     }
 
     /**
@@ -54,7 +57,6 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         btnRead = new javax.swing.JButton();
         btnADD = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
         btnMoveFirst = new javax.swing.JButton();
@@ -62,6 +64,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         btnMoveNext = new javax.swing.JButton();
         btnMoveLast = new javax.swing.JButton();
         txtmaNV = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
@@ -135,13 +138,6 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
             }
         });
 
-        jButton5.setText("On");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +177,13 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         btnMoveLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoveLastActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("On");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -299,9 +302,9 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==false){
+        
         create();
-        }
+        
     }//GEN-LAST:event_btnADDActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -311,12 +314,6 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         XDialog.alert("Đã xóa toàn bộ nội dung");
 
     }//GEN-LAST:event_btnClearActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        on();
-        XDialog.alert("Đã mở quyền");
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -362,7 +359,21 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         edit();
     }//GEN-LAST:event_tblCaLamMouseClicked
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        on();
+        XDialog.alert("Đã mở quyền");
+    }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void on() {
+        btnADD.setEnabled(true);
+            btnUpdate.setEnabled(true);
+            btnDel.setEnabled(true);
+            btnMoveFirst.setEnabled(true);
+            btnMovePrevious.setEnabled(true);
+            btnMoveNext.setEnabled(true);
+            btnMoveLast.setEnabled(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnADD;
     private javax.swing.JButton btnClear;
@@ -389,7 +400,28 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtmaNV;
     // End of variables declaration//GEN-END:variables
-
+    public void setQuyen() {
+    if (XAuth.isViewer()) {
+        // Phục vụ không được quyền gì
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    } else if (XAuth.isStaff()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    }else if (XAuth.isManager()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnDel.setEnabled(true);
+        btnRead.setEnabled(true);
+    }
+    // Quản lý thì không cần giới hạn
+}
     @Override
     public void open() {
     }
@@ -512,19 +544,13 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     public void setEditable(boolean editable) {
        
     }
-    private void on() {
-        btnADD.setEnabled(true);
-            btnUpdate.setEnabled(true);
-            btnDel.setEnabled(true);
-            btnMoveFirst.setEnabled(true);
-            btnMovePrevious.setEnabled(true);
-            btnMoveNext.setEnabled(true);
-            btnMoveLast.setEnabled(true);
-    }
+
 
     @Override
     public boolean checkAll() {
+        
     CaLam entity = new CaLam();
+    if(!txtmaNV.getText().equals(entity.getMaNV()))
     if (txtHoTen.getText()==null) {
         XDialog.alert( "Vui lòng nhập họ tên.");
         return true;

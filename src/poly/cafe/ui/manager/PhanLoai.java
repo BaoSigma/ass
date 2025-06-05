@@ -15,6 +15,7 @@ import poly.cafe.dao.impl.LoaiSPimpl;
 import poly.cafe.entity.ChiTietHoaDon;
 import poly.cafe.entity.HoaDon;
 import poly.cafe.entity.LoaiSanPham;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
@@ -30,6 +31,8 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     public PhanLoai() {
         initComponents();
         setEditable(true);
+        fillToTable();
+        setQuyen();
     }
 
     /**
@@ -365,7 +368,28 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         txtLoai.setText(entity.getTenLDU());
         
     }
-
+     public void setQuyen() {
+    if (XAuth.isViewer()) {
+        // Phục vụ không được quyền gì
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    } else if (XAuth.isStaff()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    }else if (XAuth.isManager()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnDel.setEnabled(true);
+        btnRead.setEnabled(true);
+    }
+    // Quản lý thì không cần giới hạn
+}
     @Override
     public LoaiSanPham getForm() {
         LoaiSanPham entity = new LoaiSanPham();
@@ -431,7 +455,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     public void clear() {
         this.setForm(new LoaiSanPham());
     }
-
+    
     @Override
     public void setEditable(boolean editable) {
         int rowCount = tblPhanLoai.getRowCount();
@@ -461,11 +485,11 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
 
     @Override
     public boolean checkAll() {
-
+    LoaiSanPham entity = new LoaiSanPham();
+            
 
     if (txtLoai.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập họ tên.");
-        lblID.requestFocus();
 
     }
 

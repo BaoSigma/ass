@@ -14,6 +14,7 @@ import poly.cafe.dao.impl.ChiTietImpl;
 import poly.cafe.dao.impl.HoaDonimpl;
 import poly.cafe.entity.ChiTietHoaDon;
 import poly.cafe.entity.HoaDon;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
@@ -28,6 +29,8 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
      */
     public HoaDonPanel() {
         initComponents();
+        fillToTable();
+        setQuyen();
     }
 
     /**
@@ -55,12 +58,12 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         jLabel1 = new javax.swing.JLabel();
         lblHD = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        lblNV = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         date = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaGhiChu = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
+        txtNV = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnMoveFirst = new javax.swing.JButton();
@@ -92,6 +95,11 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                 "Mã HD", "Mã NV", "Ghi chú", "Ngày tạo"
             }
         ));
+        tblHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHDMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblHD);
 
         btnRead.setText("READ");
@@ -142,8 +150,6 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         jLabel4.setText("Mã NV:");
 
-        lblNV.setText("NV");
-
         jLabel6.setText("Ghi chú:");
 
         date.setLocale(new java.util.Locale("vi", "VN"));
@@ -160,29 +166,30 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblNV)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDel))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
                                 .addComponent(lblHD)
                                 .addGap(54, 54, 54)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRead)))
+                                .addComponent(btnRead))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtNV)
+                                .addGap(69, 69, 69)
+                                .addComponent(btnDel)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -194,7 +201,6 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnClear))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -213,13 +219,17 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                         .addComponent(lblHD)
                         .addComponent(jLabel7))
                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDel)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel4)
-                    .addComponent(lblNV))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnDel)
+                            .addComponent(jButton5)
+                            .addComponent(jLabel4)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -308,7 +318,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -370,6 +380,11 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         XDialog.alert("Đã mở quyền");
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void tblHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDMouseClicked
+        // TODO add your handling code here:
+        edit();
+    }//GEN-LAST:event_tblHDMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnADD;
@@ -397,18 +412,39 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblHD;
-    private javax.swing.JLabel lblNV;
     private javax.swing.JTable tblHD;
+    private javax.swing.JTextField txtNV;
     private javax.swing.JTextArea txtaGhiChu;
     // End of variables declaration//GEN-END:variables
    @Override
     public void open() {
     }
-
+     public void setQuyen() {
+    if (XAuth.isViewer()) {
+        // Phục vụ không được quyền gì
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    } else if (XAuth.isStaff()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    }else if (XAuth.isManager()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnDel.setEnabled(true);
+        btnRead.setEnabled(true);
+    }
+    // Quản lý thì không cần giới hạn
+}
     @Override
     public void setForm(HoaDon entity) {
         lblHD.setText(entity.getMaHD());
-        lblNV.setText(entity.getMaNV());
+        txtNV.setText(entity.getMaNV());
         txtaGhiChu.setText(entity.getGhiChu());
         date.setDate(entity.getNgayTao());
         
@@ -418,7 +454,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
     public HoaDon getForm() {
         HoaDon entity = new HoaDon();
         entity.setMaHD(lblHD.getText());
-        entity.setMaNV(lblNV.getText());
+        entity.setMaNV(txtNV.getText());
         entity.setNgayTao(date.getDate());
         entity.setGhiChu(txtaGhiChu.getText());
         return entity;
@@ -499,18 +535,25 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
     @Override
     public boolean checkAll() {
-
+    HoaDon entity = new HoaDon();
 
     if (txtaGhiChu.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập họ tên.");
-        lblHD.requestFocus();
 
     }
     if (date.getDate() == null) {
         XDialog.alert( "Vui lòng nhập họ tên.");
-        lblHD.requestFocus();
 
     }
+    if (txtNV.getText().trim().isEmpty()) {
+        XDialog.alert( "Vui lòng nhập mã nhân viên.");
+
+    }
+    if (!txtNV.getText().equals(entity.getMaNV())) {
+        XDialog.alert( "Vui lòng nhập đúng mã nhân viên.");
+
+    }
+    
     return false;
 
     }

@@ -11,6 +11,7 @@ import poly.cafe.controller.entityController.ChiTietHoaDonCTR;
 import poly.cafe.dao.entityDAO.ChiTietHoaDonDAO;
 import poly.cafe.dao.impl.ChiTietImpl;
 import poly.cafe.entity.ChiTietHoaDon;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
@@ -25,6 +26,8 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
      */
     public ChiTietPanel() {
         initComponents();
+        fillToTable();
+        setQuyen();
     }
 
     /**
@@ -54,13 +57,13 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         jLabel2 = new javax.swing.JLabel();
         lblMaCT = new javax.swing.JLabel();
         lbl = new javax.swing.JLabel();
-        lblMaHD = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblSP = new javax.swing.JLabel();
         txtSoLuong = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtGiaTien = new javax.swing.JTextField();
+        txtHD = new javax.swing.JTextField();
+        txtSP = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(0, 255, 153));
@@ -122,7 +125,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(btnMoveFirst)
                 .addGap(18, 18, 18)
@@ -195,13 +198,9 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
         lbl.setText("Mã HD:");
 
-        lblMaHD.setText("HD");
-
         jLabel6.setText("Mã SP:");
 
         jLabel7.setText("Số lượng:");
-
-        lblSP.setText("SP");
 
         jLabel9.setText("Gía Tiền");
 
@@ -209,7 +208,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
@@ -223,19 +222,18 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMaHD)
-                            .addComponent(lblMaCT))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDel))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
+                                .addComponent(lblMaCT)
+                                .addGap(64, 64, 64)
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtGiaTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRead)))
+                                .addComponent(btnRead))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtHD)
+                                .addGap(163, 163, 163)
+                                .addComponent(btnDel)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -247,9 +245,9 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnClear))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSP)
-                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(txtSP))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -278,11 +276,11 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl)
-                            .addComponent(lblMaHD))))
+                            .addComponent(txtHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(lblSP))
+                    .addComponent(txtSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -294,7 +292,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 641, Short.MAX_VALUE)
+            .addGap(0, 643, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -306,9 +304,9 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
             .addGap(0, 470, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 8, Short.MAX_VALUE)
+                    .addGap(0, 2, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 9, Short.MAX_VALUE)))
+                    .addGap(0, 3, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -395,13 +393,34 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl;
     private javax.swing.JLabel lblMaCT;
-    private javax.swing.JLabel lblMaHD;
-    private javax.swing.JLabel lblSP;
     private javax.swing.JTable tblCT;
     private javax.swing.JTextField txtGiaTien;
+    private javax.swing.JTextField txtHD;
+    private javax.swing.JTextField txtSP;
     private javax.swing.JTextField txtSoLuong;
     // End of variables declaration//GEN-END:variables
-
+        public void setQuyen() {
+    if (XAuth.isViewer()) {
+        // Phục vụ không được quyền gì
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    } else if (XAuth.isStaff()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    }else if (XAuth.isManager()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnDel.setEnabled(true);
+        btnRead.setEnabled(true);
+    }
+    // Quản lý thì không cần giới hạn
+}
 @Override
     public void open() {
     }
@@ -409,18 +428,18 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     @Override
     public void setForm(ChiTietHoaDon entity) {
         lblMaCT.setText(String.valueOf(entity.getMaCT()));
-        lblMaCT.setText(String.valueOf(entity.getMaCT()));
-        lblMaCT.setText(String.valueOf(entity.getMaCT()));
+        txtHD.setText(entity.getMaHD());
+        txtSP.setText(entity.getMaSP());
         txtGiaTien.setText(String.valueOf(entity.getGiaTien()));
         txtSoLuong.setText(String.valueOf(entity.getSoLuong()));
-
+        
     }
 
     @Override
     public ChiTietHoaDon getForm() {
         ChiTietHoaDon entity = new ChiTietHoaDon();
-        entity.setMaHD(lblMaHD.getText());
-        entity.setMaSP(lblSP.getText());
+        entity.setMaHD(txtHD.getText());
+        entity.setMaSP(txtSP.getText());
         entity.setMaCT(Integer.parseInt(lblMaCT.getText()));
         entity.setGiaTien(Integer.parseInt(txtGiaTien.getText()));
         entity.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
@@ -503,16 +522,27 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
     @Override
     public boolean checkAll() {
-
-
+    ChiTietHoaDon entitỵ = new ChiTietHoaDon();
+    if(txtHD.getText().trim().isEmpty()){
+        XDialog.alert("Vui lòng nhập hóa đơn");
+    }
+    if(!txtHD.getText().equals(entitỵ.getMaHD())){
+        XDialog.alert("Vui lòng nhập đúng hóa đơn");
+    }
+    if(txtSP.getText().equals(entitỵ.getMaSP())){
+        XDialog.alert("Vui lòng nhập sản phẩm");
+    }
+    if(!txtSP.getText().trim().isEmpty()){
+        XDialog.alert("Vui lòng nhập đúng sản phẩm");
+    }
+    
     if (txtGiaTien.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
-        lblMaCT.requestFocus();
+        XDialog.alert( "Vui lòng nhập giá tiền.");
 
     }
+
     if (txtSoLuong.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
-        lblMaCT.requestFocus();
+        XDialog.alert( "Vui lòng nhập số lượng.");
 
     }
     return false;

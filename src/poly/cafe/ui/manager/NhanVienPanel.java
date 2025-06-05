@@ -11,6 +11,7 @@ import poly.cafe.controller.entityController.NhanVienCTR;
 import poly.cafe.dao.entityDAO.NhanVienDAO;
 import poly.cafe.dao.impl.NhanVienimpl;
 import poly.cafe.entity.NhanVien;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
@@ -18,7 +19,7 @@ import poly.cafe.util.XDialog;
  * @author baoha
  */
 public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
-
+    
     NhanVienDAO dao = new NhanVienimpl();
     List<NhanVien> items = new ArrayList<>();
 
@@ -27,7 +28,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
      */
     public NhanVienPanel() {
         initComponents();
-       
+       setQuyen();
     }
 
     /**
@@ -582,73 +583,30 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
     }
     @Override
     public void setEditable(boolean editable) {
-        
-        int rowCount = tblNhanVien.getRowCount();
-        int selectedRow = tblNhanVien.getSelectedRow();
-        String value = tblNhanVien.getValueAt(selectedRow, 5).toString();
-       
-        if (value == null) {
-            // Không có quyền gì hết
-            lblManv.setEnabled(false);
-            btnADD.setEnabled(false);
-            btnUpdate.setEnabled(false);
-            btnDel.setEnabled(false);
-            
-            return;
-        }
 
-        switch (value) {
-            case "Quản lý":
-                // Được làm tất cả
-                lblManv.setEnabled(false);
-                btnADD.setEnabled(editable);
-                btnUpdate.setEnabled(editable);
-                btnDel.setEnabled(editable);
-                btnMoveFirst.setEnabled(editable && rowCount > 0);
-                btnMovePrevious.setEnabled(editable && rowCount > 0);
-                btnMoveNext.setEnabled(editable && rowCount > 0);
-                btnMoveLast.setEnabled(editable && rowCount > 0);
-                break;
-
-            case "Nhân viên":
-                // Chỉ được đọc, sửa, xem, di chuyển (không thêm xóa)
-                lblManv.setEnabled(false); // giả sử không được chỉnh id
-                btnADD.setEnabled(false);
-                btnUpdate.setEnabled(editable); // đc sửa
-                btnDel.setEnabled(false);
-                btnMoveFirst.setEnabled(editable && rowCount > 0);
-                btnMovePrevious.setEnabled(editable && rowCount > 0);
-                btnMoveNext.setEnabled(editable && rowCount > 0);
-                btnMoveLast.setEnabled(editable && rowCount > 0);
-                break;
-
-            case "Phục vụ":
-                // Chỉ được xem và di chuyển, không được sửa
-                lblManv.setEnabled(false);
-                btnADD.setEnabled(false);
-                btnUpdate.setEnabled(false);
-                btnDel.setEnabled(false);
-                btnMoveFirst.setEnabled(true && rowCount > 0);
-                btnMovePrevious.setEnabled(true && rowCount > 0);
-                btnMoveNext.setEnabled(true && rowCount > 0);
-                btnMoveLast.setEnabled(true && rowCount > 0);
-                break;
-
-            default:
-                // Trường hợp khác không quyền gì
-                lblManv.setEnabled(false);
-                btnADD.setEnabled(false);
-                btnUpdate.setEnabled(false);
-                btnDel.setEnabled(false);
-                btnMoveFirst.setEnabled(false);
-                btnMovePrevious.setEnabled(false);
-                btnMoveNext.setEnabled(false);
-                btnMoveLast.setEnabled(false);
-                break;
-                
-        }
     }
-
+public void setQuyen() {
+    if (XAuth.isViewer()) {
+        // Phục vụ không được quyền gì
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    } else if (XAuth.isStaff()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    }else if (XAuth.isManager()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnDel.setEnabled(true);
+        btnRead.setEnabled(true);
+    }
+    // Quản lý thì không cần giới hạn
+}
     @Override
     public boolean checkAll() {
          if (txtHoten.getText().trim().isEmpty()) {

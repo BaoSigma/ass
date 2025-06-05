@@ -7,11 +7,13 @@ package poly.cafe.ui.manager;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.html.parser.Entity;
 import poly.cafe.controller.entityController.theDDCTR;
 import poly.cafe.dao.entityDAO.theDDDAO;
 import poly.cafe.dao.impl.TheDDimpl;
 import poly.cafe.entity.ChiTietHoaDon;
 import poly.cafe.entity.theDD;
+import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
 /**
@@ -26,6 +28,8 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
      */
     public TheDDPanel() {
         initComponents();
+        fillToTable();
+        setQuyen();
     }
 
     /**
@@ -37,6 +41,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDD = new javax.swing.JTable();
@@ -53,11 +58,12 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         btnClear = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        lblHD = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtTrangThai = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
+        txtHD = new javax.swing.JTextField();
+        rdoUse = new javax.swing.JRadioButton();
+        rdoDUSE = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -74,6 +80,20 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
                 "ID", "Trạng thái", "Mã HD"
             }
         ));
+        tblDD.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblDDAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        tblDD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDDMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDD);
 
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,7 +135,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnMoveFirst)
@@ -187,19 +207,23 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
 
         jLabel2.setText("Mã HD:");
 
-        lblHD.setText("HD");
-
         jLabel4.setText("Trạng thái:");
 
         jLabel5.setText("ID:");
 
         lblID.setText("id");
 
+        buttonGroup1.add(rdoUse);
+        rdoUse.setText("Đã sử dụng ");
+
+        buttonGroup1.add(rdoDUSE);
+        rdoDUSE.setText("Chưa sử dụng");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
@@ -207,16 +231,16 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
                     .addComponent(jLabel4)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5))
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblID)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblHD)
-                            .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(rdoUse)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rdoDUSE))
+                            .addComponent(txtHD, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnRead)
                             .addComponent(btnDel, javax.swing.GroupLayout.Alignment.LEADING))
@@ -230,7 +254,10 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
                                 .addComponent(btnADD)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnClear)))
-                        .addGap(64, 64, 64))))
+                        .addGap(64, 64, 64))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblID)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,45 +266,42 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblID))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblID, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnRead)
-                                    .addComponent(btnADD)
-                                    .addComponent(btnClear)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnUpdate)
-                                    .addComponent(btnDel)
-                                    .addComponent(jButton5)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRead)
+                            .addComponent(btnADD)
+                            .addComponent(btnClear)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblHD)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnDel)
+                            .addComponent(jButton5)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(rdoUse)
+                            .addComponent(rdoDUSE))))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGap(0, 707, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -286,7 +310,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 454, Short.MAX_VALUE)
+            .addGap(0, 459, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -351,6 +375,15 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         XDialog.alert("Đã mở quyền");
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void tblDDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDDMouseClicked
+        // TODO add your handling code here:
+        edit();
+    }//GEN-LAST:event_tblDDMouseClicked
+
+    private void tblDDAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblDDAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDDAncestorAdded
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnADD;
@@ -362,6 +395,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
     private javax.swing.JButton btnMovePrevious;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -370,10 +404,11 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblHD;
     private javax.swing.JLabel lblID;
+    private javax.swing.JRadioButton rdoDUSE;
+    private javax.swing.JRadioButton rdoUse;
     private javax.swing.JTable tblDD;
-    private javax.swing.JTextField txtTrangThai;
+    private javax.swing.JTextField txtHD;
     // End of variables declaration//GEN-END:variables
    @Override
     public void open() {
@@ -381,18 +416,62 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
 
     @Override
     public void setForm(theDD entity) {
-        lblHD.setText(entity.getHd());
+        txtHD.setText(entity.getHd());
         lblID.setText(String.valueOf(entity.getID()));
-        txtTrangThai.setText(entity.getTrangThai());
-       
-        
+        if (entity.getTrangThai()== null) {
+            // Không chọn gì
+            rdoUse.setSelected(false);
+            rdoDUSE.setSelected(false);
+            
+        } else {
+            switch (entity.getTrangThai()) {
+                case "Đã sử dụng":
+                    rdoUse.setSelected(true);
+                    break;
+                case "Chưa sử dụng":
+                    rdoDUSE.setSelected(true);
+                    break;
+                
+                default:
+                    // Không chọn radio button nào nếu giá trị lạ
+                    rdoUse.setSelected(false);
+                    rdoDUSE.setSelected(false);
+            }
+        }
     }
-
+     public void setQuyen() {
+    if (XAuth.isViewer()) {
+        // Phục vụ không được quyền gì
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    } else if (XAuth.isStaff()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnDel.setEnabled(false);
+        btnRead.setEnabled(true);
+    }else if (XAuth.isManager()) {
+        // Nhân viên không được thêm/sửa/xóa nhân viên
+        btnADD.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnDel.setEnabled(true);
+        btnRead.setEnabled(true);
+    }
+    // Quản lý thì không cần giới hạn
+}
     @Override
     public theDD getForm() {
         theDD entity = new theDD();
-        entity.setTrangThai(txtTrangThai.getText());
-        entity.setHd(lblHD.getText());
+        if (rdoUse.isSelected()) {
+            entity.setTrangThai("Đã sử dụng");
+        } else if (rdoDUSE.isSelected()) {
+            entity.setTrangThai("Chưa sử dụng");
+        }else{
+            entity.setTrangThai(null);  // Không chọn chức vụ
+        }
+        entity.setHd(txtHD.getText());
         entity.setID(Integer.parseInt(lblID.getText()));
         return entity;
     }
@@ -486,13 +565,28 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
 
     @Override
     public boolean checkAll() {
-
-
-    if (txtTrangThai.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
-        txtTrangThai.requestFocus();
+    theDD entity = new theDD();
+        
+    if (!rdoDUSE.isSelected() && !rdoUse.isSelected()) {
+        XDialog.alert("Vui lòng chọn chức vụ.");
 
     }
+        
+
+
+        
+    if (txtHD.getText().trim().isEmpty()) {
+        XDialog.alert( "Vui lòng nhập họ tên.");
+        
+        
+
+    }
+    if (txtHD.getText().equals(entity.getTrangThai())) {
+        XDialog.alert( "Vui lòng nhập họ tên.");
+        
+
+    }
+    
     return false;
     }
 
