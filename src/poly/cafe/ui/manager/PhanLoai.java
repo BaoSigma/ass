@@ -433,7 +433,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
 
     @Override
     public void update() {
-        if (XDialog.confirm("Bạn thực sự muốn thêm nhân viên này?")) {
+        if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         LoaiSanPham entity = this.getForm();
         dao.create(entity);
         this.fillToTable();
@@ -489,7 +489,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
             
 
     if (txtLoai.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập họ tên.");
+        XDialog.alert( "Vui lòng nhập loại.");
 
     }
 
