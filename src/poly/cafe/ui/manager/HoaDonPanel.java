@@ -352,14 +352,18 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
+        if(checkAll()==true){
         checkAll();
         delete();
+        }
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        if(checkAll()==true){
         update();
         checkAll();
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed

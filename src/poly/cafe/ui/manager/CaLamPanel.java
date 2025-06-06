@@ -317,7 +317,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==false){
+        if(checkAll()==true){
         update();
         checkAll();
         }
@@ -325,7 +325,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==false){
+        if(checkAll()==true){
         delete();
         }
     }//GEN-LAST:event_btnDelActionPerformed

@@ -338,8 +338,10 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
+        if(checkAll()==true){
         checkAll();
         delete();
+        }
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
@@ -350,8 +352,10 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        if(checkAll()==true){
         update();
         checkAll();
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
