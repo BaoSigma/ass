@@ -39,14 +39,14 @@ CREATE TABLE SanPham(
 maSP VARCHAR(5) PRIMARY KEY,
 maLSP int FOREIGN KEY REFERENCES LoaiSanPham(maLSP),
 tenDU nvarchar(50),
-giaDU money)
+giaDU float)
 
 CREATE TABLE Chitiethoadon (
 maCT int identity(1,1) primary key,
 maHD VARCHAR(5) FOREIGN KEY REFERENCES Hoadon(maHD),
 maSP VARCHAR(5) FOREIGN KEY REFERENCES SanPham(maSP),
 soLuong int,
-giaTien money
+giaTien float
 )
 CREATE PROCEDURE Insert_NhanVien
     @hoTen NVARCHAR(50),
@@ -56,6 +56,7 @@ CREATE PROCEDURE Insert_NhanVien
     @matKhau VARCHAR(100),
     @chucVu NVARCHAR(50)
 AS
+
 BEGIN
     DECLARE @newMaNV VARCHAR(5)
     DECLARE @lastNum INT
@@ -71,15 +72,7 @@ BEGIN
     VALUES (@newMaNV, @hoTen, @namSinh, @sdt, @email, @matKhau, @chucVu)
 END
 
-CREATE PROCEDURE Insert_Calam
-    @maCL NVARCHAR(30),
-    @maNV VARCHAR(5),
-    @hoTenNV NVARCHAR(50)
-AS
-BEGIN
-    INSERT INTO Calam(maCL, maNV, hoTenNV)
-    VALUES (@maCL, @maNV, @hoTenNV)
-END
+
 
 CREATE PROCEDURE Insert_HoaDon
     @maNV VARCHAR(5),

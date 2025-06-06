@@ -4,6 +4,9 @@
  */
 package poly.cafe.ui.all;
 
+import com.formdev.flatlaf.FlatLaf;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Admin
@@ -15,6 +18,7 @@ public class dangnhap extends javax.swing.JFrame {
      */
     public dangnhap() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
    
@@ -56,6 +60,11 @@ public class dangnhap extends javax.swing.JFrame {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -109,6 +118,11 @@ public class dangnhap extends javax.swing.JFrame {
         new PolyLogin().setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new PolyLogin().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -139,6 +153,11 @@ public class dangnhap extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               try {
+                    UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 new dangnhap().setVisible(true);
             }
         });
