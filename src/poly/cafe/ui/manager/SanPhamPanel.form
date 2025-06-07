@@ -65,7 +65,7 @@
                                   <Component id="txtLoai" min="-2" pref="144" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblSP" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -328,7 +328,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblSP">
           <Properties>
-            <Property name="text" type="java.lang.String" value="M&#xe3; SP"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDU">

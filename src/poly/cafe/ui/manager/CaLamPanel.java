@@ -305,6 +305,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         // TODO add your handling code here:
         if(checkAll()){
         create();
+        XDialog.alert("Đã thêm thành công");
         }
         
     }//GEN-LAST:event_btnADDActionPerformed
@@ -321,6 +322,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         // TODO add your handling code here:
         if(checkAll()){
         update();
+        XDialog.alert("Đã cập nhật thành công");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -328,6 +330,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         // TODO add your handling code here:
         if(checkAll()){
         delete();
+        XDialog.alert("Đã xóa thành công!");
         }
     }//GEN-LAST:event_btnDelActionPerformed
 

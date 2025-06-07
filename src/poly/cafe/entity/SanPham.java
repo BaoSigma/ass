@@ -8,11 +8,17 @@ package poly.cafe.entity;
  *
  * @author baoha
  */
-public class SanPham {
+public class SanPham extends LoaiSanPham{
     private String maSP;
-    private LoaiSanPham lsp = new LoaiSanPham();
     private String tenDU;
     private Double giaDU;
+
+    public SanPham(String maSP, String tenDU, Double giaDU, int maLSP, String tenLDU) {
+        super(maLSP, tenLDU);
+        this.maSP = maSP;
+        this.tenDU = tenDU;
+        this.giaDU = giaDU;
+    }
 
     public SanPham(String maSP, String tenDU, Double giaDU) {
         this.maSP = maSP;
@@ -31,13 +37,16 @@ public class SanPham {
         this.maSP = maSP;
     }
 
-    public int getLsp() {
-        return lsp.getMaLSP();
+    @Override
+    public void setMaLSP(int maLSP) {
+        super.setMaLSP(maLSP); 
     }
 
-    public void setLsp(int lsp) {
-        this.lsp.setMaLSP(lsp);
+    @Override
+    public int getMaLSP() {
+        return super.getMaLSP(); 
     }
+
 
     public String getTenDU() {
         return tenDU;

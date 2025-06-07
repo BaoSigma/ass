@@ -158,7 +158,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         jLabel5.setText("Giá:");
 
-        lblSP.setText("Mã SP");
+        lblSP.setText("0");
 
         btnMoveFirst.setText("Đầu");
         btnMoveFirst.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +206,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                                 .addGap(8, 8, 8)
                                 .addComponent(txtLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(lblSP))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,6 +328,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         // TODO add your handling code here:
         if(checkAll()){
         delete();
+        XDialog.alert("Đã xóa thành công!");
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
@@ -335,6 +336,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         // TODO add your handling code here:
         if(checkAll()){
         create();
+        XDialog.alert("Đã thêm thành công");
         }
     }//GEN-LAST:event_btnADDActionPerformed
 
@@ -348,6 +350,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         // TODO add your handling code here:
         if(checkAll()){
         update();
+        XDialog.alert("Đã cập nhật thành công");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -401,7 +404,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     @Override
     public void setForm(SanPham entity) {
         lblSP.setText(entity.getMaSP());
-        txtLoai.setText(entity.getMaSP());
+        txtLoai.setText(String.valueOf(entity.getMaLSP()));
         txtDU.setText(entity.getTenDU());
         txtGia.setText(String.valueOf(entity.getGiaDU()));
         
@@ -431,8 +434,8 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     @Override
     public SanPham getForm() {
         SanPham entity = new SanPham();
-        entity.setTenDU(txtDU.getText());
-        entity.setLsp(Integer.parseInt(txtLoai.getText()));
+        entity.setGiaDU(Double.valueOf(txtGia.getText()));
+        entity.setMaLSP(Integer.parseInt(txtLoai.getText()));
         entity.setTenDU(txtDU.getText());
         entity.setMaSP(lblSP.getText());
         return entity;
@@ -446,7 +449,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         items.forEach(item -> {
             Object[] rowData = {
                 item.getMaSP(),
-                item.getLsp(),
+                item.getMaLSP(),
                 item.getTenDU(),
                 item.getGiaDU(),
                 false
@@ -501,7 +504,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     public void setEditable(boolean editable) {
         int rowCount = tblSP.getRowCount();
         int selectedRow = tblSP.getSelectedRow();
-        String value = tblSP.getValueAt(selectedRow, 5).toString();
+        String value = tblSP.getValueAt(selectedRow, 3).toString();
        
         if (value == null) {
             // Không có quyền gì hết

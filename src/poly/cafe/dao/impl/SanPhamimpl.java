@@ -20,14 +20,14 @@ public class SanPhamimpl implements SanPhamDAO{
 "    @tenDU = ?, \n" +
 "    @giaDU = ?\n";
     private String deleteSanPhamByIdSQL = "DELETE FROM SanPham WHERE maSP = ?";
-    private String findAllSanPhamSQL = "SELECT * FROM SanPham";
+    private String findAllSanPhamSQL = "SELECT maSP, maLSP, tenDU, giaDU FROM SanPham";
     private String findSanPhamByIdSQL = findAllSanPhamSQL + " WHERE maSP = ?";
     private String updateSanPhamSQL = "UPDATE SanPham SET maLSP = ?, tenDU = ?,giaDU = ? WHERE maSP = ?";
 
         @Override
     public SanPham create(SanPham entity) {
         Object[] values = {
-            entity.getLsp(),
+            entity.getMaLSP(),
             entity.getTenDU(),
             entity.getGiaDU()
 
@@ -39,7 +39,7 @@ public class SanPhamimpl implements SanPhamDAO{
     @Override
     public void update(SanPham entity) {
         Object[] values = {
-            entity.getLsp(),
+            entity.getMaLSP(),
             entity.getTenDU(),
             entity.getGiaDU(),
             entity.getMaSP(),
