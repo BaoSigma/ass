@@ -19,7 +19,7 @@ public class LoaiSPimpl implements LoaiSanPhamDAO{
     private String createsql= "EXEC Insert_LoaiSanPham \n" +
 "    @tenLDU = ?";
     private String deleteLoaiSanPhamByIdSQL = "DELETE FROM LoaiSanPham WHERE maLSP = ?";
-    private String findAllLoaiSanPhamSQL = "SELECT * FROM LoaiSanPham";
+    private String findAllLoaiSanPhamSQL = "SELECT maLSP, tenLDU FROM LoaiSanPham";
     private String findLoaiSanPhamByIdSQL = findAllLoaiSanPhamSQL + " WHERE maLSP = ?";
     private String updateLoaiSanPhamSQL = "UPDATE LoaiSanPham SET tenLDU = ? WHERE maLSP = ?";
 
@@ -37,7 +37,6 @@ public class LoaiSPimpl implements LoaiSanPhamDAO{
         Object[] values = {
             entity.getTenLDU(),
             entity.getMaLSP()
-
         };
         XJdbc.executeUpdate(updateLoaiSanPhamSQL, values);
     }

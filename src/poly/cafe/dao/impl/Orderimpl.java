@@ -5,6 +5,10 @@
 package poly.cafe.dao.impl;
 
 import java.sql.*;
+import java.util.List;
+import poly.cafe.dao.entityDAO.HoaDonDAO;
+import poly.cafe.entity.HoaDon;
+import poly.cafe.util.XJdbc;
 
 
 
@@ -12,45 +16,49 @@ import java.sql.*;
  *
  * @author baoha
  */
-public class Orderimpl {
-    try (Connection conn = DriverManager.getConnection(url, user, pass)) {
-            // Gọi procedure Insert_HoaDon
-            String callHD = "{call Insert_HoaDon(?, ?, ?)}";
-            CallableStatement hdStmt = conn.prepareCall(callHD);
-            hdStmt.setString(1, "NV001"); // mã nhân viên test
-            hdStmt.setString(2, "Ghi chú test");
-            hdStmt.setDate(3, new java.sql.Date(System.currentTimeMillis()));
-            hdStmt.execute();
+public class Orderimpl implements HoaDonDAO{
+    
+    private static final String SP_INSERT_BILL = "{CALL Insert_bill(?, ?, ?)}"; // 3 tham số: maNV, ghiChu, @newMaHD OUTPUT
 
-            // Lấy mã HD mới nhất
-            ResultSet rs = conn.createStatement().executeQuery("SELECT TOP 1 maHD FROM Hoadon ORDER BY maHD DESC");
-            rs.next();
-            String maHD = rs.getString("maHD");
+    @Override
+    public HoaDon create(HoaDon entity) {
+        String newMaHD = null;
 
-            // Lưu chi tiết
-            for (int i = 0; i < model.getRowCount(); i++) {
-                String tenDU = model.getValueAt(i, 0).toString();
-                int soLuong = (int) model.getValueAt(i, 1);
-                double giaTien = (double) model.getValueAt(i, 3);
+        try (CallableStatement cs = XJdbc.openConnection().prepareCall(SP_INSERT_BILL)) {
+            cs.setString(1, entity.getMaNV());
+            cs.setString(2, entity.getGhiChu());
+            cs.registerOutParameter(3, Types.VARCHAR);
 
-                // Lấy mã SP từ tên
-                PreparedStatement ps = conn.prepareStatement("SELECT maSP FROM SanPham WHERE tenDU = ?");
-                ps.setString(1, tenDU);
-                ResultSet rsSP = ps.executeQuery();
-                rsSP.next();
-                String maSP = rsSP.getString("maSP");
+            cs.executeUpdate();
 
-                CallableStatement ctStmt = conn.prepareCall("{call Insert_ChiTietHoaDon(?, ?, ?, ?)}");
-                ctStmt.setString(1, maHD);
-                ctStmt.setString(2, maSP);
-                ctStmt.setInt(3, soLuong);
-                ctStmt.setDouble(4, giaTien);
-                ctStmt.execute();
-            }
+            newMaHD = cs.getString(3); // Lấy mã hóa đơn mới tạo
+            entity.setMaHD(newMaHD);
 
-            JOptionPane.showMessageDialog(null, "Lưu hóa đơn thành công!");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
+        return entity;
+    }
+    
+    @Override
+    public void update(HoaDon entity) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void deleteById(Object id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<HoaDon> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public HoaDon findById(Object id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }

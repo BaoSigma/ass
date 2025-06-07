@@ -13,4 +13,5 @@ import poly.cafe.entity.HoaDon;
  */
 public interface HoaDonDAO extends CrudDAO<HoaDon, Object>{
     List<HoaDon> list = new ArrayList<>();
+
 }

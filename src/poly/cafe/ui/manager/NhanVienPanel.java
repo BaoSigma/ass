@@ -399,8 +399,9 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
         // TODO add your handling code here:
-        checkAll();
+        if(checkAll()){
         create();
+        }
     }//GEN-LAST:event_btnADDActionPerformed
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
@@ -411,17 +412,15 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
-        checkAll();
+        if(checkAll()){
         delete();
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
+        if(checkAll()){
         update();
-        checkAll();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -569,7 +568,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
     public void update() {
         if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         NhanVien entity = this.getForm();
-        dao.create(entity);
+        dao.update(entity);
         this.fillToTable();
         this.clear();
     }
@@ -629,33 +628,29 @@ public void setQuyen() {
     public boolean checkAll() {
          if (txtHoten.getText().trim().isEmpty()) {
         XDialog.alert("Vui lòng nhập họ tên.");
-        txtHoten.requestFocus();
-
+        return false;
     }
 
     if (txtEmail.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập email.");
-        txtEmail.requestFocus();
-
+        return false;
     }
 
     if (txtSDT.getText().trim().isEmpty()) {
         XDialog.alert("Vui lòng nhập số điện thoại.");
-        txtSDT.requestFocus();
-
+        return false;
     }
 
     if (date.getDate() == null) {
         XDialog.alert("Vui lòng chọn ngày sinh.");
-        date.requestFocus();
-
+        return false;
     }
 
     if (!rdoQuanLy.isSelected() && !rdoNhanVien.isSelected() && !rdoPhucVu.isSelected()) {
         XDialog.alert("Vui lòng chọn chức vụ.");
-
+        return false;
     }
-    return false;
+    return true;
     }
 
     @Override

@@ -9,7 +9,9 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import poly.cafe.controller.entityController.CaLamCTR;
 import poly.cafe.dao.entityDAO.CaLamDAO;
+import poly.cafe.dao.entityDAO.NhanVienDAO;
 import poly.cafe.dao.impl.Calamimpl;
+import poly.cafe.dao.impl.NhanVienimpl;
 import poly.cafe.entity.CaLam;
 import poly.cafe.entity.NhanVien;
 import poly.cafe.util.XAuth;
@@ -22,14 +24,15 @@ import poly.cafe.util.XDialog;
 public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     CaLamDAO dao = new Calamimpl();
     List<CaLam> items = new ArrayList<>();
+    NhanVienDAO nvDao = new NhanVienimpl();
     /**
      * Creates new form CaLamPanel
      */
     public CaLamPanel() {
         initComponents();
-          fillToTable();
-                 setQuyen();
-
+        fillToTable();
+        setQuyen();
+            
     }
 
     /**
@@ -300,8 +303,9 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
         // TODO add your handling code here:
-        
+        if(checkAll()){
         create();
+        }
         
     }//GEN-LAST:event_btnADDActionPerformed
 
@@ -315,15 +319,14 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
+        if(checkAll()){
         update();
-        checkAll();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
+        if(checkAll()){
         delete();
         }
     }//GEN-LAST:event_btnDelActionPerformed
@@ -499,7 +502,6 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
     @Override
     public void create() {
-        
         if (XDialog.confirm("Bạn thực sự muốn thêm nhân viên này?")) {
         CaLam entity = this.getForm();
         dao.create(entity);
@@ -513,7 +515,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     public void update() {
         if (XDialog.confirm("Bạn thực sự muốn thêm nhân viên này?")) {
         CaLam entity = this.getForm();
-        dao.create(entity);
+        dao.update(entity);
         this.fillToTable();
         this.clear();
         XDialog.alert("Đã cập nhật thành công");
@@ -545,30 +547,22 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
     @Override
     public boolean checkAll() {
-        
-    CaLam entity = new CaLam();
-    if(!txtmaNV.getText().equals(entity.getMaNV()))
+
     if (txtHoTen.getText()==null) {
         XDialog.alert( "Vui lòng nhập họ tên.");
-        return true;
+        return false;
     }
-    if(!txtHoTen.getText().equals(entity.getHoTen())){
-        XDialog.alert("Tên nhân viên không tồn tại");
-        return true;
-    }
+    
     if(txtmaNV.getText()==null){
         XDialog.alert("Chưa nhập mã nhân viên");
-        return true;
+        return false;
     }
-    if(!txtmaNV.getText().equals(entity.getHoTen())){
-        XDialog.alert("Mã nhân viên không tồn tại");
-        return true;
-    }
+    
     if (!rdoCa1.isSelected() && !rdoCa2.isSelected() && !rdoCa3.isSelected()) {
         XDialog.alert("Vui lòng chọn ca làm.");
-        return true;
+        return false;
     }
-    return false;
+    return true;
     }
 
     @Override

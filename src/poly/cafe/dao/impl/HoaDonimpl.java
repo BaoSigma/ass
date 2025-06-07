@@ -9,7 +9,7 @@ import poly.cafe.dao.entityDAO.HoaDonDAO;
 import poly.cafe.entity.HoaDon;
 import poly.cafe.util.XJdbc;
 import poly.cafe.util.XQuery;
-
+import java.sql.*;
 /**
  *
  * @author baoha
@@ -28,8 +28,8 @@ public class HoaDonimpl implements HoaDonDAO{
     public HoaDon create(HoaDon entity) {
         Object[] values = {
             entity.getMaNV(),
+            entity.getGhiChu(),
             entity.getNgayTao(),
-            entity.getGhiChu()
         };
         XJdbc.executeUpdate(createsql, values);
         return entity;
@@ -39,8 +39,8 @@ public class HoaDonimpl implements HoaDonDAO{
     public void update(HoaDon entity) {
         Object[] values = {
             entity.getMaNV(),
-            entity.getNgayTao(),
             entity.getGhiChu(),
+            entity.getNgayTao(),
             entity.getMaHD()
         };
         XJdbc.executeUpdate(updateHoaDonSQL, values);
@@ -60,5 +60,8 @@ public class HoaDonimpl implements HoaDonDAO{
     public HoaDon findById(Object id) {
         return XQuery.getSingleBean(HoaDon.class, findHoaDonByIdSQL, id);
     }
+
+  
+    
 }
 

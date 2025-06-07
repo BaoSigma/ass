@@ -1,25 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package poly.cafe.entity;
 
-/**
- *
- * @author PC
- */
 public class CaLam {
     private int ID;
-    private String Buoi;
+    private String buoi;
     private NhanVien nv = new NhanVien();
-    private String hoTen; 
-    public CaLam(String maCL,String hoTen,int ID) {
-        this.Buoi = Buoi;
-        this.hoTen = hoTen;
-        this.ID = ID;
-    }
-    
+
     public CaLam() {
+    }
+
+    public CaLam(int ID, String buoi, NhanVien nv) {
+        this.ID = ID;
+        this.buoi = buoi;
+        this.nv = nv;
     }
 
     public int getID() {
@@ -29,30 +21,36 @@ public class CaLam {
     public void setID(int ID) {
         this.ID = ID;
     }
-    
+
     public String getBuoi() {
-        return Buoi;
+        return buoi;
     }
 
-    public void setBuoi(String Buoi) {
-        this.Buoi = Buoi;
+    public void setBuoi(String buoi) {
+        this.buoi = buoi;
+    }
+
+    public NhanVien getNhanVien() {
+        return nv;
+    }
+
+    public void setNhanVien(NhanVien nv) {
+        this.nv = nv;
     }
 
     public String getMaNV() {
-        return nv.getMaNV();
-    }
-
-    public void setMaNV(String MaNV) {
-        nv.setMaNV(MaNV);
+        return nv != null ? nv.getMaNV() : null;
     }
 
     public String getHoTen() {
-        return nv.getHoTen();
+        return nv != null ? nv.getHoTen() : null;
     }
-
-    public void setHoTen(String hoTenNV) {
-        this.nv.setHoTen(hoTenNV);
+    public void setMaNV(String maNV){
+        this.nv.setMaNV(maNV);
+        
     }
-
-
+    public void setHoTen(String hoTen){
+        this.nv.setHoTen(hoTen);
+    }
+    
 }

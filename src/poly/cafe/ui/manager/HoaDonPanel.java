@@ -14,6 +14,7 @@ import poly.cafe.dao.impl.ChiTietImpl;
 import poly.cafe.dao.impl.HoaDonimpl;
 import poly.cafe.entity.ChiTietHoaDon;
 import poly.cafe.entity.HoaDon;
+import poly.cafe.entity.NhanVien;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
@@ -158,6 +159,12 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         jLabel7.setText("Ngày tạo:");
 
+        txtNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNVActionPerformed(evt);
+            }
+        });
+
         date.setLocale(new java.util.Locale("vi", "VN"));
         date.setDateFormatString("yyyy-MM-dd");
         date.setMinSelectableDate(new java.util.Date(-62135791103000L));
@@ -231,26 +238,22 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                             .addComponent(btnRead)
                             .addComponent(btnDel, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnADD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnADD)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnClear)))
+                            .addComponent(btnClear)
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(103, 103, 103))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1002, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -281,7 +284,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -309,11 +312,8 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,24 +352,23 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
-        checkAll();
+        if(checkAll()){
         delete();
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
+        if(checkAll()){
         update();
-        checkAll();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
         // TODO add your handling code here:
-        checkAll();
+        if(checkAll()){
         create();
+        }
     }//GEN-LAST:event_btnADDActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -388,6 +387,10 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         // TODO add your handling code here:
         edit();
     }//GEN-LAST:event_tblHDMouseClicked
+
+    private void txtNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNVActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -502,7 +505,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
     public void update() {
         if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         HoaDon entity = this.getForm();
-        dao.create(entity);
+        dao.update(entity);
         this.fillToTable();
         this.clear();
     }
@@ -539,26 +542,21 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
     @Override
     public boolean checkAll() {
-    HoaDon entity = new HoaDon();
-
+        HoaDon entity = new HoaDon();
+    if(!XAuth.isLogin()){
+        XDialog.alert("Bạn cần phải đăng nhập!");
+        return false;
+    }
     if (txtaGhiChu.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập ghi chú.");
-
+        return false;
     }
     if (date.getDate() == null) {
         XDialog.alert( "Vui lòng chọn ngày.");
-
+        return false;
     }
-    if (txtNV.getText().trim().isEmpty()) {
-        XDialog.alert( "Vui lòng nhập mã nhân viên.");
 
-    }
-    if (!txtNV.getText().equals(entity.getMaNV())) {
-        XDialog.alert( "Vui lòng nhập đúng mã nhân viên.");
-
-    }
-    
-    return false;
+    return true;
 
     }
 

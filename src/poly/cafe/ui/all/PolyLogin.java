@@ -34,18 +34,20 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
     /**
      * Creates new form PolyLogin
      */
-    public PolyLogin() {
-        initComponents();
-        open();
-        XAuth.load();
-        if(XAuth.user != null){
-            txtPass.setText(XAuth.user.getMatKhau());
-            txtUser.setText(XAuth.user.getMaNV());
-        }else{
-            chkRemember.setSelected(false);
-        }
-           // Light Cyan
+  public PolyLogin() {
+    initComponents();
+    open();
+    XAuth.load(); // Tải thông tin user từ Preferences
+
+    if (XAuth.user != null) {
+        txtUser.setText(XAuth.user.getMaNV());
+        txtPass.setText(XAuth.user.getMatKhau());
+        chkRemember.setSelected(true); // đánh dấu checkbox Remember
+    } else {
+        chkRemember.setSelected(false);
     }
+}
+
    
   
     @SuppressWarnings("unchecked")
@@ -128,6 +130,11 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, -1));
 
         btnClose1.setText("Close");
+        btnClose1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClose1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnClose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 90, -1));
 
         chkShowPass.addActionListener(new java.awt.event.ActionListener() {
@@ -164,17 +171,18 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new ForgetPass().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         new ForgetPass().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         // TODO add your handling code here:
         login();
+        this.dispose();
     }//GEN-LAST:event_btnLogin1ActionPerformed
 
     private void btnLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin1MouseClicked
@@ -185,6 +193,11 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
     private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPassActionPerformed
+
+    private void btnClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnClose1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,21 +290,19 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
         XDialog.alert("Nhập sai mật khẩu!");
         return;
     }
+        XAuth.user = user; // Đặt user trước khi save
 
-    if (XDialog.confirm("Bạn có muốn đăng nhập không?")) {
-        XAuth.user = user;
-
-        // Nếu chọn Remember me thì lưu
         if (chkRemember.isSelected()) {
-            XAuth.save();
+            XAuth.save(); // Lưu thông tin vào Preferences
         } else {
-            XAuth.clear();  // không lưu thông tin
+            XAuth.clear(); // Xoá thông tin khỏi Preferences
         }
 
-        new Menu().setVisible(true);
         XDialog.alert("Đăng nhập thành công!");
-        this.dispose();
-    }
+        new Menu().setVisible(true);
+        
+
+    
     }
 
     @Override

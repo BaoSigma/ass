@@ -31,7 +31,6 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     public PhanLoai() {
         initComponents();
         setEditable(true);
-        fillToTable();
         setQuyen();
     }
 
@@ -57,12 +56,12 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblID = new javax.swing.JLabel();
         txtLoai = new javax.swing.JTextField();
         btnMoveFirst = new javax.swing.JButton();
         btnMovePrevious = new javax.swing.JButton();
         btnMoveNext = new javax.swing.JButton();
         btnMoveLast = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -80,6 +79,20 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
                 "Mã Loại", "Tên loại"
             }
         ));
+        tblPhanLoai.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblPhanLoaiAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        tblPhanLoai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPhanLoaiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPhanLoai);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -147,8 +160,6 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
 
         jLabel3.setText("Tên loại:");
 
-        lblID.setText("ID");
-
         txtLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLoaiActionPerformed(evt);
@@ -197,8 +208,8 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
                         .addComponent(txtLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblID)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnRead)
@@ -231,13 +242,13 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblID))
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,23 +293,22 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
-        checkAll();
+        if(checkAll()){
         delete();
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
         // TODO add your handling code here:
-        checkAll();
+        if(checkAll()){
         create();
+        }
     }//GEN-LAST:event_btnADDActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
+        if(checkAll()){
         update();
-        checkAll();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -338,6 +348,16 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoaiActionPerformed
 
+    private void tblPhanLoaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPhanLoaiMouseClicked
+        // TODO add your handling code here:
+        edit();
+    }//GEN-LAST:event_tblPhanLoaiMouseClicked
+
+    private void tblPhanLoaiAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblPhanLoaiAncestorAdded
+        // TODO add your handling code here:
+        fillToTable();
+    }//GEN-LAST:event_tblPhanLoaiAncestorAdded
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnADD;
@@ -356,8 +376,8 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblID;
     private javax.swing.JTable tblPhanLoai;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtLoai;
     // End of variables declaration//GEN-END:variables
    @Override
@@ -366,8 +386,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
 
     @Override
     public void setForm(LoaiSanPham entity) {
-        lblID.setText(entity.getTenLDU());
-        
+        txtID.setText(String.valueOf(entity.getMaLSP()));
         txtLoai.setText(entity.getTenLDU());
         
     }
@@ -398,7 +417,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         LoaiSanPham entity = new LoaiSanPham();
         entity.setTenLDU(txtLoai.getText());
 
-        entity.setMaLSP(lblID.getText());
+        entity.setMaLSP(Integer.parseInt(txtID.getText()));
         return entity;
     }
 
@@ -421,7 +440,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     public void edit() {
         LoaiSanPham entity = items.get(tblPhanLoai.getSelectedRow());
         this.setForm(entity);
-        this.setEditable(true);
+
     }
 
     @Override
@@ -438,7 +457,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     public void update() {
         if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         LoaiSanPham entity = this.getForm();
-        dao.create(entity);
+        dao.update(entity);
         this.fillToTable();
         this.clear();
     }
@@ -447,7 +466,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     @Override
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
-        String id = lblID.getText();
+        String id = txtID.getText();
         dao.deleteById(id);
         this.fillToTable();
         this.clear();
@@ -461,19 +480,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     
     @Override
     public void setEditable(boolean editable) {
-        int rowCount = tblPhanLoai.getRowCount();
-        int selectedRow = tblPhanLoai.getSelectedRow();
-      
        
-            // Không có quyền gì hết
-            lblID.setEnabled(false);
-            btnADD.setEnabled(false);
-            btnUpdate.setEnabled(false);
-            btnDel.setEnabled(false);
-            btnMoveFirst.setEnabled(false);
-            btnMovePrevious.setEnabled(false);
-            btnMoveNext.setEnabled(false);
-            btnMoveLast.setEnabled(false);
     
     }
     private void on() {
@@ -490,13 +497,12 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     public boolean checkAll() {
     LoaiSanPham entity = new LoaiSanPham();
             
-
     if (txtLoai.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập loại.");
+        return false;
 
     }
-
-    return false;
+    return true;
     }
 
     @Override

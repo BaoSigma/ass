@@ -20,15 +20,15 @@ public class TheDDimpl implements theDDDAO{
 "    @trangThai = ?, \n" +
 "    @maHD = ?";
     private String deleteTheDDByIdSQL = "DELETE FROM TheDD WHERE ID = ?";
-private String findAllTheDDSQL = "SELECT * FROM TheDD";
-private String findTheDDByIdSQL = findAllTheDDSQL + " WHERE ID = ?";
-private String updateTheDDSQL = "UPDATE TheDD SET trangThai = ?, maHD = ? WHERE ID = ?";
+    private String findAllTheDDSQL = "SELECT * FROM TheDD";
+    private String findTheDDByIdSQL = findAllTheDDSQL + " WHERE ID = ?";
+    private String updateTheDDSQL = "UPDATE TheDD SET trangThai = ?, maHD = ? WHERE ID = ?";
 
         @Override
     public theDD create(theDD entity) {
         Object[] values = {
             entity.getTrangThai(),
-            entity.getHd(),
+            entity.getMaHD(),
         };
         XJdbc.executeUpdate(createsql, values);
         return entity;
@@ -38,7 +38,7 @@ private String updateTheDDSQL = "UPDATE TheDD SET trangThai = ?, maHD = ? WHERE 
     public void update(theDD entity) {
         Object[] values = {
             entity.getTrangThai(),
-            entity.getHd(),
+            entity.getMaHD(),
             entity.getID()
         };
         XJdbc.executeUpdate(updateTheDDSQL, values);

@@ -25,7 +25,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
      */
     public ForgetPass() {
         initComponents();
-
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -147,6 +147,8 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
 
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         // TODO add your handling code here:
+        new PolyLogin().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnLogin1ActionPerformed
 
     private void btnClose1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClose1MouseClicked
@@ -155,6 +157,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
 
     private void btnClose1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClose1ActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnClose1ActionPerformed
 
     private void btnSignup1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignup1MouseClicked
@@ -163,14 +166,26 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
 
     private void btnSignup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignup1ActionPerformed
         // TODO add your handling code here:
+        setPass();
+        dispose();
     }//GEN-LAST:event_btnSignup1ActionPerformed
 
     private void chkPassOld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPassOld1ActionPerformed
         // TODO add your handling code here:
+        if (chkPassOld1.isSelected()) {
+            txtPassOld.setEchoChar((char) 0); // Hiện mật khẩu
+        } else {
+            txtPassOld.setEchoChar('●'); // Ẩn mật khẩu bằng dấu chấm
+        }
     }//GEN-LAST:event_chkPassOld1ActionPerformed
 
     private void chkNewPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkNewPass1ActionPerformed
         // TODO add your handling code here:
+        if (chkNewPass1.isSelected()) {
+            txtPassNew.setEchoChar((char) 0); // Hiện mật khẩu
+        } else {
+            txtPassNew.setEchoChar('●'); // Ẩn mật khẩu bằng dấu chấm
+        }
     }//GEN-LAST:event_chkNewPass1ActionPerformed
 
     /**
@@ -240,12 +255,10 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         } else if (!passOld.equals(XAuth.user.getMatKhau())) {
             XDialog.alert("Sai mật khẩu cũ!");
         } else {
-            if (XDialog.confirm("Bạn có muốn cập nhật lại tài khoản không?")) {
                 XAuth.user.setMatKhau(newPass);
                 dao.update(XAuth.user);
                 XDialog.alert("Đổi mật khẩu thành công!");
-                dispose();
-            }
+                new PolyLogin().setVisible(true);
         }
     }
 

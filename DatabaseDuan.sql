@@ -73,7 +73,25 @@ BEGIN
 END
 
 
+ CREATE PROCEDURE Insert_bill
+    @maNV VARCHAR(5),
+    @ghiChu NVARCHAR(50),
+    @newMaHD VARCHAR(5) OUTPUT
+AS
+BEGIN
+   
+    DECLARE @lastNum INT;
 
+    SELECT @lastNum = 
+        CAST(SUBSTRING(MAX(maHD), 3, 3) AS INT)
+    FROM Hoadon
+
+    SET @lastNum = ISNULL(@lastNum, 0) + 1
+    SET @newMaHD = 'HD' + RIGHT('000' + CAST(@lastNum AS VARCHAR), 3)
+
+    INSERT INTO Hoadon(maHD, maNV, ghiChu, ngayTao)
+    VALUES (@newMaHD, @maNV, @ghiChu, GETDATE())
+END
 CREATE PROCEDURE Insert_HoaDon
     @maNV VARCHAR(5),
     @ghiChu NVARCHAR(50),
@@ -141,6 +159,9 @@ BEGIN
     INSERT INTO Chitiethoadon(maHD, maSP, soLuong, giaTien)
     VALUES (@maHD, @maSP, @soLuong, @giaTien)
 END
+EXEC Insert_bill
+    @maNV = ?,
+    @ghiChu = ?
 
 EXEC Insert_NhanVien 
     @hoTen = ?, 

@@ -50,8 +50,6 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         btnUpdate = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        lblMaCT = new javax.swing.JLabel();
         lbl = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -72,13 +70,13 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
         tblCT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã CT", "Mã HD", "Mã SP", "Số Lượng", "Giá Tiền", "Thành tiền"
+                "Mã HD", "Mã SP", "Số Lượng", "Giá Tiền", "Thành tiền"
             }
         ));
         tblCT.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -151,10 +149,6 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
             }
         });
 
-        jLabel2.setText("Mã CT:");
-
-        lblMaCT.setText("CT");
-
         lbl.setText("Mã HD:");
 
         jLabel6.setText("Mã SP:");
@@ -200,13 +194,9 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblMaCT))
                             .addComponent(lbl)
                             .addComponent(jLabel9))
-                        .addGap(6, 6, 6)
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtGiaTien, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                             .addComponent(txtHD)))
@@ -255,11 +245,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(lblMaCT))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl))
@@ -343,23 +329,22 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
-        checkAll();
+        if(checkAll()){
         delete();
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
         // TODO add your handling code here:
-        checkAll();
+        if(checkAll()){
         create();
+        }
     }//GEN-LAST:event_btnADDActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
+        if(checkAll()){
         update();
-        checkAll();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -393,7 +378,6 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -401,7 +385,6 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl;
-    private javax.swing.JLabel lblMaCT;
     private javax.swing.JTable tblCT;
     private javax.swing.JTextField txtGiaTien;
     private javax.swing.JTextField txtHD;
@@ -436,7 +419,6 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
     @Override
     public void setForm(ChiTietHoaDon entity) {
-        lblMaCT.setText(String.valueOf(entity.getMaCT()));
         txtHD.setText(entity.getMaHD());
         txtSP.setText(entity.getMaSP());
         txtGiaTien.setText(String.valueOf(entity.getGiaTien()));
@@ -449,7 +431,6 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         ChiTietHoaDon entity = new ChiTietHoaDon();
         entity.setMaHD(txtHD.getText());
         entity.setMaSP(txtSP.getText());
-        entity.setMaCT(Integer.parseInt(lblMaCT.getText()));
         entity.setGiaTien(Integer.parseInt(txtGiaTien.getText()));
         entity.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
         return entity;
@@ -462,7 +443,6 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         items = dao.findAll();
         items.forEach(item -> {
             Object[] rowData = {
-                item.getMaCT(),
                 item.getMaHD(),
                 item.getMaSP(),
                 item.getSoLuong(),
@@ -495,7 +475,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     public void update() {
         if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         ChiTietHoaDon entity = this.getForm();
-        dao.create(entity);
+        dao.update(entity);
         this.fillToTable();
         this.clear();
     }
@@ -504,7 +484,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     @Override
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
-        String id = lblMaCT.getText();
+        String id = txtHD.getText();
         dao.deleteById(id);
         this.fillToTable();
         this.clear();
@@ -534,27 +514,21 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     ChiTietHoaDon entitỵ = new ChiTietHoaDon();
     if(txtHD.getText().trim().isEmpty()){
         XDialog.alert("Vui lòng nhập hóa đơn");
-    }
-    if(!txtHD.getText().equals(entitỵ.getMaHD())){
-        XDialog.alert("Vui lòng nhập đúng mã hóa đơn");
+        return false;
     }
     if(txtSP.getText().equals(entitỵ.getMaSP())){
         XDialog.alert("Vui lòng nhập sản phẩm");
-    }
-    if(!txtSP.getText().trim().isEmpty()){
-        XDialog.alert("Vui lòng nhập đúng mã sản phẩm");
-    }
-    
+        return false;
+    } 
     if (txtGiaTien.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập giá tiền.");
-
+        return false;
     }
-
     if (txtSoLuong.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập số lượng.");
-
+        return false;
     }
-    return false;
+    return true;
     }
 
     @Override

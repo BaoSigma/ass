@@ -7,6 +7,8 @@ package poly.cafe.entity;
 
 import java.util.Date;
 import lombok.Builder;
+import poly.cafe.dao.entityDAO.NhanVienDAO;
+import poly.cafe.dao.impl.NhanVienimpl;
 
 /**
  *
@@ -91,6 +93,5 @@ public class NhanVien {
         this.chucVu = chucVu;
     }
     
-    
-    
+   
     }

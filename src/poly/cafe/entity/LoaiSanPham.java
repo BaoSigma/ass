@@ -10,10 +10,10 @@ package poly.cafe.entity;
  * @author Dong Khanh
  */
 public class LoaiSanPham {
-    private String maLSP;
+    private int maLSP;
     private String tenLDU;
-
-    public LoaiSanPham(String maLSP, String tenLDU) {
+    
+    public LoaiSanPham(int maLSP, String tenLDU) {
         this.maLSP = maLSP;
         this.tenLDU = tenLDU;
     }
@@ -21,11 +21,11 @@ public class LoaiSanPham {
     public LoaiSanPham() {
     }
 
-    public String getMaLSP() {
+    public int getMaLSP() {
         return maLSP;
     }
 
-    public void setMaLSP(String maLSP) {
+    public void setMaLSP(int maLSP) {
         this.maLSP = maLSP;
     }
 

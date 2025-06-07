@@ -15,4 +15,5 @@ import poly.cafe.entity.ChiTietHoaDon;
  */
 public interface ChiTietHoaDonDAO extends CrudDAO<ChiTietHoaDon, Object>{
     List<ChiTietHoaDon> list = new ArrayList<>();    
+    
 }

@@ -1,5 +1,7 @@
 package poly.cafe.util;
 
+import com.microsoft.sqlserver.jdbc.SQLServerDataTable;
+import com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -153,5 +155,30 @@ public class XJdbc {
     private static void demo3() {
         String sql = "DELETE FROM Drinks WHERE UnitPrice < ?";
         var count = XJdbc.executeUpdate(sql, 0.0);
+    }
+    public static int executeUpdateWithTVP(String procName, Object[] params, SQLServerDataTable tvp, String tvpTypeName) throws SQLException {
+        Connection conn = openConnection();
+        StringBuilder call = new StringBuilder("{call " + procName + "(");
+
+        // Thêm số tham số (params + 1 cho TVP)
+        int totalParams = (params != null ? params.length : 0) + 1;
+        for (int i = 0; i < totalParams; i++) {
+            call.append("?");
+            if (i < totalParams - 1) call.append(", ");
+        }
+        call.append(")}");
+
+        SQLServerPreparedStatement stmt = (SQLServerPreparedStatement) conn.prepareCall(call.toString());
+
+        // Set tham số bình thường
+        if (params != null) {
+            for (int i = 0; i < params.length; i++) {
+                stmt.setObject(i + 1, params[i]);
+            }
+        }
+        // Set tham số TVP (ở vị trí cuối)
+        stmt.setStructured(totalParams, tvpTypeName, tvp);
+
+        return stmt.executeUpdate();
     }
 }

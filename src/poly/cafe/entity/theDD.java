@@ -4,18 +4,28 @@
  */
 package poly.cafe.entity;
 
+import java.util.Date;
+
 /**
  *
  * @author ExpertBook
  */
-public class theDD {
+public class theDD extends HoaDon{
     private int ID;
     private String trangThai;
-    private  HoaDon hd =  new HoaDon();
+    
+
+    public theDD(int ID, String trangThai, String maHD, String ghiChu, Date ngayTao) {
+        super(maHD, ghiChu, ngayTao);
+        this.ID = ID;
+        this.trangThai = trangThai;
+    }
+    
 
     public theDD(int ID, String trangThai) {
         this.ID = ID;
         this.trangThai = trangThai;
+
     }
 
     public theDD() {
@@ -37,12 +47,15 @@ public class theDD {
         this.trangThai = trangThai;
     }
 
-    public String getHd() {
-        return hd.getMaHD();
+    @Override
+    public String getMaHD() {
+        return super.getMaHD();
     }
 
-    public void setHd(String hd) {
-        this.hd.setMaHD(hd);
+    @Override
+    public void setMaHD(String maHD) {
+        super.setMaHD(maHD); 
     }
+    
 
 }

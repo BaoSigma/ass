@@ -15,6 +15,13 @@ public class ChiTietHoaDon {
     private int soLuong;
     private double giaTien;
     private double thanhTien;
+
+    public ChiTietHoaDon(String maHD, String maSP, int soLuong, double giaTien) {
+        this.maHD = maHD;
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.giaTien = giaTien;
+    }
     
     public ChiTietHoaDon(int maCT, String maHD, String maSP, int soLuong, double giaTien,double thanhTien) {
         this.maCT = maCT;

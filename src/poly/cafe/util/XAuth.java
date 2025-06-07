@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package poly.cafe.util;
 
 import java.text.ParseException;
@@ -10,20 +6,9 @@ import java.util.Date;
 import java.util.prefs.Preferences;
 import poly.cafe.entity.NhanVien;
 
-/**
- *
- * @author baoha
- */
 public class XAuth {
-    public static NhanVien user = NhanVien.builder()
-        .maNV("NV001")
-        .hoTen("Nguyễn Văn A")
-        .namSinh(new Date()) // hoặc new SimpleDateFormat("yyyy-MM-dd").parse("2000-01-01")
-        .sdt("0911111111")
-        .email("a@gmail.com")
-        .matKhau("mk123")
-        .chucVu("Quản lý")
-        .build(); // Biến user sẽ được thay thế sau khi đăng nhập
+    public static NhanVien user = null; // Không hardcode user nữa
+
     public static void clear() {
         user = null;
     }
@@ -33,42 +18,46 @@ public class XAuth {
     }
 
     public static boolean isManager() {
-        return user != null && user.getChucVu().equalsIgnoreCase("Quản lý");
+        return user != null && "Quản lý".equalsIgnoreCase(user.getChucVu());
     }
 
     public static boolean isStaff() {
-        return user != null && user.getChucVu().equalsIgnoreCase("Nhân viên");
+        return user != null && "Nhân viên".equalsIgnoreCase(user.getChucVu());
     }
 
     public static boolean isViewer() {
-        return user != null && user.getChucVu().equalsIgnoreCase("Phục vụ");
+        return user != null && "Phục vụ".equalsIgnoreCase(user.getChucVu());
     }
-    private static Preferences prefs = Preferences.userRoot().node("PolyLogin");
-    public static void save() {
-       if (user != null) {
-        prefs.put("maNV", user.getMaNV() == null ? "" : user.getMaNV());
-        prefs.put("hoTen", user.getHoTen() == null ? "" : user.getHoTen());
-        prefs.put("sdt", user.getSdt() == null ? "" : user.getSdt());
-        prefs.put("email", user.getEmail() == null ? "" : user.getEmail());
-        prefs.put("matKhau", user.getMatKhau() == null ? "" : user.getMatKhau());
-        prefs.put("chucVu", user.getChucVu() == null ? "" : user.getChucVu());
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String namSinhStr = "";
-        if (user.getNamSinh() != null) {
-            namSinhStr = sdf.format(user.getNamSinh());
+    private static final Preferences prefs = Preferences.userRoot().node("PolyLogin");
+
+    public static void save() {
+        if (user != null) {
+            prefs.put("maNV", safe(user.getMaNV()));
+            prefs.put("hoTen", safe(user.getHoTen()));
+            prefs.put("sdt", safe(user.getSdt()));
+            prefs.put("email", safe(user.getEmail()));
+            prefs.put("matKhau", safe(user.getMatKhau()));
+            prefs.put("chucVu", safe(user.getChucVu()));
+
+            String namSinhStr = "";
+            if (user.getNamSinh() != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                namSinhStr = sdf.format(user.getNamSinh());
+            }
+            prefs.put("namSinh", namSinhStr);
         }
-        prefs.put("namSinh", namSinhStr);
     }
-    }
+
     public static void load() {
         String maNV = prefs.get("maNV", null);
-        if (maNV == null) {
-            user = null;  // chưa lưu gì
+        if (maNV == null || maNV.isEmpty()) {
+            user = null;
             return;
         }
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date namSinh = null;
+        Date namSinh;
         try {
             namSinh = sdf.parse(prefs.get("namSinh", "2000-01-01"));
         } catch (ParseException e) {
@@ -85,5 +74,8 @@ public class XAuth {
                 .chucVu(prefs.get("chucVu", ""))
                 .build();
     }
-}
 
+    private static String safe(String value) {
+        return value == null ? "" : value;
+    }
+}

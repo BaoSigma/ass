@@ -326,16 +326,16 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
-        checkAll();
+        if(checkAll()){
         delete();
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
         // TODO add your handling code here:
-        checkAll();
+        if(checkAll()){
         create();
+        }
     }//GEN-LAST:event_btnADDActionPerformed
 
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
@@ -346,9 +346,8 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if(checkAll()==true){
+        if(checkAll()){
         update();
-        checkAll();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -402,7 +401,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     @Override
     public void setForm(SanPham entity) {
         lblSP.setText(entity.getMaSP());
-        txtLoai.setText(entity.getLsp());
+        txtLoai.setText(entity.getMaSP());
         txtDU.setText(entity.getTenDU());
         txtGia.setText(String.valueOf(entity.getGiaDU()));
         
@@ -433,7 +432,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     public SanPham getForm() {
         SanPham entity = new SanPham();
         entity.setTenDU(txtDU.getText());
-        entity.setLsp(txtLoai.getText());
+        entity.setLsp(Integer.parseInt(txtLoai.getText()));
         entity.setTenDU(txtDU.getText());
         entity.setMaSP(lblSP.getText());
         return entity;
@@ -477,7 +476,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     public void update() {
         if (XDialog.confirm("Bạn thực sự muốn cập nhật nhân viên này?")) {
         SanPham entity = this.getForm();
-        dao.create(entity);
+        dao.update(entity);
         this.fillToTable();
         this.clear();
     }
@@ -533,22 +532,19 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     SanPham entity = new SanPham();
     if (txtDU.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập đơn vị.");
-
+        return false;
     }
     if (txtGia.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập giá.");
-
+        return false;
     }
 
     if (txtLoai.getText().trim().isEmpty()) {
         XDialog.alert( "Vui lòng nhập loại sản phẩm.");
-
+        return false;
     }
-    if (!txtLoai.getText().equals(entity.getLsp())) {
-        XDialog.alert( "Vui lòng nhập đúng loại sản phẩm.");
 
-    }
-    return false;
+    return true;
     }
 
     @Override
