@@ -41,7 +41,6 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
 
     if (XAuth.user != null) {
         txtUser.setText(XAuth.user.getMaNV());
-        txtPass.setText(XAuth.user.getMatKhau());
         chkRemember.setSelected(true); // đánh dấu checkbox Remember
     } else {
         chkRemember.setSelected(false);
@@ -182,7 +181,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
         // TODO add your handling code here:
         login();
-        this.dispose();
+        
     }//GEN-LAST:event_btnLogin1ActionPerformed
 
     private void btnLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin1MouseClicked
@@ -300,7 +299,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
 
         XDialog.alert("Đăng nhập thành công!");
         new Menu().setVisible(true);
-        
+        this.dispose();
 
     
     }
