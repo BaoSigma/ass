@@ -25,7 +25,7 @@ public class ChiTietImpl implements ChiTietHoaDonDAO {
 
     private static final String SP_INSERT_DETAIL = "{CALL Insert_ChiTietHoaDon(?, ?, ?, ?)}";
 
-    private String deleteChiTietHoaDonByIdSQL = "DELETE FROM Chitiethoadon WHERE maCT = ?";
+    private String deleteChiTietHoaDonByIdSQL = "DELETE FROM Chitiethoadon WHERE maHD = ?";
     private String findAllChiTietHoaDonSQL = "SELECT maHD, maSP, soLuong, giaTien, (soLuong*giaTien) AS thanhTien FROM Chitiethoadon";
     private String findChiTietHoaDonByIdSQL = findAllChiTietHoaDonSQL + " WHERE maCT = ?";
     private String updateChiTietHoaDonSQL = "UPDATE Chitiethoadon SET maHD = ?, maSP = ?, soLuong = ?, giaTien = ? WHERE maCT = ?";

@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +30,7 @@ import poly.cafe.dao.impl.Orderimpl;
 import poly.cafe.entity.ChiTietHoaDon;
 import poly.cafe.entity.HoaDon;
 import poly.cafe.entity.SanPham;
+import poly.cafe.entity.theDD;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDate;
 import poly.cafe.util.XDialog;
@@ -40,7 +42,7 @@ import poly.cafe.util.XQuery;
  * @author baoha
  */
 public class OrderPanel extends javax.swing.JPanel {
-    
+    List<theDD> items = new ArrayList<>();
     @Override
     protected void paintChildren(Graphics g) {
    
@@ -57,6 +59,7 @@ public class OrderPanel extends javax.swing.JPanel {
         g2.dispose();
         super.paintChildren(g); 
     }
+    
     public void create() {
     if (!XAuth.isLogin()) {
         XDialog.alert("Bạn cần đăng nhập để tạo hóa đơn!");
@@ -68,7 +71,7 @@ public class OrderPanel extends javax.swing.JPanel {
         entity.setMaNV(XAuth.user.getMaNV());
         entity.setGhiChu("");
 
-        HoaDonDAO dao = new Orderimpl();
+        Orderimpl dao = new Orderimpl();
         entity = dao.create(entity); // Tạo hóa đơn, lấy mã mới
 
         ChiTietImpl ctDao = new ChiTietImpl(); // DAO chi tiết
@@ -81,19 +84,41 @@ public class OrderPanel extends javax.swing.JPanel {
 
             ctDao.insertChiTietHoaDon(entity.getMaHD(), maSP, soLuong, giaTien);
         }
-
+        capnhattrangthai();
         showBill(entity.getMaHD());
         XDialog.alert("Thêm hóa đơn thành công! Mã hóa đơn: " + entity.getMaHD());
     }
-}
+}   
+    public void capnhattrangthai(){
+        Orderimpl dao = new Orderimpl();
+        int index = cbTDD.getSelectedIndex();
+        if (index >= 0) {
+            theDD the = items.get(index);  // lấy đối tượng tương ứng từ list
+            the.setTrangThai("Đang sử dụng");
+            dao.update(the);
+            filltoCombo();  // load lại dữ liệu
+        }
+    }
     public void showbillall() {
         HoaDon entity = new HoaDon();
-        HoaDonDAO dao = new Orderimpl();
+        Orderimpl dao = new Orderimpl();
         ChiTietImpl ctDao = new ChiTietImpl(); // DAO chi tiết
           showBill(entity.getMaHD());
     
     }
-
+    public void filltoCombo(){
+        Orderimpl dao = new Orderimpl();
+    cbTDD.removeAllItems();
+    items = dao.findAll();  // hoặc findAll()
+    if (items == null || items.isEmpty()) {
+        System.out.println("Không có thẻ TheDD nào trạng thái 'Chưa sử dụng'");
+        return; // hoặc có thể thêm item mặc định
+    }
+    items.forEach(item -> {
+        String display = item.getID() + " - " + item.getTrangThai();
+        cbTDD.addItem(display);
+    });
+    }
     public void showBill(String maHD) {
     String ngayHienTai = XDate.format(XDate.now(), "dd/MM/yyyy");
     try {
@@ -144,6 +169,7 @@ private double tinhTongTien() {
     public OrderPanel() {
         initComponents();
          setOpaque(true);
+         filltoCombo();
     }
     public void themMon(String tenDU) {
     SanPham sp = XQuery.getSingleBean(SanPham.class, "SELECT maSP, tenDU, giaDU FROM SanPham WHERE tenDU = ?", tenDU);
@@ -277,6 +303,7 @@ private double tinhTongTien() {
         btnPrint = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtaBill = new javax.swing.JTextArea();
+        cbTDD = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -446,7 +473,7 @@ private double tinhTongTien() {
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Drink", jPanel1);
@@ -708,7 +735,7 @@ private double tinhTongTien() {
                     .addComponent(lblXoi, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHuTieu, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCanh, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Food", jPanel2);
@@ -785,6 +812,13 @@ private double tinhTongTien() {
         txtaBill.setRows(5);
         jScrollPane2.setViewportView(txtaBill);
 
+        cbTDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTDDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -793,7 +827,8 @@ private double tinhTongTien() {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(cbTDD, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -802,13 +837,13 @@ private double tinhTongTien() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblThanhtien))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPrint, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)))
+                    .addComponent(btnPrint, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -816,8 +851,10 @@ private double tinhTongTien() {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(background1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbTDD))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2)))
@@ -949,6 +986,10 @@ private double tinhTongTien() {
         showbillall();
     }//GEN-LAST:event_btnPrintActionPerformed
 
+    private void cbTDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTDDActionPerformed
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private poly.cafe.ui.manager.background background1;
@@ -966,6 +1007,7 @@ private double tinhTongTien() {
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnThitxien;
     private javax.swing.JButton btnXoi;
+    private javax.swing.JComboBox<String> cbTDD;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;

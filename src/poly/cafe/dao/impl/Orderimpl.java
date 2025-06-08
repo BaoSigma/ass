@@ -7,8 +7,11 @@ package poly.cafe.dao.impl;
 import java.sql.*;
 import java.util.List;
 import poly.cafe.dao.entityDAO.HoaDonDAO;
+import poly.cafe.entity.CaLam;
 import poly.cafe.entity.HoaDon;
+import poly.cafe.entity.theDD;
 import poly.cafe.util.XJdbc;
+import poly.cafe.util.XQuery;
 
 
 
@@ -16,11 +19,12 @@ import poly.cafe.util.XJdbc;
  *
  * @author baoha
  */
-public class Orderimpl implements HoaDonDAO{
-    
-    private static final String SP_INSERT_BILL = "{CALL Insert_bill(?, ?, ?)}"; // 3 tham số: maNV, ghiChu, @newMaHD OUTPUT
+public class Orderimpl{
+    private String UpdateTDD = "Update TheDD set trangThai = ? Where ID = ? ";
+    private String FindTheDD = "Select ID, trangThai From TheDD Where trangThai like N'%Chưa sử dụng%' ";
+    private String SP_INSERT_BILL = "{CALL Insert_bill(?, ?, ?)}"; // 3 tham số: maNV, ghiChu, @newMaHD OUTPUT
 
-    @Override
+    
     public HoaDon create(HoaDon entity) {
         String newMaHD = null;
 
@@ -40,25 +44,19 @@ public class Orderimpl implements HoaDonDAO{
 
         return entity;
     }
+   
+    public void update(theDD entity) {
+         Object[] values = {
+            entity.getTrangThai(),
+             entity.getID()
+        };
+        XJdbc.executeUpdate(UpdateTDD, values);
+    }
+
     
-    @Override
-    public void update(HoaDon entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<theDD> findAll() {
+        return XQuery.getBeanList(theDD.class, FindTheDD);
     }
 
-    @Override
-    public void deleteById(Object id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<HoaDon> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public HoaDon findById(Object id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
 }

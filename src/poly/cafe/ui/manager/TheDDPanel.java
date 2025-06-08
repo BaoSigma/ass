@@ -141,7 +141,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         lblID.setText("id");
 
         buttonGroup1.add(rdoUse);
-        rdoUse.setText("Đã sử dụng ");
+        rdoUse.setText("Đang sử dụng");
 
         buttonGroup1.add(rdoDUSE);
         rdoDUSE.setText("Chưa sử dụng");
@@ -327,7 +327,6 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         // TODO add your handling code here:
         if(checkAll()){
         delete();
-        XDialog.alert("Đã xóa thành công!");
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
@@ -335,7 +334,6 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         // TODO add your handling code here:
         if(checkAll()){
         create();
-        XDialog.alert("Đã thêm thành công");
         }
     }//GEN-LAST:event_btnADDActionPerformed
 
@@ -349,7 +347,6 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         // TODO add your handling code here:
         if(checkAll()){
         update();
-        XDialog.alert("Đã cập nhật thành công");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -451,7 +448,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
     public theDD getForm() {
         theDD entity = new theDD();
         if (rdoUse.isSelected()) {
-            entity.setTrangThai("Đã sử dụng");
+            entity.setTrangThai("Đang sử dụng");
         } else if (rdoDUSE.isSelected()) {
             entity.setTrangThai("Chưa sử dụng");
         }else{
@@ -492,6 +489,8 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         dao.create(entity);
         this.fillToTable();
         this.clear();
+        XDialog.alert("Đã thêm thành công");
+
     }
     }
 
@@ -502,6 +501,8 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         dao.update(entity);
         this.fillToTable();
         this.clear();
+        XDialog.alert("Đã cập nhật thành công");
+
     }
     }
 
@@ -512,6 +513,8 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         dao.deleteById(id);
         this.fillToTable();
         this.clear();
+        XDialog.alert("Đã xóa thành công!");
+
     }
     }
 
