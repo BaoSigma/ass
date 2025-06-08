@@ -20,7 +20,7 @@ public class Calamimpl implements CaLamDAO{
     private String deleteCalamByIdSQL = "DELETE FROM Calam WHERE ID = ?";
     private String findAllCalamSQL = " SELECT cl.Buoi, nv.maNV, nv.hoTen from Calam cl INNER JOIN  Nhanvien nv on cl.maNV = nv.maNV";
     private String findCalamByIdSQL = findAllCalamSQL + " WHERE maCL = ?";
-    private String updateCalamSQL = "UPDATE Calam SET  = ?,Buoi = ?, hoTen = ? WHERE ID = ?";
+    private String updateCalamSQL = "UPDATE Calam SET  Buoi = ?, hoTen = ? WHERE ID = ?";
 
         @Override
     public CaLam create(CaLam entity) {

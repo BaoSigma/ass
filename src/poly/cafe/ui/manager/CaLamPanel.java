@@ -527,7 +527,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     @Override
     public void delete() {
         if (XDialog.confirm("Bạn thực sự muốn xóa?")) {
-         String id = lblID.getText(); // "Ca1", "Ca2", hoặc "Ca3"
+         String id = txtmaNV.getText(); // "Ca1", "Ca2", hoặc "Ca3"
          dao.deleteById(id);
          this.fillToTable();
          this.clear();

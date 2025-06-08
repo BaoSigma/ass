@@ -26,7 +26,7 @@ public class NhanVienimpl implements NhanVienDAO{
     private String deleteNhanVienByIdSQL = "DELETE FROM Nhanvien WHERE maNV = ?";
     private String findAllNhanVienSQL = "SELECT maNV, hoTen, namSinh, sdt, email, chucVu FROM Nhanvien";
     private String findNhanVienByIdSQL = findAllNhanVienSQL + " WHERE maNV = ?";
-    private String updateNhanVienSQL = "UPDATE Nhanvien SET hoTen = ?, namSinh = ?, sdt = ?, email = ?, matKhau = ?, chucVu = ? WHERE maNV = ?";
+    private String updateNhanVienSQL = "UPDATE Nhanvien SET hoTen = ?, namSinh = ?, sdt = ?, email = ?, chucVu = ? WHERE maNV = ?";
 
         @Override
     public NhanVien create(NhanVien entity) {
