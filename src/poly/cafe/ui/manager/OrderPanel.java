@@ -10,6 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.beans.Beans;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -169,7 +170,9 @@ private double tinhTongTien() {
     public OrderPanel() {
         initComponents();
          setOpaque(true);
-         filltoCombo();
+         if (!Beans.isDesignTime()) {
+        filltoCombo();
+    }
     }
     public void themMon(String tenDU) {
     SanPham sp = XQuery.getSingleBean(SanPham.class, "SELECT maSP, tenDU, giaDU FROM SanPham WHERE tenDU = ?", tenDU);
@@ -239,18 +242,18 @@ private double tinhTongTien() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        btnCaffeDen = new javax.swing.JButton();
+        btnEpCam = new javax.swing.JButton();
+        btnTSsocola = new javax.swing.JButton();
+        btnCaffeSua = new javax.swing.JButton();
+        btnTSTT = new javax.swing.JButton();
+        btnSocola = new javax.swing.JButton();
+        btnSodaChanh = new javax.swing.JButton();
+        btnTraXanh = new javax.swing.JButton();
+        btnEpDuaHau = new javax.swing.JButton();
+        btnMatchaLatte = new javax.swing.JButton();
+        btnEpTao = new javax.swing.JButton();
+        btnEpOi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -307,68 +310,148 @@ private double tinhTongTien() {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Screenshot 2025-05-14 123035.png"))); // NOI18N
+        btnCaffeDen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Ca-Phe-Den-scaled.jpg"))); // NOI18N
+        btnCaffeDen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaffeDenActionPerformed(evt);
+            }
+        });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Screenshot 2025-05-14 122903.png"))); // NOI18N
+        btnEpCam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Nuoc-ep-Cam-Thom-Tuoi.png"))); // NOI18N
+        btnEpCam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEpCamActionPerformed(evt);
+            }
+        });
+
+        btnTSsocola.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/CHOCOLATE.jpg"))); // NOI18N
+        btnTSsocola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTSsocolaActionPerformed(evt);
+            }
+        });
+
+        btnCaffeSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/5-cach-pha-ca-phe-sua-tuoi-khong-duong-co.jpeg"))); // NOI18N
+        btnCaffeSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaffeSuaActionPerformed(evt);
+            }
+        });
+
+        btnTSTT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Trà-sữa-Trân-châu-đen-1.png"))); // NOI18N
+        btnTSTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTSTTActionPerformed(evt);
+            }
+        });
+
+        btnSocola.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/socola-1545379578.jpg"))); // NOI18N
+        btnSocola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSocolaActionPerformed(evt);
+            }
+        });
+
+        btnSodaChanh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/sodachanh.jpg"))); // NOI18N
+        btnSodaChanh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSodaChanhActionPerformed(evt);
+            }
+        });
+
+        btnTraXanh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/txkd-op2-928.png"))); // NOI18N
+        btnTraXanh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraXanhActionPerformed(evt);
+            }
+        });
+
+        btnEpDuaHau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/whhqu005_1735032007.jpg"))); // NOI18N
+        btnEpDuaHau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEpDuaHauActionPerformed(evt);
+            }
+        });
+
+        btnMatchaLatte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/matchalatte (1).jpg"))); // NOI18N
+        btnMatchaLatte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMatchaLatteActionPerformed(evt);
+            }
+        });
+
+        btnEpTao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/eptao (3).jpg"))); // NOI18N
+        btnEpTao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEpTaoActionPerformed(evt);
+            }
+        });
+
+        btnEpOi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/nuocep (1).jpg"))); // NOI18N
+        btnEpOi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEpOiActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("0");
+        jLabel1.setText("Cà phê đen");
         jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("0");
+        jLabel5.setText("Cà phê sữa");
         jLabel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("0");
+        jLabel6.setText("Nước ép cam");
         jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("0");
+        jLabel7.setText("Trà sữa socola");
         jLabel7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("0");
+        jLabel8.setText("Trà sữa TT");
         jLabel8.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("0");
+        jLabel9.setText("Socola");
         jLabel9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("0");
+        jLabel10.setText("Soda chanh");
         jLabel10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("0");
+        jLabel11.setText("Trà xanh");
         jLabel11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("0");
+        jLabel12.setText("Ép dưa hấu");
         jLabel12.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("0");
+        jLabel13.setText("Matcha latte");
         jLabel13.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("0");
+        jLabel14.setText("Ép táo");
         jLabel14.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("0");
+        jLabel15.setText("Ép ổi");
         jLabel15.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -380,26 +463,26 @@ private double tinhTongTien() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEpDuaHau, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTSTT, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnMatchaLatte, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEpTao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnEpOi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnSocola, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnSodaChanh, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnTraXanh, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -415,16 +498,16 @@ private double tinhTongTien() {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCaffeSua, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCaffeDen, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEpCam, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnTSsocola, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -439,10 +522,10 @@ private double tinhTongTien() {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCaffeDen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEpCam, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTSsocola, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCaffeSua, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -451,10 +534,10 @@ private double tinhTongTien() {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTraXanh, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSodaChanh, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSocola, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTSTT, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,10 +546,10 @@ private double tinhTongTien() {
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEpOi, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEpTao, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMatchaLatte, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEpDuaHau, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -990,38 +1073,98 @@ private double tinhTongTien() {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbTDDActionPerformed
 
+    private void btnCaffeSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaffeSuaActionPerformed
+        // TODO add your handling code here:
+        themMon("Cà phê sữa");
+    }//GEN-LAST:event_btnCaffeSuaActionPerformed
+
+    private void btnCaffeDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaffeDenActionPerformed
+        // TODO add your handling code here:
+        themMon("Cà phê đen");
+    }//GEN-LAST:event_btnCaffeDenActionPerformed
+
+    private void btnEpCamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEpCamActionPerformed
+        // TODO add your handling code here:
+        themMon("Nước ép cam thơm");
+    }//GEN-LAST:event_btnEpCamActionPerformed
+
+    private void btnTSsocolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTSsocolaActionPerformed
+        // TODO add your handling code here:
+        themMon("Trà sữa socola");
+    }//GEN-LAST:event_btnTSsocolaActionPerformed
+
+    private void btnTSTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTSTTActionPerformed
+        // TODO add your handling code here:
+        themMon("Trà sữa truyền thống");
+    }//GEN-LAST:event_btnTSTTActionPerformed
+
+    private void btnSocolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSocolaActionPerformed
+        // TODO add your handling code here:
+        themMon("Ca cao nóng");
+    }//GEN-LAST:event_btnSocolaActionPerformed
+
+    private void btnSodaChanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSodaChanhActionPerformed
+        // TODO add your handling code here:
+        themMon("Soda chanh");
+    }//GEN-LAST:event_btnSodaChanhActionPerformed
+
+    private void btnTraXanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraXanhActionPerformed
+        // TODO add your handling code here:
+        themMon("Trà xanh");
+    }//GEN-LAST:event_btnTraXanhActionPerformed
+
+    private void btnEpDuaHauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEpDuaHauActionPerformed
+        // TODO add your handling code here:
+        themMon("Nước ép dưa hấu");
+    }//GEN-LAST:event_btnEpDuaHauActionPerformed
+
+    private void btnMatchaLatteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatchaLatteActionPerformed
+        // TODO add your handling code here:
+        themMon("Matcha latte");
+    }//GEN-LAST:event_btnMatchaLatteActionPerformed
+
+    private void btnEpTaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEpTaoActionPerformed
+        // TODO add your handling code here:
+        themMon("Nước ép táo");
+    }//GEN-LAST:event_btnEpTaoActionPerformed
+
+    private void btnEpOiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEpOiActionPerformed
+        // TODO add your handling code here:
+        themMon("Nước ép ổi");
+    }//GEN-LAST:event_btnEpOiActionPerformed
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private poly.cafe.ui.manager.background background1;
     private javax.swing.JButton btnBanhmi;
     private javax.swing.JButton btnBanhuot;
+    private javax.swing.JButton btnCaffeDen;
+    private javax.swing.JButton btnCaffeSua;
     private javax.swing.JButton btnCanh;
     private javax.swing.JButton btnChagio;
     private javax.swing.JButton btnComchien;
     private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnEpCam;
+    private javax.swing.JButton btnEpDuaHau;
+    private javax.swing.JButton btnEpOi;
+    private javax.swing.JButton btnEpTao;
     private javax.swing.JButton btnGa;
     private javax.swing.JButton btnHutieu;
     private javax.swing.JButton btnKhoaiTay;
+    private javax.swing.JButton btnMatchaLatte;
     private javax.swing.JButton btnMixao;
     private javax.swing.JButton btnPho;
     private javax.swing.JButton btnPrint;
+    private javax.swing.JButton btnSocola;
+    private javax.swing.JButton btnSodaChanh;
+    private javax.swing.JButton btnTSTT;
+    private javax.swing.JButton btnTSsocola;
     private javax.swing.JButton btnThitxien;
+    private javax.swing.JButton btnTraXanh;
     private javax.swing.JButton btnXoi;
     private javax.swing.JComboBox<String> cbTDD;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

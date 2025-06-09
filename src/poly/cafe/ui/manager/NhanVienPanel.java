@@ -415,7 +415,6 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
         // TODO add your handling code here:
         if(checkAll()){
         delete();
-        XDialog.alert("Đã xóa thành công!");
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
@@ -423,7 +422,6 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
         // TODO add your handling code here:
         if(checkAll()){
         update();
-        XDialog.alert("Đã cập nhật thành công");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -574,6 +572,8 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
         dao.update(entity);
         this.fillToTable();
         this.clear();
+        XDialog.alert("Đã cập nhật thành công");
+
     }
     }
 
@@ -584,7 +584,10 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
         dao.deleteById(id);
         this.fillToTable();
         this.clear();
+         XDialog.alert("Đã xóa thành công!");
+
     }
+
     }
 
     @Override
