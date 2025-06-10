@@ -48,9 +48,6 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         tblSP = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtFind = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
         btnADD = new javax.swing.JButton();
         btnRead = new javax.swing.JButton();
@@ -99,36 +96,18 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("SẢN PHẨM");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setText("Find :");
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/find.png"))); // NOI18N
-        jButton6.setText("Find");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 861, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(191, 191, 191)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         btnDel.setText("Deleted");
@@ -271,7 +250,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
@@ -403,20 +382,17 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSP;
     private javax.swing.JTable tblSP;
     private javax.swing.JTextField txtDU;
-    private javax.swing.JTextField txtFind;
     private javax.swing.JTextField txtGia;
     private javax.swing.JTextField txtLoai;
     // End of variables declaration//GEN-END:variables
@@ -461,6 +437,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         entity.setMaLSP(Integer.parseInt(txtLoai.getText()));
         entity.setTenDU(txtDU.getText());
         entity.setMaSP(lblSP.getText());
+        entity.setTenDU(txtFind.getText());
         return entity;
     }
 
