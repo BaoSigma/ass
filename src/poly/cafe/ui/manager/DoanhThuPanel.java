@@ -26,19 +26,259 @@ public class DoanhThuPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCT = new javax.swing.JTable();
+        btnMoveFirst = new javax.swing.JButton();
+        btnMovePrevious = new javax.swing.JButton();
+        btnMoveNext = new javax.swing.JButton();
+        btnMoveLast = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnADD = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        btnRead = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("DOANH THU");
+
+        tblCT.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Mã HD", "Mã SP", "Số Lượng", "Giá Tiền", "Thành tiền"
+            }
+        ));
+        tblCT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCTMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCT);
+
+        btnMoveFirst.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMoveFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/dau.png"))); // NOI18N
+        btnMoveFirst.setText("ĐẦU");
+        btnMoveFirst.setPreferredSize(new java.awt.Dimension(72, 21));
+        btnMoveFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoveFirstActionPerformed(evt);
+            }
+        });
+
+        btnMovePrevious.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMovePrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/lui.png"))); // NOI18N
+        btnMovePrevious.setText("LÙI");
+        btnMovePrevious.setPreferredSize(new java.awt.Dimension(72, 21));
+        btnMovePrevious.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovePreviousActionPerformed(evt);
+            }
+        });
+
+        btnMoveNext.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMoveNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/tien.png"))); // NOI18N
+        btnMoveNext.setText("TIẾN");
+        btnMoveNext.setPreferredSize(new java.awt.Dimension(72, 21));
+        btnMoveNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoveNextActionPerformed(evt);
+            }
+        });
+
+        btnMoveLast.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMoveLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N
+        btnMoveLast.setText("CUỐI");
+        btnMoveLast.setPreferredSize(new java.awt.Dimension(72, 21));
+        btnMoveLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoveLastActionPerformed(evt);
+            }
+        });
+
+        btnClear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/clear.png"))); // NOI18N
+        btnClear.setText("CLEAR");
+        btnClear.setPreferredSize(new java.awt.Dimension(72, 7));
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        btnADD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnADD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/insert.png"))); // NOI18N
+        btnADD.setText("ADD");
+        btnADD.setPreferredSize(new java.awt.Dimension(72, 7));
+        btnADD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnADDActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/update.png"))); // NOI18N
+        btnUpdate.setText("UPDATE");
+        btnUpdate.setPreferredSize(new java.awt.Dimension(72, 7));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/delete.png"))); // NOI18N
+        btnDel.setText("DELETE");
+        btnDel.setPreferredSize(new java.awt.Dimension(72, 7));
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
+
+        btnRead.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/read.png"))); // NOI18N
+        btnRead.setText("READ");
+        btnRead.setPreferredSize(new java.awt.Dimension(72, 7));
+        btnRead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 711, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnADD, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1029, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnADD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTMouseClicked
+        // TODO add your handling code here:
+        edit();
+    }//GEN-LAST:event_tblCTMouseClicked
+
+    private void btnMoveFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirstActionPerformed
+        // TODO add your handling code here:
+        moveFirst();
+    }//GEN-LAST:event_btnMoveFirstActionPerformed
+
+    private void btnMovePreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovePreviousActionPerformed
+        // TODO add your handling code here:
+        movePrevious();
+    }//GEN-LAST:event_btnMovePreviousActionPerformed
+
+    private void btnMoveNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNextActionPerformed
+        // TODO add your handling code here:
+        moveNext();
+    }//GEN-LAST:event_btnMoveNextActionPerformed
+
+    private void btnMoveLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLastActionPerformed
+        // TODO add your handling code here:
+        moveLast();
+    }//GEN-LAST:event_btnMoveLastActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        clear();
+        XDialog.alert("Đã xóa toàn bộ nội dung");
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnADDActionPerformed
+        // TODO add your handling code here:
+        if(checkAll()){
+            create();
+        }
+    }//GEN-LAST:event_btnADDActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        if(checkAll()){
+            update();
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        // TODO add your handling code here:
+        if(checkAll()){
+            delete();
+        }
+    }//GEN-LAST:event_btnDelActionPerformed
+
+    private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
+        // TODO add your handling code here:
+        fillToTable();
+        XDialog.alert("Đã load lại dữ liệu");
+    }//GEN-LAST:event_btnReadActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnADD;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnMoveFirst;
+    private javax.swing.JButton btnMoveLast;
+    private javax.swing.JButton btnMoveNext;
+    private javax.swing.JButton btnMovePrevious;
+    private javax.swing.JButton btnRead;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblCT;
     // End of variables declaration//GEN-END:variables
 }
