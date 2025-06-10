@@ -93,7 +93,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
         chkRemember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chkRemember.setText("Remember");
+        chkRemember.setText("Remember password");
         chkRemember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkRememberActionPerformed(evt);
