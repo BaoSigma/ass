@@ -221,7 +221,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Tìm mã nhân viên");
+        jLabel6.setText("Tìm mã loại");
 
         btnMoveLast.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N

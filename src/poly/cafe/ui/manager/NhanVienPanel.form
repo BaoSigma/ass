@@ -51,10 +51,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblManv" min="-2" pref="71" max="-2" attributes="0"/>
-                              <EmptySpace min="226" pref="226" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblManv" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="txtHoten" min="-2" pref="297" max="-2" attributes="0"/>
                           <Component id="date" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
                           <Component id="txtSDT" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
@@ -89,18 +86,20 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnMoveFirst" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnMovePrevious" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnMoveNext" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnMoveLast" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtFind" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnfind" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnMoveFirst" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnMovePrevious" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnMoveNext" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnMoveLast" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblManv" alignment="3" min="-2" max="-2" attributes="0"/>
