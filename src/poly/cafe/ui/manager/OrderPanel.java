@@ -194,8 +194,6 @@ private double tinhTongTien() {
                     break;
                 }
             }
-
-
             if (!found) {
                 Object[] row = new Object[]{
                     sp.getMaSP(),
@@ -205,17 +203,28 @@ private double tinhTongTien() {
                 };
                 model.addRow(row);
             }
-
-
-
-
-       // Gọi hàm tính tổng tiền nếu có
        capNhatTongTien();
    }
-    
-    
      }
-
+    public void Xoa(){
+        int selectedRow = tblOrder.getSelectedRow();
+if (selectedRow != -1) {
+    DefaultTableModel model = (DefaultTableModel) tblOrder.getModel();
+    int soLuong = Integer.parseInt(model.getValueAt(selectedRow, 2).toString());
+    if (soLuong > 1) {
+        soLuong -= 1;
+        model.setValueAt(soLuong, selectedRow, 2);
+        double donGia = Double.parseDouble(model.getValueAt(selectedRow, 3).toString()) / (soLuong + 1);
+        double thanhTienMoi = soLuong * donGia;
+        model.setValueAt(thanhTienMoi, selectedRow, 3);
+    } else {
+        model.removeRow(selectedRow);
+    }
+    capNhatTongTien();
+} else {
+    XDialog.alert("Vui lòng chọn món cần xóa!");
+}
+    }
     public void capNhatTongTien() {
         DefaultTableModel model = (DefaultTableModel) tblOrder.getModel();
     double tong = 0;
@@ -1048,9 +1057,7 @@ private double tinhTongTien() {
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel tb = (DefaultTableModel) tblOrder.getModel();
-        int row = tblOrder.getSelectedRow();
-        tb.removeRow(row);
+        Xoa();
     }//GEN-LAST:event_btnDelActionPerformed
 
     private void lblKhoaiTayAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblKhoaiTayAncestorAdded
@@ -1104,7 +1111,7 @@ private double tinhTongTien() {
 
     private void btnTraXanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraXanhActionPerformed
         // TODO add your handling code here:
-        themMon("Trà xanh");
+        themMon("Trà xanh 0 độ");
     }//GEN-LAST:event_btnTraXanhActionPerformed
 
     private void btnEpDuaHauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEpDuaHauActionPerformed
