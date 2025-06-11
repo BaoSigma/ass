@@ -310,7 +310,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
                                         .addComponent(btnMoveNext)
                                         .addGap(18, 18, 18)))
                                 .addComponent(btnMoveLast)))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,7 +367,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
                             .addComponent(btnMovePrevious)
                             .addComponent(btnMoveNext)
                             .addComponent(btnMoveLast))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
