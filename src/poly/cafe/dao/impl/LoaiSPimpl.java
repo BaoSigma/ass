@@ -55,5 +55,11 @@ public class LoaiSPimpl implements LoaiSanPhamDAO{
     public LoaiSanPham findById(Object id) {
         return XQuery.getSingleBean(LoaiSanPham.class, findLoaiSanPhamByIdSQL, id);
     }
-    
+     public List<LoaiSanPham> findByKeyword(String keyword) {
+    String sql = findAllLoaiSanPhamSQL
+        + " WHERE maLSP LIKE ? OR tenLDU LIKE ?";
+
+    String value = "%" + keyword + "%";
+    return XQuery.getBeanList(LoaiSanPham.class, sql, value, value);
+}
 }

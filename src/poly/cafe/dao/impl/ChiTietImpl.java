@@ -22,11 +22,11 @@ public class ChiTietImpl implements ChiTietHoaDonDAO {
 "    @maSP = ?, \n" +
 "    @soLuong = ?, \n" +
 "    @giaTien = ?";
-
+    
     private static final String SP_INSERT_DETAIL = "{CALL Insert_ChiTietHoaDon(?, ?, ?, ?)}";
 
     private String deleteChiTietHoaDonByIdSQL = "DELETE FROM Chitiethoadon WHERE maHD = ?";
-    private String findAllChiTietHoaDonSQL = "SELECT maHD, maSP, soLuong, giaTien, (soLuong*giaTien) AS thanhTien FROM Chitiethoadon";
+    private String findAllChiTietHoaDonSQL = "	SELECT Chitiethoadon.maHD, maSP, soLuong, giaTien, (soLuong*giaTien) AS thanhTien, TheDD.ID, TheDD.trangThai FROM Chitiethoadon join TheDD on Chitiethoadon.maHD = TheDD.maHD";
     private String findChiTietHoaDonByIdSQL = findAllChiTietHoaDonSQL + " WHERE maCT = ?";
     private String updateChiTietHoaDonSQL = "UPDATE Chitiethoadon SET maHD = ?, maSP = ?, soLuong = ?, giaTien = ? WHERE maCT = ?";
     public void insertChiTietHoaDon(String maHD, String maSP, int soLuong, double giaTien) {
@@ -52,7 +52,10 @@ public class ChiTietImpl implements ChiTietHoaDonDAO {
         XJdbc.executeUpdate(createsql, values);
         return entity;
     }
-
+    public ChiTietHoaDon findByRandomCondition(String columnName, Object value) {
+    String sql = findAllChiTietHoaDonSQL + " WHERE " + columnName + " = ?";
+    return XQuery.getSingleBean(ChiTietHoaDon.class, sql, value);
+}
     @Override
     public void update(ChiTietHoaDon entity) {
         Object[] values = {
@@ -79,7 +82,7 @@ public class ChiTietImpl implements ChiTietHoaDonDAO {
     public ChiTietHoaDon findById(Object id) {
         return XQuery.getSingleBean(ChiTietHoaDon.class, findChiTietHoaDonByIdSQL, id);
     }
-
+    
     
     public List<ChiTietHoaDon> getDetailsByMaHD(String maHD) {  
     List<ChiTietHoaDon> list = new ArrayList<>();
@@ -102,5 +105,12 @@ public class ChiTietImpl implements ChiTietHoaDonDAO {
     }
     return list;
     }
+    public List<ChiTietHoaDon> findByKeyword(String keyword) {
+    String sql = findAllChiTietHoaDonSQL
+        + " WHERE Chitiethoadon.maHD LIKE ? OR maSP LIKE ? OR CAST(soLuong AS VARCHAR) LIKE ? OR CAST(giaTien AS VARCHAR) LIKE ?";
+
+    String value = "%" + keyword + "%";
+    return XQuery.getBeanList(ChiTietHoaDon.class, sql, value, value, value, value);
+}
 
 }

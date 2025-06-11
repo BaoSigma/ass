@@ -122,10 +122,13 @@ public class OrderPanel extends javax.swing.JPanel {
     }
     public void showBill(String maHD) {
     String ngayHienTai = XDate.format(XDate.now(), "dd/MM/yyyy");
+    String therung = cbTDD.getSelectedItem().toString();
     try {
+        
         txtaBill.setText("");
         txtaBill.append("\tPOLYCAFFEE\n");
         txtaBill.append("  Nhân viên: " + XAuth.user.getMaNV() + "\n");
+        txtaBill.append("  Thẻ định danh: " + therung + "\n");
         txtaBill.append("  Ngày: " + ngayHienTai + "\n");
         txtaBill.append("-------------------------------------------------------\n");
         txtaBill.append(" Tên món     Số lượng     Giá tiền \n");

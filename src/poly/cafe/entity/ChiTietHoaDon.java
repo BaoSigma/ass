@@ -15,32 +15,44 @@ public class ChiTietHoaDon {
     private int soLuong;
     private double giaTien;
     private double thanhTien;
-    public double getTongDoanhThu;
-
-    public double getGetTongDoanhThu() {
-        return getTongDoanhThu;
-    }
-
-    public void setGetTongDoanhThu(double getTongDoanhThu) {
-        this.getTongDoanhThu = getTongDoanhThu;
-    }
-    
-    public ChiTietHoaDon(String maHD, String maSP, int soLuong, double giaTien) {
-        this.maHD = maHD;
-        this.maSP = maSP;
-        this.soLuong = soLuong;
-        this.giaTien = giaTien;
-    }
-    
-    public ChiTietHoaDon(int maCT, String maHD, String maSP, int soLuong, double giaTien,double thanhTien) {
+    private double getTongDoanhThu;
+    private String trangThai;
+    private int ID;
+    public ChiTietHoaDon(int maCT, String maHD, String maSP, int soLuong, double giaTien, double thanhTien, double getTongDoanhThu, String trangThai,int ID) {
         this.maCT = maCT;
         this.maHD = maHD;
         this.maSP = maSP;
         this.soLuong = soLuong;
         this.giaTien = giaTien;
-        this.thanhTien =thanhTien;
+        this.thanhTien = thanhTien;
+        this.getTongDoanhThu = getTongDoanhThu;
+        this.trangThai = trangThai;
+        this.ID = ID;
+    }
+    public double getGetTongDoanhThu() {
+        return getTongDoanhThu;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int maDD) {
+        this.ID = maDD;
+    }
+
+    public void setGetTongDoanhThu(double getTongDoanhThu) {
+        this.getTongDoanhThu = getTongDoanhThu;
+    }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+        
     public ChiTietHoaDon() {
     }
 

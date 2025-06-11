@@ -58,5 +58,12 @@ public class Calamimpl implements CaLamDAO{
     public CaLam findById(Object id) {
         return XQuery.getSingleBean(CaLam.class, findCalamByIdSQL, id);
     }
-    
+        public List<CaLam> findByKeyword(String keyword) {
+    String sql = findAllCalamSQL
+        + " WHERE nv.maNV LIKE ? OR cl.Buoi LIKE ? OR nv.hoTen LIKE ?";
+
+    String value = "%" + keyword + "%";
+    return XQuery.getBeanList(CaLam.class, sql, value, value, value);
+    }
+
 }

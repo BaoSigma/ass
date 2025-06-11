@@ -34,7 +34,24 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         setQuyen();
             
     }
+    public void fillToTableTheoDieuKien() {
+        Calamimpl dao = new Calamimpl();
+    String keyword = txtFind.getText();
+    List<CaLam> list = dao.findByKeyword(keyword);
 
+    DefaultTableModel model = (DefaultTableModel) tblCaLam.getModel();
+    model.setRowCount(0);
+
+    for (CaLam item : list) {
+        Object[] row = {
+            item.getBuoi(),
+            item.getMaNV(),
+            item.getHoTen(),
+            false
+        };
+        model.addRow(row);
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +84,9 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         btnMoveNext = new javax.swing.JButton();
         btnMovePrevious = new javax.swing.JButton();
         btnMoveFirst = new javax.swing.JButton();
+        btnfind = new javax.swing.JButton();
+        txtFind = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -208,6 +228,16 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
             }
         });
 
+        btnfind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/find.png"))); // NOI18N
+        btnfind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfindActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Tìm mã nhân viên");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -265,6 +295,12 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnfind)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -275,7 +311,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,7 +325,11 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                     .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnfind, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
@@ -376,6 +416,12 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         moveFirst();
     }//GEN-LAST:event_btnMoveFirstActionPerformed
 
+    private void btnfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfindActionPerformed
+        // TODO add your handling code here:
+        fillToTableTheoDieuKien();
+        moveFirst();
+    }//GEN-LAST:event_btnfindActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnADD;
@@ -387,18 +433,21 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     private javax.swing.JButton btnMovePrevious;
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnfind;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblID;
     private javax.swing.JRadioButton rdoCa1;
     private javax.swing.JRadioButton rdoCa2;
     private javax.swing.JRadioButton rdoCa3;
     private javax.swing.JTable tblCaLam;
+    private javax.swing.JTextField txtFind;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtmaNV;
     // End of variables declaration//GEN-END:variables

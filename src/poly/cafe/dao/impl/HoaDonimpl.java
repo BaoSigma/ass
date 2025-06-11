@@ -60,6 +60,13 @@ public class HoaDonimpl implements HoaDonDAO{
     public HoaDon findById(Object id) {
         return XQuery.getSingleBean(HoaDon.class, findHoaDonByIdSQL, id);
     }
+        public List<HoaDon> findByKeyword(String keyword) {
+    String sql = findAllHoaDonSQL
+        + " WHERE maHD LIKE ? OR maNV LIKE ? OR ghiChu LIKE ? OR ngayTao LIKE ?";
+
+    String value = "%" + keyword + "%";
+    return XQuery.getBeanList(HoaDon.class, sql, value, value, value, value);
+}
 
   
     

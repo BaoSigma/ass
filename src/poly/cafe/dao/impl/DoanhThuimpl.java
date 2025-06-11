@@ -30,7 +30,7 @@ public class DoanhThuimpl implements DoanhThuDAO{
 "    HD.ngayTao\n" +
 "ORDER BY \n" +
 "    HD.ngayTao";
-    String DoanhThuNhanVienSQL="SELECT \n" +
+    String DoanhThuNhanVienSQL="SELECT TOP 5\n" +
 "    NV.hoTen,\n" +
 "    NV.maNV,\n" +
 "    SUM(CT.soLuong * CT.giaTien) AS DoanhThuTheoNhanVien\n" +
@@ -41,7 +41,9 @@ public class DoanhThuimpl implements DoanhThuDAO{
 "JOIN \n" +
 "    Nhanvien NV ON HD.maNV = NV.maNV\n" +
 "GROUP BY \n" +
-"    NV.hoTen, NV.maNV";
+"    NV.hoTen, NV.maNV\n" +
+"ORDER BY \n" +
+"    DoanhThuTheoNhanVien DESC;";
    @Override
 public Double layTongDoanhThu() {
     return XJdbc.getValue(TongDoanhThuSQL);

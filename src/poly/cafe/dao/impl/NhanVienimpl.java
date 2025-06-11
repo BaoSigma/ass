@@ -49,7 +49,6 @@ public class NhanVienimpl implements NhanVienDAO{
             entity.getNamSinh(),
             entity.getSdt(),
             entity.getEmail(),
-            entity.getMatKhau(),
             entity.getChucVu(),
             entity.getMaNV()
         };
@@ -70,5 +69,11 @@ public class NhanVienimpl implements NhanVienDAO{
     public NhanVien findById(Object id) {
         return XQuery.getSingleBean(NhanVien.class, findNhanVienByIdSQL, id);
     }
-    
+     public List<NhanVien> findByKeyword(String keyword) {
+    String sql = findAllNhanVienSQL
+        + " WHERE maNV LIKE ? OR hoTen LIKE ? OR namSinh LIKE ? OR sdt LIKE ? OR email LIKE ? OR chucVu LIKE ?";
+
+    String value = "%" + keyword + "%";
+    return XQuery.getBeanList(NhanVien.class, sql, value, value, value, value,value,value);
+}
 }

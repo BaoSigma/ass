@@ -58,5 +58,11 @@ public class TheDDimpl implements theDDDAO{
     public theDD findById(Object id) {
         return XQuery.getSingleBean(theDD.class, findTheDDByIdSQL, id);
     }
-    
+        public List<theDD> findByKeyword(String keyword) {
+    String sql = findAllTheDDSQL
+        + " WHERE ID LIKE ? OR trangThai LIKE ? OR maHD LIKE ?";
+
+    String value = "%" + keyword + "%";
+    return XQuery.getBeanList(theDD.class, sql, value, value, value);
+    }
 }

@@ -61,4 +61,11 @@ public class SanPhamimpl implements SanPhamDAO{
     public SanPham findById(Object id) {
         return XQuery.getSingleBean(SanPham.class, findSanPhamByIdSQL, id);
     }
+    public List<SanPham> findByKeyword(String keyword) {
+    String sql = findAllSanPhamSQL
+        + " WHERE maSP LIKE ? OR maLSP LIKE ? tenDU LIKE ? giaDU LIKE ?";
+
+    String value = "%" + keyword + "%";
+    return XQuery.getBeanList(SanPham.class, sql, value, value, value, value);
+}
 }

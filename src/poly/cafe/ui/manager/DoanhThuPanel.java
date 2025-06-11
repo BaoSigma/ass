@@ -80,7 +80,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
     }
 
     JFreeChart barChart = ChartFactory.createBarChart(
-            "Biểu đồ doanh thu theo nhân viên",
+            "Biểu đồ top 5 nhân viên có doanh thu cao nhất",
             "Nhân viên",
             "Doanh thu (VNĐ)",
             dataset,
@@ -182,18 +182,10 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         tblDT = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btnMoveLast1 = new javax.swing.JButton();
-        btnMoveNext1 = new javax.swing.JButton();
-        btnMovePrevious1 = new javax.swing.JButton();
-        btnMoveFirst1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDT1 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        btnMoveLast2 = new javax.swing.JButton();
-        btnMoveNext2 = new javax.swing.JButton();
-        btnMovePrevious2 = new javax.swing.JButton();
-        btnMoveFirst2 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblDT2 = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
@@ -230,7 +222,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGap(0, 194, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -246,50 +238,10 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("tab1", jPanel4);
-
-        btnMoveLast1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnMoveLast1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N
-        btnMoveLast1.setText("CUỐI");
-        btnMoveLast1.setPreferredSize(new java.awt.Dimension(72, 21));
-        btnMoveLast1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveLast1ActionPerformed(evt);
-            }
-        });
-
-        btnMoveNext1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnMoveNext1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/tien.png"))); // NOI18N
-        btnMoveNext1.setText("TIẾN");
-        btnMoveNext1.setPreferredSize(new java.awt.Dimension(72, 21));
-        btnMoveNext1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveNext1ActionPerformed(evt);
-            }
-        });
-
-        btnMovePrevious1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnMovePrevious1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/lui.png"))); // NOI18N
-        btnMovePrevious1.setText("LÙI");
-        btnMovePrevious1.setPreferredSize(new java.awt.Dimension(72, 21));
-        btnMovePrevious1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMovePrevious1ActionPerformed(evt);
-            }
-        });
-
-        btnMoveFirst1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnMoveFirst1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/dau.png"))); // NOI18N
-        btnMoveFirst1.setText("ĐẦU");
-        btnMoveFirst1.setPreferredSize(new java.awt.Dimension(72, 21));
-        btnMoveFirst1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveFirst1ActionPerformed(evt);
-            }
-        });
+        jTabbedPane1.addTab("Doanh thu theo ngày", jPanel4);
 
         tblDT1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -331,7 +283,7 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGap(0, 193, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -340,15 +292,6 @@ public class DoanhThuPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1054, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(btnMoveFirst1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMovePrevious1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMoveNext1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMoveLast1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,57 +299,10 @@ public class DoanhThuPanel extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMoveFirst1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMovePrevious1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMoveNext1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMoveLast1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel2);
-
-        btnMoveLast2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnMoveLast2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N
-        btnMoveLast2.setText("CUỐI");
-        btnMoveLast2.setPreferredSize(new java.awt.Dimension(72, 21));
-        btnMoveLast2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveLast2ActionPerformed(evt);
-            }
-        });
-
-        btnMoveNext2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnMoveNext2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/tien.png"))); // NOI18N
-        btnMoveNext2.setText("TIẾN");
-        btnMoveNext2.setPreferredSize(new java.awt.Dimension(72, 21));
-        btnMoveNext2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveNext2ActionPerformed(evt);
-            }
-        });
-
-        btnMovePrevious2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnMovePrevious2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/lui.png"))); // NOI18N
-        btnMovePrevious2.setText("LÙI");
-        btnMovePrevious2.setPreferredSize(new java.awt.Dimension(72, 21));
-        btnMovePrevious2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMovePrevious2ActionPerformed(evt);
-            }
-        });
-
-        btnMoveFirst2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnMoveFirst2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/dau.png"))); // NOI18N
-        btnMoveFirst2.setText("ĐẦU");
-        btnMoveFirst2.setPreferredSize(new java.awt.Dimension(72, 21));
-        btnMoveFirst2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveFirst2ActionPerformed(evt);
-            }
-        });
+        jTabbedPane1.addTab("Doanh thu nhân viên", jPanel2);
 
         tblDT2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -444,46 +340,34 @@ public class DoanhThuPanel extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1054, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 238, Short.MAX_VALUE)
+            .addGap(0, 182, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1054, Short.MAX_VALUE)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(btnMoveFirst2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMovePrevious2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMoveNext2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMoveLast2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1042, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMoveFirst2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMovePrevious2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMoveNext2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMoveLast2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab3", jPanel6);
+        jTabbedPane1.addTab("Tổng doanh thu", jPanel6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -491,46 +375,14 @@ public class DoanhThuPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1054, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMoveLast1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLast1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMoveLast1ActionPerformed
-
-    private void btnMoveNext1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNext1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMoveNext1ActionPerformed
-
-    private void btnMovePrevious1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovePrevious1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMovePrevious1ActionPerformed
-
-    private void btnMoveFirst1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirst1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMoveFirst1ActionPerformed
-
-    private void btnMoveLast2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLast2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMoveLast2ActionPerformed
-
-    private void btnMoveNext2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNext2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMoveNext2ActionPerformed
-
-    private void btnMovePrevious2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovePrevious2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMovePrevious2ActionPerformed
-
-    private void btnMoveFirst2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirst2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMoveFirst2ActionPerformed
 
     private void tblDT1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblDT1AncestorAdded
         // TODO add your handling code here:
@@ -553,14 +405,6 @@ public class DoanhThuPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel7AncestorAdded
       
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMoveFirst1;
-    private javax.swing.JButton btnMoveFirst2;
-    private javax.swing.JButton btnMoveLast1;
-    private javax.swing.JButton btnMoveLast2;
-    private javax.swing.JButton btnMoveNext1;
-    private javax.swing.JButton btnMoveNext2;
-    private javax.swing.JButton btnMovePrevious1;
-    private javax.swing.JButton btnMovePrevious2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
