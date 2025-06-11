@@ -53,18 +53,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" pref="1023" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnClear" linkSize="3" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="btnClear" min="-2" pref="110" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnADD" linkSize="3" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="btnADD" min="-2" pref="81" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnUpdate" linkSize="3" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="btnUpdate" min="-2" pref="121" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnDel" linkSize="3" min="-2" pref="84" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnRead" linkSize="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDel" min="-2" pref="96" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnRead" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="7" max="32767" attributes="0"/>
@@ -140,7 +140,7 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnRead" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnDel" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
