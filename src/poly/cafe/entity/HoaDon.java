@@ -16,7 +16,15 @@ public class HoaDon {
     private NhanVien nv = new NhanVien();
     private String ghiChu;
     private Date ngayTao;
+    private double getDoanhThuTheoNgay;
 
+    public double getGetDoanhThuTheoNgay() {
+        return getDoanhThuTheoNgay;
+    }
+
+    public void setGetDoanhThuTheoNgay(double getDoanhThuTheoNgay) {
+        this.getDoanhThuTheoNgay = getDoanhThuTheoNgay;
+    }
 
     public HoaDon(String maHD, String ghiChu, Date ngayTao) {
         this.maHD = maHD;
