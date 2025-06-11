@@ -4,29 +4,32 @@
  */
 package poly.cafe.entity;
 
-
 import java.util.Date;
-import lombok.Builder;
-import poly.cafe.dao.entityDAO.NhanVienDAO;
-import poly.cafe.dao.impl.NhanVienimpl;
 
 /**
  *
  * @author baoha
  */
-@Builder
-public class NhanVien {
+public class DoanhThuNhanVien {
     private String maNV ;
     private String hoTen;
     private Date namSinh;
     private String sdt;
     private String email;
     private String matKhau;
-    private String chucVu;    
-    public NhanVien() {
+    private String chucVu;
+    private Double doanhThuTheoNhanVien;
+    
+    public DoanhThuNhanVien() {
+    }
+    public Double getDoanhThuTheoNhanVien() {
+        return doanhThuTheoNhanVien;
     }
 
-    public NhanVien(String maNV, String hoTen, Date namSinh, String sdt, String email, String matKhau, String chucVu) {
+    public void setDoanhThuTheoNhanVien(Double doanhThuTheoNhanVien) {
+        this.doanhThuTheoNhanVien = doanhThuTheoNhanVien;
+    }
+    public DoanhThuNhanVien(String maNV, String hoTen, Date namSinh, String sdt, String email, String matKhau, String chucVu) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.namSinh = namSinh;
@@ -92,5 +95,4 @@ public class NhanVien {
         this.chucVu = chucVu;
     }
     
-   
-    }
+}

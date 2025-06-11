@@ -4,6 +4,11 @@
  */
 package poly.cafe.ui.manager;
 
+import poly.cafe.ui.all.Menu;
+import poly.cafe.ui.all.PolyLogin;
+import poly.cafe.util.XAuth;
+import poly.cafe.util.XDialog;
+
 /**
  *
  * @author baoha
@@ -80,7 +85,13 @@ public class check extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new check().setVisible(true);
+                if(XAuth.user == null){
+            XDialog.alert("Bạn cần phải đăng nhập");
+            new PolyLogin().setVisible(true);
+            return;
+        }else{
+            new check().setVisible(true);
+        }
             }
         });
     }

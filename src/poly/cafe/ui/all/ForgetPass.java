@@ -70,7 +70,11 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         jLabel9.setText("Username:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
 
-        txtPassOld.setText("jPasswordField1");
+        txtPassOld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassOldActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtPassOld, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 310, -1));
         getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 310, -1));
 
@@ -117,8 +121,6 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("NewPass:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
-
-        txtPassNew.setText("jPasswordField2");
         getContentPane().add(txtPassNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 310, -1));
 
         chkPassOld1.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +189,10 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
             txtPassNew.setEchoChar('●'); // Ẩn mật khẩu bằng dấu chấm
         }
     }//GEN-LAST:event_chkNewPass1ActionPerformed
+
+    private void txtPassOldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassOldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassOldActionPerformed
 
     /**
      * @param args the command line arguments

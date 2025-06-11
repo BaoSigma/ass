@@ -156,11 +156,12 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblDangNhap" max="32767" attributes="0"/>
-                  <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
                   <Component id="lblNhanVien" alignment="1" max="32767" attributes="0"/>
                   <Component id="lblCalam" alignment="1" max="32767" attributes="0"/>
                   <Component id="lblOrder" alignment="1" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="lblSP" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jSeparator2" alignment="0" pref="199" max="32767" attributes="0"/>
@@ -176,16 +177,18 @@
                           <Component id="lblPhanLoai" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="lblSP" alignment="1" max="32767" attributes="0"/>
+                  <Component id="lblDoanhThu" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel12" min="-2" pref="18" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="60" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblDoanhThu" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Component id="lblNhanVien" min="-2" max="-2" attributes="0"/>
@@ -207,9 +210,9 @@
                       <Component id="lblPhanLoai" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="lblOrder" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
                       <Component id="lblDangNhap" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -427,6 +430,27 @@
                   <Image iconType="3" name="/poly/cafe/icons/icons8-order-50.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="ORDER"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblDoanhThu">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/poly/cafe/icons/icons8-money-20 (1).png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Doanh thu"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[150, 20]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[150, 20]"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>

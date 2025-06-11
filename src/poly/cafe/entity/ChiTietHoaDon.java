@@ -15,7 +15,16 @@ public class ChiTietHoaDon {
     private int soLuong;
     private double giaTien;
     private double thanhTien;
+    public double getTongDoanhThu;
 
+    public double getGetTongDoanhThu() {
+        return getTongDoanhThu;
+    }
+
+    public void setGetTongDoanhThu(double getTongDoanhThu) {
+        this.getTongDoanhThu = getTongDoanhThu;
+    }
+    
     public ChiTietHoaDon(String maHD, String maSP, int soLuong, double giaTien) {
         this.maHD = maHD;
         this.maSP = maSP;

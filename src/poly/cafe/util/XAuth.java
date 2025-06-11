@@ -39,7 +39,7 @@ public class XAuth {
             prefs.put("email", safe(user.getEmail()));
             prefs.put("matKhau", safe(user.getMatKhau()));
             prefs.put("chucVu", safe(user.getChucVu()));
-
+            
             String namSinhStr = "";
             if (user.getNamSinh() != null) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

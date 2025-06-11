@@ -6,6 +6,7 @@ package poly.cafe.dao.entityDAO;
 
 import java.util.List;
 import poly.cafe.entity.ChiTietHoaDon;
+import poly.cafe.entity.DoanhThuNhanVien;
 import poly.cafe.entity.HoaDon;
 import poly.cafe.entity.NhanVien;
 import poly.cafe.entity.SanPham;
@@ -15,8 +16,8 @@ import poly.cafe.entity.SanPham;
  * @author baoha
  */
 public interface DoanhThuDAO{
-    List<ChiTietHoaDon> TongDoanhThu();
-    List<HoaDon> DoanhThuTheoNgay();
-    List<NhanVien> DoanhThuNhanVien();
+    public Double layTongDoanhThu();
+List<HoaDon> DoanhThuTheoNgay();
+    List<DoanhThuNhanVien> DoanhThuNhanVien();
     
 }

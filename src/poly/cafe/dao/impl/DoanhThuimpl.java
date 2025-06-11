@@ -10,7 +10,9 @@ import poly.cafe.entity.ChiTietHoaDon;
 import poly.cafe.entity.HoaDon;
 import poly.cafe.entity.NhanVien;
 import poly.cafe.util.XQuery;
-
+import java.sql.*;
+import poly.cafe.entity.DoanhThuNhanVien;
+import poly.cafe.util.XJdbc;
 /**
  *
  * @author baoha
@@ -40,10 +42,10 @@ public class DoanhThuimpl implements DoanhThuDAO{
 "    Nhanvien NV ON HD.maNV = NV.maNV\n" +
 "GROUP BY \n" +
 "    NV.hoTen, NV.maNV";
-    @Override
-    public List<ChiTietHoaDon> TongDoanhThu() {
-        return XQuery.getBeanList(ChiTietHoaDon.class, TongDoanhThuSQL);
-    }
+   @Override
+public Double layTongDoanhThu() {
+    return XJdbc.getValue(TongDoanhThuSQL);
+}
 
     @Override
     public List<HoaDon> DoanhThuTheoNgay() {
@@ -51,8 +53,8 @@ public class DoanhThuimpl implements DoanhThuDAO{
     }
 
     @Override
-    public List<NhanVien> DoanhThuNhanVien() {
-        return XQuery.getBeanList(NhanVien.class, DoanhThuNhanVienSQL);
+    public List<DoanhThuNhanVien> DoanhThuNhanVien() {
+        return XQuery.getBeanList(DoanhThuNhanVien.class, DoanhThuNhanVienSQL);
     }
     
 }

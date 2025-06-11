@@ -21,12 +21,15 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import poly.cafe.ui.manager.CaLamPanel;
 import poly.cafe.ui.manager.ChiTietPanel;
+import poly.cafe.ui.manager.DoanhThuPanel;
 import poly.cafe.ui.manager.HoaDonPanel;
 import poly.cafe.ui.manager.NhanVienPanel;
 import poly.cafe.ui.manager.PhanLoai;
 import poly.cafe.ui.manager.SanPhamPanel;
 import poly.cafe.ui.manager.TheDDPanel;
 import poly.cafe.ui.manager.check;
+import poly.cafe.util.XAuth;
+import poly.cafe.util.XDialog;
 
 
 
@@ -63,7 +66,12 @@ public class Menu extends javax.swing.JFrame {
             setView(new NhanVienPanel());
         }
     });
-
+    lblDoanhThu.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            setView(new DoanhThuPanel());
+        }
+    });
     lblCalam.addMouseListener(new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -139,6 +147,8 @@ public class Menu extends javax.swing.JFrame {
         addHoverTextEffect(lblSP, normal, hover);
         addHoverTextEffect(lblThedd, normal, hover);
         addHoverTextEffect(lblOrder, normal, hover);
+        addHoverTextEffect(lblDoanhThu, normal, hover);
+        
     }
     public Menu() {
         initComponents();
@@ -148,6 +158,7 @@ public class Menu extends javax.swing.JFrame {
         hover();
         setLocationRelativeTo(null);
         or.setDefaultCloseOperation(or.DISPOSE_ON_CLOSE);
+        
     }
     public void openmenu() {
     new Thread(new Runnable(){
@@ -212,6 +223,7 @@ public class Menu extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
         lblOrder = new javax.swing.JLabel();
+        lblDoanhThu = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -374,15 +386,24 @@ public class Menu extends javax.swing.JFrame {
         lblOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/icons8-order-50.png"))); // NOI18N
         lblOrder.setText("ORDER");
 
+        lblDoanhThu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDoanhThu.setForeground(new java.awt.Color(255, 255, 255));
+        lblDoanhThu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoanhThu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/icons8-money-20 (1).png"))); // NOI18N
+        lblDoanhThu.setText("Doanh thu");
+        lblDoanhThu.setMaximumSize(new java.awt.Dimension(150, 20));
+        lblDoanhThu.setPreferredSize(new java.awt.Dimension(150, 20));
+
         javax.swing.GroupLayout menuBackGround1Layout = new javax.swing.GroupLayout(menuBackGround1);
         menuBackGround1.setLayout(menuBackGround1Layout);
         menuBackGround1Layout.setHorizontalGroup(
             menuBackGround1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblCalam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(menuBackGround1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(menuBackGround1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,15 +417,17 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(lblHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblCT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPhanLoai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addComponent(lblSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblDoanhThu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         menuBackGround1Layout.setVerticalGroup(
             menuBackGround1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBackGround1Layout.createSequentialGroup()
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(lblNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -426,9 +449,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(lblPhanLoai)
                 .addGap(18, 18, 18)
                 .addComponent(lblOrder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(lblDangNhap)
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -542,7 +565,13 @@ public class Menu extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                new Menu().setVisible(true);
+                if(XAuth.user == null){
+            XDialog.alert("Bạn cần phải đăng nhập");
+            new PolyLogin().setVisible(true);
+            return;
+        }else{
+            new Menu().setVisible(true);
+        }
             }
         });
     }
@@ -563,6 +592,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel lblCT;
     private javax.swing.JLabel lblCalam;
     private javax.swing.JLabel lblDangNhap;
+    private javax.swing.JLabel lblDoanhThu;
     private javax.swing.JLabel lblHoaDon;
     private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblOrder;
