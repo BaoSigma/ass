@@ -56,7 +56,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("LOGIN");
+        jLabel5.setText("FORGET PASSWORD");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 750, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
