@@ -65,6 +65,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
         chkShowPass = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,8 +74,8 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("LOGIN");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 750, 40));
+        jLabel5.setText("Đăng nhập");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 750, 80));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/manager.png"))); // NOI18N
@@ -93,7 +94,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
         chkRemember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chkRemember.setText("Remember password");
+        chkRemember.setText("Lưu thông tin đăng nhập");
         chkRemember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkRememberActionPerformed(evt);
@@ -101,7 +102,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
         });
         getContentPane().add(chkRemember, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
 
-        btnLogin1.setText("Login");
+        btnLogin1.setText("Đăng nhập");
         btnLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogin1MouseClicked(evt);
@@ -114,7 +115,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
         });
         getContentPane().add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 300, -1));
 
-        jButton1.setText("ForgetPass");
+        jButton1.setText("Đăng ký");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -125,15 +126,15 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 150, -1));
 
-        btnClose1.setText("Close");
+        btnClose1.setText("Đóng");
         btnClose1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClose1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 90, -1));
+        getContentPane().add(btnClose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 150, -1));
 
         chkShowPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +148,14 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 330, 10));
+
+        jButton2.setText("Quên mật khẩu?");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, 300, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Background_nht (1) (1).png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 750, 510));
@@ -173,7 +182,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        new ForgetPass().setVisible(true);
+        new SignIn().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -196,6 +205,12 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnClose1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new ForgetPass().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,6 +262,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
     private javax.swing.JCheckBox chkRemember;
     private javax.swing.JCheckBox chkShowPass;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

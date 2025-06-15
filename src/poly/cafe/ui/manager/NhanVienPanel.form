@@ -99,7 +99,7 @@
                       <Component id="btnMoveLast" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblManv" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -153,7 +153,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jLabel1" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" alignment="0" pref="1039" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="1051" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="btnClear" linkSize="1" min="-2" pref="72" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
