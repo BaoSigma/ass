@@ -12,6 +12,7 @@ import poly.cafe.dao.impl.LoginandSignupimpl;
 import poly.cafe.entity.NhanVien;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
+import poly.cafe.util.XEmail;
 
 /**
  *
@@ -19,7 +20,9 @@ import poly.cafe.util.XDialog;
  */
 public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
     NhanVienDAO dao = new LoginandSignupimpl();
-    
+    private String generateOTP() {
+    return String.valueOf(100000 + new java.util.Random().nextInt(900000));
+}
     /**
      * Creates new form ForgetPass
      */
@@ -40,15 +43,15 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtPassOld = new javax.swing.JPasswordField();
+        txtOTP = new javax.swing.JPasswordField();
         txtUser = new javax.swing.JTextField();
         btnLogin1 = new javax.swing.JButton();
         btnClose1 = new javax.swing.JButton();
         btnSignup1 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         txtPassNew = new javax.swing.JPasswordField();
-        chkPassOld1 = new javax.swing.JCheckBox();
         chkNewPass1 = new javax.swing.JCheckBox();
+        jLabel11 = new javax.swing.JLabel();
+        btnOTP = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,20 +65,20 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("PasswordOld:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, -1));
+        jLabel8.setText("OTP:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Username:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
 
-        txtPassOld.addActionListener(new java.awt.event.ActionListener() {
+        txtOTP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassOldActionPerformed(evt);
+                txtOTPActionPerformed(evt);
             }
         });
-        getContentPane().add(txtPassOld, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 310, -1));
+        getContentPane().add(txtOTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 310, -1));
         getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 310, -1));
 
         btnLogin1.setText("Back");
@@ -89,7 +92,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
                 btnLogin1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 430, -1, -1));
+        getContentPane().add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, -1));
 
         btnClose1.setText("Close");
         btnClose1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -102,7 +105,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
                 btnClose1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, -1));
+        getContentPane().add(btnClose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, -1, -1));
 
         btnSignup1.setText("Done");
         btnSignup1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,27 +118,28 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
                 btnSignup1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSignup1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 480, -1));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("NewPass:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
-        getContentPane().add(txtPassNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 310, -1));
-
-        chkPassOld1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkPassOld1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(chkPassOld1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, -1, -1));
+        getContentPane().add(btnSignup1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 480, -1));
+        getContentPane().add(txtPassNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 310, -1));
 
         chkNewPass1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkNewPass1ActionPerformed(evt);
             }
         });
-        getContentPane().add(chkNewPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, -1, -1));
+        getContentPane().add(chkNewPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("NewPass:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
+
+        btnOTP.setText("Lấy mã OTP");
+        btnOTP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOTPActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnOTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Background_nht (1) (1).png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 490));
@@ -172,15 +176,6 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         dispose();
     }//GEN-LAST:event_btnSignup1ActionPerformed
 
-    private void chkPassOld1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPassOld1ActionPerformed
-        // TODO add your handling code here:
-        if (chkPassOld1.isSelected()) {
-            txtPassOld.setEchoChar((char) 0); // Hiện mật khẩu
-        } else {
-            txtPassOld.setEchoChar('●'); // Ẩn mật khẩu bằng dấu chấm
-        }
-    }//GEN-LAST:event_chkPassOld1ActionPerformed
-
     private void chkNewPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkNewPass1ActionPerformed
         // TODO add your handling code here:
         if (chkNewPass1.isSelected()) {
@@ -190,9 +185,14 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         }
     }//GEN-LAST:event_chkNewPass1ActionPerformed
 
-    private void txtPassOldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassOldActionPerformed
+    private void txtOTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOTPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassOldActionPerformed
+    }//GEN-LAST:event_txtOTPActionPerformed
+
+    private void btnOTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOTPActionPerformed
+        // TODO add your handling code here:
+        createOTP();
+    }//GEN-LAST:event_btnOTPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,25 +237,25 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose1;
     private javax.swing.JButton btnLogin1;
+    private javax.swing.JButton btnOTP;
     private javax.swing.JButton btnSignup1;
     private javax.swing.JCheckBox chkNewPass1;
-    private javax.swing.JCheckBox chkPassOld1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPasswordField txtOTP;
     private javax.swing.JPasswordField txtPassNew;
-    private javax.swing.JPasswordField txtPassOld;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void setPass() {
         String username = txtUser.getText().trim();
-        String passOld = new String(txtPassOld.getPassword()).trim();
+        String passOld = new String(txtOTP.getPassword()).trim();
         String newPass = new String(txtPassNew.getPassword()).trim();
-
+         
         if (!username.equals(XAuth.user.getMaNV())) {
             XDialog.alert("Sai tài khoản!");
         } else if (!passOld.equals(XAuth.user.getMatKhau())) {
@@ -267,7 +267,27 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
                 new PolyLogin().setVisible(true);
         }
     }
-
+    public void createOTP(){
+        String maNV = txtUser.getText().trim();
+        String email=txtEmail.getText().trim();
+        NhanVien nv  = dao.findById(maNV);
+        
+        if(nv ==null){
+            XDialog.alert("Không tìm thấy mã nhân viên");
+        }else if(!nv.getEmail().equals(email)){
+            XDialog.alert("Sai email!");
+            
+        }else{
+            String currentOTP = generateOTP();
+            try {
+                XEmail.sendOTP(email, currentOTP);
+                XDialog.alert("Đã gửi mã OTP đến email của bạn!");
+            } catch (Exception e) {
+                e.printStackTrace();
+                XDialog.alert("Gửi OTP thất bại: " + e.getMessage());
+            }
+        }
+    }
     @Override
     public void open() {
         setLocationRelativeTo(null);
