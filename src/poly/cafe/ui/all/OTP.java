@@ -4,19 +4,58 @@
  */
 package poly.cafe.ui.all;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import poly.cafe.dao.entityDAO.NhanVienDAO;
+import poly.cafe.dao.impl.LoginandSignupimpl;
+import poly.cafe.entity.NhanVien;
+import poly.cafe.util.XDialog;
+import poly.cafe.util.XEmail;
+
 /**
  *
  * @author baoha
  */
 public class OTP extends javax.swing.JFrame {
-
+    NhanVienDAO dao = new LoginandSignupimpl();
+    public String generateOTP() {
+    Random random = new Random();
+    int otp = 100000 + random.nextInt(900000);
+    return String.valueOf(otp);
+}
     /**
      * Creates new form OTP
      */
     public OTP() {
         initComponents();
     }
+    public class OTPStore {
+    public static String otp = "";
+    public static String maNV = "";
+    public static String email = "";
+}
+    public void createOTP() throws MessagingException, UnsupportedEncodingException {
+    String maNV = txtUser.getText().trim();
+    String email = txtEmail.getText().trim();
+    NhanVien nv = dao.findById(maNV);
 
+    if (nv == null) {
+        XDialog.alert(" Không tìm thấy mã nhân viên!");
+    } else if (nv.getEmail() == null || !nv.getEmail().equalsIgnoreCase(email)) {
+        XDialog.alert("Email không khớp với nhân viên!");
+    } else {
+        String otp = generateOTP(); // sinh OTP
+        OTPStore.otp = otp;
+        OTPStore.maNV = maNV;
+        OTPStore.email = email;
+
+        XEmail.sendOTP(email, otp); // gửi mail
+        XDialog.alert(" Đã gửi OTP đến email của bạn!");
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,9 +69,9 @@ public class OTP extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,21 +84,31 @@ public class OTP extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("Xác nhận");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, -1, -1));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton2.setText("Gửi lại mã");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, -1, -1));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Nhập mã OTP:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 290, 30));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setText("Email:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, -1, -1));
+        getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 290, 30));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setText("Nhập email:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 290, 30));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel6.setText("Nhập tên tài khoản:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 290, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Background_nht (1) (1).png"))); // NOI18N
@@ -67,6 +116,21 @@ public class OTP extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            createOTP();
+        } catch (MessagingException ex) {
+            Logger.getLogger(OTP.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(OTP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,7 +174,7 @@ public class OTP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

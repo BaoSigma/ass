@@ -10,6 +10,7 @@ import poly.cafe.controller.entityController.Forgetpass;
 import poly.cafe.dao.entityDAO.NhanVienDAO;
 import poly.cafe.dao.impl.LoginandSignupimpl;
 import poly.cafe.entity.NhanVien;
+import poly.cafe.ui.all.OTP.OTPStore;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 import poly.cafe.util.XEmail;
@@ -20,9 +21,7 @@ import poly.cafe.util.XEmail;
  */
 public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
     NhanVienDAO dao = new LoginandSignupimpl();
-    private String generateOTP() {
-    return String.valueOf(100000 + new java.util.Random().nextInt(900000));
-}
+    
     /**
      * Creates new form ForgetPass
      */
@@ -173,7 +172,6 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
     private void btnSignup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignup1ActionPerformed
         // TODO add your handling code here:
         setPass();
-        dispose();
     }//GEN-LAST:event_btnSignup1ActionPerformed
 
     private void chkNewPass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkNewPass1ActionPerformed
@@ -191,7 +189,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
 
     private void btnOTPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOTPActionPerformed
         // TODO add your handling code here:
-        createOTP();
+        new OTP().setVisible(true);
     }//GEN-LAST:event_btnOTPActionPerformed
 
     /**
@@ -252,42 +250,31 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
 
     @Override
     public void setPass() {
-        String username = txtUser.getText().trim();
-        String passOld = new String(txtOTP.getPassword()).trim();
-        String newPass = new String(txtPassNew.getPassword()).trim();
-         
-        if (!username.equals(XAuth.user.getMaNV())) {
-            XDialog.alert("Sai tài khoản!");
-        } else if (!passOld.equals(XAuth.user.getMatKhau())) {
-            XDialog.alert("Sai mật khẩu cũ!");
+           String username = txtUser.getText().trim(); 
+           String otpInput = new String(txtOTP.getPassword()).trim(); 
+           String newPass = new String(txtPassNew.getPassword()).trim(); 
+
+    if (!username.equals(OTPStore.maNV)) {
+        XDialog.alert(" Sai mã nhân viên!");
+    } else if (!otpInput.equals(OTPStore.otp)) {
+        XDialog.alert(" Sai mã OTP!");
+    } else {
+        NhanVien nv = dao.findById(username);
+        if (nv != null) {
+            nv.setMatKhau(newPass);
+            dao.update(nv);
+
+            OTPStore.otp = "";
+            OTPStore.maNV = "";
+            OTPStore.email = "";
+
+            XDialog.alert(" Đổi mật khẩu thành công!");
         } else {
-                XAuth.user.setMatKhau(newPass);
-                dao.update(XAuth.user);
-                XDialog.alert("Đổi mật khẩu thành công!");
-                new PolyLogin().setVisible(true);
+            XDialog.alert(" Không tìm thấy nhân viên!");
         }
     }
-    public void createOTP(){
-        String maNV = txtUser.getText().trim();
-        String email=txtEmail.getText().trim();
-        NhanVien nv  = dao.findById(maNV);
-        
-        if(nv ==null){
-            XDialog.alert("Không tìm thấy mã nhân viên");
-        }else if(!nv.getEmail().equals(email)){
-            XDialog.alert("Sai email!");
-            
-        }else{
-            String currentOTP = generateOTP();
-            try {
-                XEmail.sendOTP(email, currentOTP);
-                XDialog.alert("Đã gửi mã OTP đến email của bạn!");
-            } catch (Exception e) {
-                e.printStackTrace();
-                XDialog.alert("Gửi OTP thất bại: " + e.getMessage());
-            }
-        }
     }
+    
     @Override
     public void open() {
         setLocationRelativeTo(null);

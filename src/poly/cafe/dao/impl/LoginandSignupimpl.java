@@ -23,7 +23,7 @@ public class LoginandSignupimpl implements NhanVienDAO{
 "    @matKhau = ?, \n" +
 "    @chucVu = ?";
     private String deleteNhanVienByIdSQL = "DELETE FROM Nhanvien WHERE maNV = ?";
-    private String findAllNhanVienSQL = "SELECT maNV, matKhau, chucVu FROM Nhanvien";
+    private String findAllNhanVienSQL = "SELECT maNV, matKhau, email, chucVu FROM Nhanvien";
     private String findNhanVienByIdSQL = findAllNhanVienSQL + " WHERE maNV = ?";
     private String updateNhanVienSQL = "UPDATE Nhanvien SET  matKhau = ? WHERE maNV = ?";
 
