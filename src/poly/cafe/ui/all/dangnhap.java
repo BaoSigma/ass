@@ -44,19 +44,19 @@ public class dangnhap extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 60)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("POLY - CAFE");
+        jLabel1.setText("POLYCAFFE");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/Screenshot 2025-05-12 212654.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Uống vào mát ngay, đánh bay cái khát");
+        jLabel3.setText("Uống vào mát ngay, đánh bay cơn khát");
 
         jButton1.setBackground(new java.awt.Color(88, 151, 225));
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("LOGIN");
+        jButton1.setText("ĐĂNG NHẬP");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);

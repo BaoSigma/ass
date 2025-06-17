@@ -58,7 +58,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("FORGET PASSWORD");
+        jLabel5.setText("ĐẶT LẠI MẬT KHẨU");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 750, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -80,7 +80,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         getContentPane().add(txtOTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 310, -1));
         getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 310, -1));
 
-        btnLogin1.setText("Back");
+        btnLogin1.setText("Quay lại");
         btnLogin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogin1MouseClicked(evt);
@@ -93,7 +93,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         });
         getContentPane().add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, -1));
 
-        btnClose1.setText("Close");
+        btnClose1.setText("Đóng");
         btnClose1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnClose1MouseClicked(evt);
@@ -106,7 +106,7 @@ public class ForgetPass extends javax.swing.JFrame implements Forgetpass{
         });
         getContentPane().add(btnClose1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, -1, -1));
 
-        btnSignup1.setText("Done");
+        btnSignup1.setText("Xác nhận");
         btnSignup1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSignup1MouseClicked(evt);
