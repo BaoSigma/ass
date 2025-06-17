@@ -14,13 +14,13 @@ import poly.cafe.util.XDialog;
  * @author baoha
  */
 public class check extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form check
      */
     public check() {
         initComponents();
-       
+        setLocationRelativeTo(null);
     }
 
     /**

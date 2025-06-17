@@ -84,14 +84,13 @@ public class Menu extends javax.swing.JFrame {
         lblThedd.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                setView(new TheDDPanel(false));
+                setView(new TheDDPanel(false)); 
             }
         });
         lblOrder.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                or.setVisible(false);
-
+                or.setVisible(true);
             }
         });
         lblHoaDon.addMouseListener(new MouseAdapter() {
