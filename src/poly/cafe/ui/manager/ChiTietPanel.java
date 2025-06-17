@@ -24,18 +24,28 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     /**
      * Creates new form ChiTietPanel
      */
-    public ChiTietPanel() {
+    public ChiTietPanel(boolean visible) {
         initComponents();
         fillToTable();
         setQuyen();
+        setButtonVisible(visible);
     }
+    public void setButtonVisible(boolean visible) {
+    jButton1.setVisible(visible);
+}
     public void fillToTableTheoDieuKien() {
-        ChiTietImpl dao = new ChiTietImpl();
-    String keyword = txtFind.getText();
+        try {
+    ChiTietImpl dao = new ChiTietImpl();
+    String keyword = txtFind.getText().trim();
     List<ChiTietHoaDon> list = dao.findByKeyword(keyword);
 
     DefaultTableModel model = (DefaultTableModel) tblCT.getModel();
     model.setRowCount(0);
+
+    if (list.isEmpty()) {
+        XDialog.alert("Không tìm thấy chi tiết hóa đơn nào.");
+        return;
+    }
 
     for (ChiTietHoaDon item : list) {
         Object[] row = {
@@ -50,6 +60,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         };
         model.addRow(row);
     }
+} catch (Exception e) {}
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +71,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCT = new javax.swing.JTable();
@@ -94,6 +106,13 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(0, 255, 153));
         setPreferredSize(new java.awt.Dimension(1035, 513));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setContentAreaFilled(false);
+        jButton1.setEnabled(false);
+        jButton1.setFocusable(false);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 24, 730, 487));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -378,19 +397,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMoveFirst, btnMoveLast, btnMoveNext, btnMovePrevious});
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMoveFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirstActionPerformed
@@ -453,8 +460,10 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
 
     private void btnfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfindActionPerformed
         // TODO add your handling code here:
+
         fillToTableTheoDieuKien();
         moveFirst();
+        
     }//GEN-LAST:event_btnfindActionPerformed
 
 
@@ -469,6 +478,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnfind;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

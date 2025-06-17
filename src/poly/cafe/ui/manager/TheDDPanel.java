@@ -26,18 +26,28 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
     /**
      * Creates new form TheDDPanel
      */
-    public TheDDPanel() {
+    public TheDDPanel(boolean visible) {
         initComponents();
         fillToTable();
         setQuyen();
+        setButtonVisible(visible);
     }
+    public void setButtonVisible(boolean visible) {
+    jButton1.setVisible(visible);
+}
     public void fillToTableTheoDieuKien() {
-        TheDDimpl dao = new TheDDimpl();
-    String keyword = txtFind.getText();
+    try {
+    TheDDimpl dao = new TheDDimpl();
+    String keyword = txtFind.getText().trim();
     List<theDD> list = dao.findByKeyword(keyword);
 
     DefaultTableModel model = (DefaultTableModel) tblDD.getModel();
     model.setRowCount(0);
+
+    if (list.isEmpty()) {
+        XDialog.alert("Không tìm thấy thẻ điểm danh nào.");
+        return;
+    }
 
     for (theDD item : list) {
         Object[] row = {
@@ -49,6 +59,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         };
         model.addRow(row);
     }
+} catch (Exception e) {}
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +71,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,6 +98,13 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
         btnfind = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setContentAreaFilled(false);
+        jButton1.setEnabled(false);
+        jButton1.setFocusable(false);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 6, 1033, 487));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -329,7 +348,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
                     .addComponent(jLabel3)
                     .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnfind, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblID, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5))
@@ -345,19 +364,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
                 .addGap(55, 55, 55))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblDDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDDMouseClicked
@@ -395,8 +402,10 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
 
     private void btnfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfindActionPerformed
         // TODO add your handling code here:
+
         fillToTableTheoDieuKien();
         moveFirst();
+
     }//GEN-LAST:event_btnfindActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -445,6 +454,7 @@ public class TheDDPanel extends javax.swing.JPanel implements theDDCTR{
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnfind;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

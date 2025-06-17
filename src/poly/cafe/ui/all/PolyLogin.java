@@ -41,6 +41,7 @@ public class PolyLogin extends javax.swing.JFrame implements LoginCTR{
 
     if (XAuth.user != null) {
         txtUser.setText(XAuth.user.getMaNV());
+        txtPass.setText(XAuth.user.getMatKhau());
         chkRemember.setSelected(true); // đánh dấu checkbox Remember
     } else {
         chkRemember.setSelected(false);

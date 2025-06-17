@@ -28,18 +28,28 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     /**
      * Creates new form PhanLoai
      */
-    public PhanLoai() {
+    public PhanLoai(boolean visible) {
         initComponents();
         setEditable(true);
         setQuyen();
+        setButtonVisible(visible);
     }
+    public void setButtonVisible(boolean visible) {
+    jButton1.setVisible(visible);
+}
     public void fillToTableTheoDieuKien() {
-        LoaiSPimpl dao = new LoaiSPimpl();
-    String keyword = txtFind.getText();
+    try {
+    LoaiSPimpl dao = new LoaiSPimpl();
+    String keyword = txtFind.getText().trim();
     List<LoaiSanPham> list = dao.findByKeyword(keyword);
 
     DefaultTableModel model = (DefaultTableModel) tblPhanLoai.getModel();
     model.setRowCount(0);
+
+    if (list.isEmpty()) {
+        XDialog.alert("Không tìm thấy loại sản phẩm nào.");
+        return;
+    }
 
     for (LoaiSanPham item : list) {
         Object[] row = {
@@ -49,6 +59,8 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         };
         model.addRow(row);
     }
+} catch (Exception e) {}
+
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +71,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPhanLoai = new javax.swing.JTable();
@@ -83,6 +96,13 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
 
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setContentAreaFilled(false);
+        jButton1.setEnabled(false);
+        jButton1.setFocusable(false);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 1033, 487));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -173,7 +193,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,7 +324,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,16 +345,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
                 .addGap(35, 35, 35))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiActionPerformed
@@ -353,8 +364,10 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
 
     private void btnfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfindActionPerformed
         // TODO add your handling code here:
+
         fillToTableTheoDieuKien();
         moveFirst();
+
     }//GEN-LAST:event_btnfindActionPerformed
 
     private void btnMoveLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLastActionPerformed
@@ -422,6 +435,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnfind;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

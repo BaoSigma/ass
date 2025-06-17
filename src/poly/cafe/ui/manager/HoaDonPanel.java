@@ -30,18 +30,28 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
     /**
      * Creates new form HoaDonPanel
      */
-    public HoaDonPanel() {
+    public HoaDonPanel(boolean visible) {
         initComponents();
         fillToTable();
         setQuyen();
+        setButtonVisible(visible);
     }
+    public void setButtonVisible(boolean visible) {
+    jButton5.setVisible(visible);
+}
     public void fillToTableTheoDieuKien() {
-        HoaDonimpl dao = new HoaDonimpl();
-    String keyword = txtFind.getText();
+        try {
+    HoaDonimpl dao = new HoaDonimpl();
+    String keyword = txtFind.getText().trim();
     List<HoaDon> list = dao.findByKeyword(keyword);
 
     DefaultTableModel model = (DefaultTableModel) tblHD.getModel();
     model.setRowCount(0);
+
+    if (list.isEmpty()) {
+        XDialog.alert(null, "Không tìm thấy hóa đơn nào.");
+        return;
+    }
 
     for (HoaDon item : list) {
         Object[] row = {
@@ -53,6 +63,8 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         };
         model.addRow(row);
     }
+} catch (Exception e) {
+}
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +79,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHD = new javax.swing.JTable();
@@ -104,6 +117,18 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(630, 445));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton5.setBackground(new java.awt.Color(0, 0, 0));
+        jButton5.setContentAreaFilled(false);
+        jButton5.setEnabled(false);
+        jButton5.setFocusable(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 15, 1033, 521));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -238,7 +263,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                                 .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 183, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMoveFirst, btnMoveLast, btnMoveNext, btnMovePrevious});
@@ -278,10 +303,12 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                             .addComponent(btnfind, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMoveFirst, btnMoveLast, btnMoveNext, btnMovePrevious});
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 112, 1045, 430));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -346,7 +373,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addGap(0, 45, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,20 +406,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnADD, btnClear1, btnDel, btnRead, btnUpdate});
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1045, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDMouseClicked
@@ -461,7 +475,12 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         // TODO add your handling code here:
         fillToTableTheoDieuKien();
         moveFirst();
+       
     }//GEN-LAST:event_btnfindActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -480,6 +499,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

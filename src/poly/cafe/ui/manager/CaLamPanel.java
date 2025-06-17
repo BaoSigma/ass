@@ -28,19 +28,29 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     /**
      * Creates new form CaLamPanel
      */
-    public CaLamPanel() {
+    public CaLamPanel(boolean visible) {
         initComponents();
         fillToTable();
         setQuyen();
-            
+        setButtonVisible(visible);
     }
+    public void setButtonVisible(boolean visible) {
+    jButton1.setVisible(visible);
+}
     public void fillToTableTheoDieuKien() {
-        Calamimpl dao = new Calamimpl();
-    String keyword = txtFind.getText();
+        try {
+    Calamimpl dao = new Calamimpl();
+    String keyword = txtFind.getText().trim();
+
     List<CaLam> list = dao.findByKeyword(keyword);
 
     DefaultTableModel model = (DefaultTableModel) tblCaLam.getModel();
     model.setRowCount(0);
+
+    if (list.isEmpty()) {
+        XDialog.alert("Không tìm thấy ca làm nào.");
+        return;
+    }
 
     for (CaLam item : list) {
         Object[] row = {
@@ -51,6 +61,9 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         };
         model.addRow(row);
     }
+
+} catch (Exception e) {}
+
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,6 +75,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCaLam = new javax.swing.JTable();
@@ -84,15 +98,28 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         btnMoveNext = new javax.swing.JButton();
         btnMovePrevious = new javax.swing.JButton();
         btnMoveFirst = new javax.swing.JButton();
-        btnfind = new javax.swing.JButton();
         txtFind = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        btnfind = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setContentAreaFilled(false);
+        jButton1.setEnabled(false);
+        jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 15, 770, 487));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CA LÀM");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 18, 1051, 36));
 
         tblCaLam.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,24 +148,36 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         });
         jScrollPane2.setViewportView(tblCaLam);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 146, 1039, 154));
+
         jLabel2.setText("ID:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 354, -1, -1));
 
         jLabel3.setText("Buổi:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 351, -1, -1));
 
         jLabel4.setText("Mã nhân viên:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 391, -1, -1));
 
         jLabel5.setText("Họ tên:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 438, 73, -1));
 
         buttonGroup1.add(rdoCa1);
         rdoCa1.setText("Sáng");
+        add(rdoCa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 349, -1, -1));
 
         buttonGroup1.add(rdoCa2);
         rdoCa2.setText("Chiều");
+        add(rdoCa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 349, -1, -1));
 
         buttonGroup1.add(rdoCa3);
         rdoCa3.setText("Tối");
+        add(rdoCa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 349, -1, -1));
 
         lblID.setText("1");
+        add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 351, -1, -1));
+        add(txtHoTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 432, 334, -1));
+        add(txtmaNV, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 388, 334, -1));
 
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/clear.png"))); // NOI18N
@@ -149,6 +188,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnClearActionPerformed(evt);
             }
         });
+        add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 113, 119, 27));
 
         btnADD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnADD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/insert.png"))); // NOI18N
@@ -159,6 +199,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnADDActionPerformed(evt);
             }
         });
+        add(btnADD, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 113, 119, 27));
 
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/update.png"))); // NOI18N
@@ -169,6 +210,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnUpdateActionPerformed(evt);
             }
         });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 113, 119, 27));
 
         btnDel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/delete.png"))); // NOI18N
@@ -179,6 +221,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnDelActionPerformed(evt);
             }
         });
+        add(btnDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 113, 119, 27));
 
         btnRead.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/read.png"))); // NOI18N
@@ -189,6 +232,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnReadActionPerformed(evt);
             }
         });
+        add(btnRead, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 113, 119, 27));
 
         btnMoveLast.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N
@@ -199,6 +243,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnMoveLastActionPerformed(evt);
             }
         });
+        add(btnMoveLast, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 309, 109, 23));
 
         btnMoveNext.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/tien.png"))); // NOI18N
@@ -209,6 +254,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnMoveNextActionPerformed(evt);
             }
         });
+        add(btnMoveNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 310, 91, -1));
 
         btnMovePrevious.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMovePrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/lui.png"))); // NOI18N
@@ -219,6 +265,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnMovePreviousActionPerformed(evt);
             }
         });
+        add(btnMovePrevious, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 310, 84, -1));
 
         btnMoveFirst.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/dau.png"))); // NOI18N
@@ -229,6 +276,12 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnMoveFirstActionPerformed(evt);
             }
         });
+        add(btnMoveFirst, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 310, 92, -1));
+        add(txtFind, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 309, 232, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Tìm mã nhân viên");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 309, -1, -1));
 
         btnfind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/find.png"))); // NOI18N
         btnfind.addActionListener(new java.awt.event.ActionListener() {
@@ -236,125 +289,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnfindActionPerformed(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Tìm mã nhân viên");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel2))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblID)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(rdoCa1)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(rdoCa2)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(rdoCa3))
-                                            .addComponent(txtmaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnADD, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 426, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnfind)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnADD, btnClear, btnDel, btnRead, btnUpdate});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnADD, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnfind, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblID)
-                        .addComponent(jLabel3)
-                        .addComponent(rdoCa1)
-                        .addComponent(rdoCa2)
-                        .addComponent(rdoCa3)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtmaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(64, 64, 64))
-        );
+        add(btnfind, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 310, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblCaLamAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblCaLamAncestorAdded
@@ -419,10 +354,15 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         moveFirst();
     }//GEN-LAST:event_btnMoveFirstActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void btnfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfindActionPerformed
         // TODO add your handling code here:
-        fillToTableTheoDieuKien();
-        moveFirst();
+            fillToTableTheoDieuKien();
+            moveFirst();
+
     }//GEN-LAST:event_btnfindActionPerformed
 
     
@@ -438,6 +378,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnfind;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

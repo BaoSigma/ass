@@ -28,18 +28,29 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     /**
      * Creates new form SanPhamPanel
      */
-    public SanPhamPanel() {
+    public SanPhamPanel(boolean visible) {
         initComponents();
         fillToTable();
         setQuyen();
+        setButtonVisible(visible);
+
     }
+    public void setButtonVisible(boolean visible) {
+    jButton1.setVisible(visible);
+}
     public void fillToTableTheoDieuKien() {
-        SanPhamimpl dao = new SanPhamimpl();
-    String keyword = txtFind.getText();
+    try {
+    SanPhamimpl dao = new SanPhamimpl();
+    String keyword = txtFind.getText().trim();
     List<SanPham> list = dao.findByKeyword(keyword);
 
     DefaultTableModel model = (DefaultTableModel) tblSP.getModel();
     model.setRowCount(0);
+
+    if (list.isEmpty()) {
+        XDialog.alert("Không tìm thấy sản phẩm nào.");
+        return;
+    }
 
     for (SanPham item : list) {
         Object[] row = {
@@ -47,11 +58,12 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
             item.getMaLSP(),
             item.getTenDU(),
             item.getGiaDU(),
-
             false
         };
         model.addRow(row);
     }
+} catch (Exception e) {}
+
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,6 +74,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSP = new javax.swing.JTable();
@@ -89,6 +102,13 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         btnClear1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setContentAreaFilled(false);
+        jButton1.setEnabled(false);
+        jButton1.setFocusable(false);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2, 1033, 487));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -252,6 +272,8 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMoveFirst, btnMoveLast, btnMoveNext, btnMovePrevious});
 
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 109, 1039, -1));
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -312,7 +334,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -340,27 +362,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                     .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
-        );
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
@@ -425,6 +427,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         // TODO add your handling code here:
         fillToTableTheoDieuKien();
         moveFirst();
+
     }//GEN-LAST:event_btnfindActionPerformed
 
 
@@ -439,6 +442,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     private javax.swing.JButton btnRead;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnfind;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

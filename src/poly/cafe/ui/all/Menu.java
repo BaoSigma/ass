@@ -33,111 +33,113 @@ import poly.cafe.ui.manager.check;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDialog;
 
-
-
 /**
  *
  * @author baoha
  */
 public class Menu extends javax.swing.JFrame {
+
     check or = new check();
+    private JPanel currentPanel;
+
     public void addHoverTextEffect(JLabel label, Color normalColor, Color hoverColor) {
         label.setOpaque(true);
         label.setBackground(normalColor);
 
-    label.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseEntered(java.awt.event.MouseEvent evt) {
-            label.setBackground(hoverColor);
-            repaint();
-        }
+        label.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                label.setBackground(hoverColor);
+                repaint();
+            }
 
-        @Override
-        public void mouseExited(java.awt.event.MouseEvent evt) {
-            label.setBackground(normalColor);
-            repaint();
-        }
-    });
-}
-    
-    
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                label.setBackground(normalColor);
+                repaint();
+            }
+        });
+    }
+
     private void initLabelEvents() {
-    lblNhanVien.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            setView(new NhanVienPanel());
-        }
-    });
-    lblDoanhThu.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            setView(new DoanhThuPanel());
-        }
-    });
-    lblCalam.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            setView(new CaLamPanel());
-        }
-    });
+        lblNhanVien.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setView(new NhanVienPanel(false));
+            }
+        });
+        lblDoanhThu.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setView(new DoanhThuPanel());
+            }
+        });
+        lblCalam.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setView(new CaLamPanel(false));
+            }
+        });
 
-    lblThedd.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            setView(new TheDDPanel());
-        }
-    });
-    lblOrder.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            or.setVisible(true);
-            
-            
-        }
-    });
-    lblHoaDon.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            setView(new HoaDonPanel());
-        }
-    });
+        lblThedd.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setView(new TheDDPanel(false));
+            }
+        });
+        lblOrder.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                or.setVisible(false);
 
-    lblCT.addMouseListener(new MouseAdapter() {
-        @Override
-       public void mouseClicked(MouseEvent e) {
-            setView(new ChiTietPanel()); // đoán: ICT là chi tiết
+            }
+        });
+        lblHoaDon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setView(new HoaDonPanel(false));
         }
-    });
+        });
 
-    lblSP.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            setView(new SanPhamPanel()); // đoán: ISP là sản phẩm
-        }
-    });
+        lblCT.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setView(new ChiTietPanel(false)); // đoán: ICT là chi tiết
+            }
+        });
 
-    lblPhanLoai.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            setView(new PhanLoai());
-        }
-    });
-}
+        lblSP.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setView(new SanPhamPanel(false)); // đoán: ISP là sản phẩm
+            }
+        });
 
-    
-   public void setView(JPanel panel) {
-    jPanel3.removeAll();
-    jPanel3.setLayout(new BorderLayout());
-    jPanel3.add(panel);
-    jPanel3.revalidate();
-    jPanel3.repaint();
-}
+        lblPhanLoai.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setView(new PhanLoai(false));
+            }
+        });
+    }
+
+    public void setView(JPanel panel) {
+        jPanel3.removeAll();
+        jPanel3.setLayout(new BorderLayout());
+        jPanel3.add(panel);
+        jPanel3.revalidate();
+        jPanel3.repaint();
+
+        currentPanel = panel;
+
+    }
     int rong = 208;
     int dai = 596;
+
     /**
      * Creates new form Menu
      */
-    public void hover(){
+    public void hover() {
         Color normal = new Color(0, 0, 0, 0);
         Color hover = new Color(255, 255, 255, 180);
         addHoverTextEffect(lblCT, normal, hover);
@@ -150,49 +152,84 @@ public class Menu extends javax.swing.JFrame {
         addHoverTextEffect(lblThedd, normal, hover);
         addHoverTextEffect(lblOrder, normal, hover);
         addHoverTextEffect(lblDoanhThu, normal, hover);
-        
+
     }
+
     public Menu() {
         initComponents();
         openmenu();
         initLabelEvents(); // <-- Gọi ở đây
-        setView(new NhanVienPanel());
+        setView(new NhanVienPanel(true));
         hover();
         setLocationRelativeTo(null);
         or.setDefaultCloseOperation(or.DISPOSE_ON_CLOSE);
-        
-    }
-    public void openmenu() {
-   new Thread(() -> {
-        jPanel1.getParent().setComponentZOrder(jPanel1, 0);
-        
-        for (int i = 0; i < rong; i++) {
-            jPanel1.setSize(i, dai);
-            try {
-                Thread.sleep(2);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }).start();
-}
-    
-    public void closemenu() {
-   new Thread(new Runnable(){
-       @Override
-           public void run(){
-   for (int i = rong; i > 0; i--) {
-                jPanel1.setSize(i, dai);
 
+    }
+
+    public void openmenu() {
+        if (currentPanel instanceof NhanVienPanel nv) {
+            nv.setButtonVisible(true);
+        } else if (currentPanel instanceof CaLamPanel cl) {
+            cl.setButtonVisible(true);
+        } else if (currentPanel instanceof TheDDPanel the) {
+            the.setButtonVisible(true);
+        } else if (currentPanel instanceof HoaDonPanel hd) {
+            hd.setButtonVisible(true);
+        } else if (currentPanel instanceof ChiTietPanel ct) {
+            ct.setButtonVisible(true);
+        } else if (currentPanel instanceof SanPhamPanel sp) {
+            sp.setButtonVisible(true);
+        } else if (currentPanel instanceof PhanLoai pl) {
+            pl.setButtonVisible(true);
+        }
+        
+        new Thread(() -> {
+            jPanel1.getParent().setComponentZOrder(jPanel1, 0);
+
+            for (int i = 0; i < rong; i++) {
+                jPanel1.setSize(i, dai);
                 try {
                     Thread.sleep(2);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        }   
+            }
+        }).start();
+
+    }
+
+    public void closemenu() {
+        if (currentPanel instanceof NhanVienPanel nv) {
+            nv.setButtonVisible(false);
+        } else if (currentPanel instanceof CaLamPanel cl) {
+            cl.setButtonVisible(false);
+        } else if (currentPanel instanceof TheDDPanel the) {
+            the.setButtonVisible(false);
+        } else if (currentPanel instanceof HoaDonPanel hd) {
+            hd.setButtonVisible(false);
+        } else if (currentPanel instanceof ChiTietPanel ct) {
+            ct.setButtonVisible(false);
+        } else if (currentPanel instanceof SanPhamPanel sp) {
+            sp.setButtonVisible(false);
+        } else if (currentPanel instanceof PhanLoai pl) {
+            pl.setButtonVisible(false);
         }
-    }).start();
-}
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = rong; i > 0; i--) {
+                    jPanel1.setSize(i, dai);
+
+                    try {
+                        Thread.sleep(2);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }).start();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -231,6 +268,8 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1090, 596));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -241,6 +280,7 @@ public class Menu extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -352,7 +392,6 @@ public class Menu extends javax.swing.JFrame {
         menuBackGround1Layout.setHorizontalGroup(
             menuBackGround1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblCalam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblSP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -363,14 +402,15 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator3)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBackGround1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblThedd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblCT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPhanLoai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addComponent(lblDoanhThu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBackGround1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lblNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         menuBackGround1Layout.setVerticalGroup(
             menuBackGround1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,16 +447,9 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuBackGround1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuBackGround1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel1.add(menuBackGround1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -447,7 +480,7 @@ public class Menu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 915, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 977, Short.MAX_VALUE)
                 .addComponent(btnMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,31 +496,13 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btnMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel3.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1026, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setEnabled(false);
+        jPanel3.setFocusable(false);
+        jPanel3.setLayout(new javax.swing.OverlayLayout(jPanel3));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 45, 1090, 551));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -496,10 +511,10 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnMinimize.setFocusPainted(false);
         btnMinimize.addMouseListener(new MouseAdapter() {
-    public void mouseClicked(MouseEvent e) {
-        setExtendedState(Menu.ICONIFIED); // THU NHỎ TOÀN BỘ NGAY
-    }
-    });
+            public void mouseClicked(MouseEvent e) {
+                setExtendedState(Menu.ICONIFIED); // THU NHỎ TOÀN BỘ NGAY
+            }
+        });
     }//GEN-LAST:event_btnMinimizeActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -514,7 +529,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jPanel1AncestorAdded
 
     private void lblDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangNhapMouseClicked
@@ -530,7 +545,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel12AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel12AncestorAdded
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jLabel12AncestorAdded
 
     /**
@@ -568,13 +583,13 @@ public class Menu extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                if(XAuth.user == null){
-            XDialog.alert("Bạn cần phải đăng nhập");
-            new PolyLogin().setVisible(true);
-            return;
-        }else{
-            new Menu().setVisible(true);
-        }
+                if (XAuth.user == null) {
+                    XDialog.alert("Bạn cần phải đăng nhập");
+                    new PolyLogin().setVisible(true);
+                    return;
+                } else {
+                    new Menu().setVisible(true);
+                }
             }
         });
     }
