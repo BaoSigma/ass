@@ -114,7 +114,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 15, 770, 487));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1010, 310));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -148,7 +148,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         });
         jScrollPane2.setViewportView(tblCaLam);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 146, 1039, 154));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 146, 1080, 154));
 
         jLabel2.setText("ID:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 354, -1, -1));
@@ -163,16 +163,16 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 438, 73, -1));
 
         buttonGroup1.add(rdoCa1);
-        rdoCa1.setText("Sáng");
+        rdoCa1.setText("Sáng (7h-10h)");
         add(rdoCa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 349, -1, -1));
 
         buttonGroup1.add(rdoCa2);
-        rdoCa2.setText("Chiều");
-        add(rdoCa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 349, -1, -1));
+        rdoCa2.setText("Chiều (15h-18h)");
+        add(rdoCa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, -1, -1));
 
         buttonGroup1.add(rdoCa3);
-        rdoCa3.setText("Tối");
-        add(rdoCa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 349, -1, -1));
+        rdoCa3.setText("Tối (19h-22h)");
+        add(rdoCa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, -1, -1));
 
         lblID.setText("1");
         add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 351, -1, -1));
@@ -181,7 +181,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/clear.png"))); // NOI18N
-        btnClear.setText("CLEAR");
+        btnClear.setText("Làm mới");
         btnClear.setPreferredSize(new java.awt.Dimension(72, 7));
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +192,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
         btnADD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnADD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/insert.png"))); // NOI18N
-        btnADD.setText("ADD");
+        btnADD.setText("Thêm");
         btnADD.setPreferredSize(new java.awt.Dimension(72, 7));
         btnADD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +203,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/update.png"))); // NOI18N
-        btnUpdate.setText("UPDATE");
+        btnUpdate.setText("Cập nhật");
         btnUpdate.setPreferredSize(new java.awt.Dimension(72, 7));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +214,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
         btnDel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/delete.png"))); // NOI18N
-        btnDel.setText("DELETE");
+        btnDel.setText("Xóa");
         btnDel.setPreferredSize(new java.awt.Dimension(72, 7));
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +225,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
         btnRead.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/read.png"))); // NOI18N
-        btnRead.setText("READ");
+        btnRead.setText("Đọc");
         btnRead.setPreferredSize(new java.awt.Dimension(72, 7));
         btnRead.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,52 +236,52 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
 
         btnMoveLast.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N
-        btnMoveLast.setText("CUỐI");
+        btnMoveLast.setText("Trang cuối");
         btnMoveLast.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoveLastActionPerformed(evt);
             }
         });
-        add(btnMoveLast, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 309, 109, 23));
+        add(btnMoveLast, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 130, 23));
 
         btnMoveNext.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/tien.png"))); // NOI18N
-        btnMoveNext.setText("TIẾN");
+        btnMoveNext.setText("Tiếp");
         btnMoveNext.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoveNextActionPerformed(evt);
             }
         });
-        add(btnMoveNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 310, 91, -1));
+        add(btnMoveNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 91, -1));
 
         btnMovePrevious.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMovePrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/lui.png"))); // NOI18N
-        btnMovePrevious.setText("LÙI");
+        btnMovePrevious.setText("Trước");
         btnMovePrevious.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMovePrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMovePreviousActionPerformed(evt);
             }
         });
-        add(btnMovePrevious, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 310, 84, -1));
+        add(btnMovePrevious, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 100, -1));
 
         btnMoveFirst.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/dau.png"))); // NOI18N
-        btnMoveFirst.setText("ĐẦU");
+        btnMoveFirst.setText("Trang đầu");
         btnMoveFirst.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMoveFirstActionPerformed(evt);
             }
         });
-        add(btnMoveFirst, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 310, 92, -1));
-        add(txtFind, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 309, 232, -1));
+        add(btnMoveFirst, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 310, 130, -1));
+        add(txtFind, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 232, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Tìm mã nhân viên");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 309, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
 
         btnfind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/find.png"))); // NOI18N
         btnfind.addActionListener(new java.awt.event.ActionListener() {
@@ -289,7 +289,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnfindActionPerformed(evt);
             }
         });
-        add(btnfind, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 310, -1, 30));
+        add(btnfind, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 310, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblCaLamAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblCaLamAncestorAdded

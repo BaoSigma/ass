@@ -118,7 +118,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         jButton1.setContentAreaFilled(false);
         jButton1.setEnabled(false);
         jButton1.setFocusable(false);
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2, 760, 320));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2, 1050, 570));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -130,7 +130,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                 {null, null, null, null, null}
             },
             new String [] {
-                "Mã SP", "Mã Loại", "Tên đồ uống", "Giá đồ uống", "ảnh"
+                "Mã SP", "Mã Loại", "Tên đồ uống", "Giá đồ uống", "Ảnh"
             }
         ));
         tblSP.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,7 +152,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnMoveLast.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N
-        btnMoveLast.setText("CUỐI");
+        btnMoveLast.setText("Trang cuối");
         btnMoveLast.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +162,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnMovePrevious.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMovePrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/lui.png"))); // NOI18N
-        btnMovePrevious.setText("LÙI");
+        btnMovePrevious.setText("Trước");
         btnMovePrevious.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMovePrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +172,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnMoveNext.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/tien.png"))); // NOI18N
-        btnMoveNext.setText("TIẾN");
+        btnMoveNext.setText("Tiếp");
         btnMoveNext.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +182,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnMoveFirst.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/dau.png"))); // NOI18N
-        btnMoveFirst.setText("ĐẦU");
+        btnMoveFirst.setText("Trang đầu");
         btnMoveFirst.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,13 +246,13 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                         .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -315,7 +315,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnRead.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/read.png"))); // NOI18N
-        btnRead.setText("READ");
+        btnRead.setText("Đọc");
         btnRead.setPreferredSize(new java.awt.Dimension(72, 7));
         btnRead.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,7 +325,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnDel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/delete.png"))); // NOI18N
-        btnDel.setText("DELETE");
+        btnDel.setText("Xóa");
         btnDel.setPreferredSize(new java.awt.Dimension(72, 7));
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,7 +335,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnADD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnADD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/insert.png"))); // NOI18N
-        btnADD.setText("ADD");
+        btnADD.setText("Thêm");
         btnADD.setPreferredSize(new java.awt.Dimension(72, 7));
         btnADD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,7 +345,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/update.png"))); // NOI18N
-        btnUpdate.setText("UPDATE");
+        btnUpdate.setText("Cập nhật");
         btnUpdate.setPreferredSize(new java.awt.Dimension(72, 7));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,7 +355,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
         btnClear1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnClear1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/clear.png"))); // NOI18N
-        btnClear1.setText("CLEAR");
+        btnClear1.setText("Làm mới");
         btnClear1.setPreferredSize(new java.awt.Dimension(72, 7));
         btnClear1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,7 +372,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                 .addContainerGap()
                 .addComponent(btnClear1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnADD, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnADD, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

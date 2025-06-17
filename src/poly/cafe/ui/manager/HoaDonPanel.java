@@ -128,7 +128,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                 jButton5ActionPerformed(evt);
             }
         });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 15, 1033, 521));
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 15, 1030, 510));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -176,7 +176,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnMovePrevious.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnMovePrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/lui.png"))); // NOI18N
-        btnMovePrevious.setText("LÙI");
+        btnMovePrevious.setText("Trước");
         btnMovePrevious.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMovePrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +186,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnMoveNext.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnMoveNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/tien.png"))); // NOI18N
-        btnMoveNext.setText("TIẾN");
+        btnMoveNext.setText("Tiếp");
         btnMoveNext.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,7 +196,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnMoveFirst.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnMoveFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/dau.png"))); // NOI18N
-        btnMoveFirst.setText("ĐẦU");
+        btnMoveFirst.setText("Trang đầu");
         btnMoveFirst.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +206,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnMoveLast.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnMoveLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N
-        btnMoveLast.setText("CUỐI");
+        btnMoveLast.setText("Trang cuối");
         btnMoveLast.setPreferredSize(new java.awt.Dimension(72, 21));
         btnMoveLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,18 +228,17 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,12 +261,10 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                                 .addGap(18, 18, 18)
                                 .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 183, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1058, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMoveFirst, btnMoveLast, btnMoveNext, btnMovePrevious});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -290,7 +287,8 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                             .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMoveNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnMoveLast, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -298,7 +296,6 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
                             .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnfind, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -319,7 +316,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/update.png"))); // NOI18N
-        btnUpdate.setText("UPDATE");
+        btnUpdate.setText("Cập nhật");
         btnUpdate.setPreferredSize(new java.awt.Dimension(72, 7));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +326,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnRead.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnRead.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/read.png"))); // NOI18N
-        btnRead.setText("READ");
+        btnRead.setText("Đọc");
         btnRead.setPreferredSize(new java.awt.Dimension(72, 7));
         btnRead.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +336,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnADD.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnADD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/insert.png"))); // NOI18N
-        btnADD.setText("ADD");
+        btnADD.setText("Thêm");
         btnADD.setPreferredSize(new java.awt.Dimension(72, 7));
         btnADD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,7 +346,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnDel.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/delete.png"))); // NOI18N
-        btnDel.setText("DELETE");
+        btnDel.setText("Xóa");
         btnDel.setPreferredSize(new java.awt.Dimension(72, 7));
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,7 +356,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
 
         btnClear1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         btnClear1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/clear.png"))); // NOI18N
-        btnClear1.setText("CLEAR");
+        btnClear1.setText("Làm mới");
         btnClear1.setPreferredSize(new java.awt.Dimension(72, 7));
         btnClear1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,26 +415,6 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNVActionPerformed
 
-    private void btnMoveLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLastActionPerformed
-        // TODO add your handling code here:
-        moveLast();
-    }//GEN-LAST:event_btnMoveLastActionPerformed
-
-    private void btnMoveNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNextActionPerformed
-        // TODO add your handling code here:
-        moveNext();
-    }//GEN-LAST:event_btnMoveNextActionPerformed
-
-    private void btnMovePreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovePreviousActionPerformed
-        // TODO add your handling code here:
-        movePrevious();
-    }//GEN-LAST:event_btnMovePreviousActionPerformed
-
-    private void btnMoveFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirstActionPerformed
-        // TODO add your handling code here:
-        moveFirst();
-    }//GEN-LAST:event_btnMoveFirstActionPerformed
-
     private void btnClear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear1ActionPerformed
         // TODO add your handling code here:
         clear();
@@ -471,16 +448,36 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         XDialog.alert("Đã load lại dữ liệu");
     }//GEN-LAST:event_btnReadActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private void btnfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfindActionPerformed
         // TODO add your handling code here:
         fillToTableTheoDieuKien();
         moveFirst();
-       
+
     }//GEN-LAST:event_btnfindActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnMoveLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveLastActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        moveLast();
+    }//GEN-LAST:event_btnMoveLastActionPerformed
+
+    private void btnMoveNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveNextActionPerformed
+        // TODO add your handling code here:
+        moveNext();
+    }//GEN-LAST:event_btnMoveNextActionPerformed
+
+    private void btnMovePreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovePreviousActionPerformed
+        // TODO add your handling code here:
+        movePrevious();
+    }//GEN-LAST:event_btnMovePreviousActionPerformed
+
+    private void btnMoveFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveFirstActionPerformed
+        // TODO add your handling code here:
+        moveFirst();
+    }//GEN-LAST:event_btnMoveFirstActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -176,6 +176,7 @@ private double  tinhTongTien() {
     public OrderPanel() {
         initComponents();
          setOpaque(true);
+         filltoCombo();
         DefaultTableModel modelDrink = new DefaultTableModel(
         new Object[]{"Mã sản phẩm", "Tên nước", "Giá tiền", "Ảnh"}, 0
         ) {
@@ -334,10 +335,10 @@ lblTongTien.setText(String.format("%.1f", tong));
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Drink", jPanel1);
+        jTabbedPane1.addTab("Nước uống", jPanel1);
 
         tblFOOD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -376,16 +377,16 @@ lblTongTien.setText(String.format("%.1f", tong));
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Food", jPanel2);
+        jTabbedPane1.addTab("Thức ăn", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("ORDER");
+        jLabel4.setText("ĐẶT MÓN");
 
         javax.swing.GroupLayout background2Layout = new javax.swing.GroupLayout(background2);
         background2.setLayout(background2Layout);
@@ -404,14 +405,14 @@ lblTongTien.setText(String.format("%.1f", tong));
         lblTongTien.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTongTien.setText("0.0");
 
-        jButton1.setText("Confirm");
+        jButton1.setText("Xác nhận");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancel");
+        jButton2.setText("Hủy bỏ");
         jButton2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jSeparator2.setForeground(new java.awt.Color(153, 153, 153));
@@ -435,7 +436,7 @@ lblTongTien.setText(String.format("%.1f", tong));
         });
         jScrollPane1.setViewportView(tblOrder);
 
-        btnDel.setText("Delete");
+        btnDel.setText("Xóa bỏ");
         btnDel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -443,7 +444,7 @@ lblTongTien.setText(String.format("%.1f", tong));
             }
         });
 
-        btnPrint.setText("print bill");
+        btnPrint.setText("Xuất hóa đơn");
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
@@ -451,7 +452,9 @@ lblTongTien.setText(String.format("%.1f", tong));
         });
 
         txtaBill.setColumns(20);
+        txtaBill.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtaBill.setRows(5);
+        txtaBill.setText("\tPOLYCAFFEE");
         jScrollPane2.setViewportView(txtaBill);
 
         cbTDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -473,7 +476,7 @@ lblTongTien.setText(String.format("%.1f", tong));
                     .addComponent(background2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
@@ -491,16 +494,16 @@ lblTongTien.setText(String.format("%.1f", tong));
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 0, 0)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(background2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cbTDD, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(cbTDD, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -526,7 +529,7 @@ lblTongTien.setText(String.format("%.1f", tong));
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

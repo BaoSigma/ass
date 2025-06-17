@@ -26,7 +26,7 @@
               <Component id="jTabbedPane1" min="-2" pref="481" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -45,8 +45,8 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Drink">
-                <Property name="tabTitle" type="java.lang.String" value="Drink"/>
+              <JTabbedPaneConstraints tabName="N&#x1b0;&#x1edb;c u&#x1ed1;ng">
+                <Property name="tabTitle" type="java.lang.String" value="N&#x1b0;&#x1edb;c u&#x1ed1;ng"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -59,7 +59,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane3" alignment="0" pref="510" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" pref="504" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -121,8 +121,8 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Food">
-                <Property name="tabTitle" type="java.lang.String" value="Food"/>
+              <JTabbedPaneConstraints tabName="Th&#x1ee9;c &#x103;n">
+                <Property name="tabTitle" type="java.lang.String" value="Th&#x1ee9;c &#x103;n"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -138,7 +138,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane4" alignment="0" pref="510" max="32767" attributes="0"/>
+                  <Component id="jScrollPane4" alignment="0" pref="504" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -218,7 +218,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="271" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -242,18 +242,18 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="background2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="212" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="cbTDD" min="-2" pref="49" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="4" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -297,7 +297,7 @@
                   <Font name="Segoe UI" size="24" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="ORDER"/>
+                <Property name="text" type="java.lang.String" value="&#x110;&#x1eb6;T M&#xd3;N"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -320,7 +320,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Confirm"/>
+            <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -328,7 +328,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cancel"/>
+            <Property name="text" type="java.lang.String" value="H&#x1ee7;y b&#x1ecf;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder/>
@@ -396,7 +396,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnDel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="text" type="java.lang.String" value="X&#xf3;a b&#x1ecf;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder/>
@@ -409,7 +409,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnPrint">
           <Properties>
-            <Property name="text" type="java.lang.String" value="print bill"/>
+            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t h&#xf3;a &#x111;&#x1a1;n"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintActionPerformed"/>
@@ -425,7 +425,11 @@
             <Component class="javax.swing.JTextArea" name="txtaBill">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="&#x9;POLYCAFFEE"/>
               </Properties>
             </Component>
           </SubComponents>
