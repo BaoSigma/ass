@@ -15,22 +15,23 @@ import poly.cafe.util.XQuery;
  * @author baoha
  */
 public class SanPhamimpl implements SanPhamDAO{
-    private String createsql= "EXEC Insert_SanPham \n" +
+    private String createsql = "EXEC Insert_SanPham \n" +
 "    @maLSP = ?, \n" +
 "    @tenDU = ?, \n" +
-"    @giaDU = ?\n";
+"    @giaDU = ?, \n" +
+"    @hinhAnh = ?";
     private String deleteSanPhamByIdSQL = "DELETE FROM SanPham WHERE maSP = ?";
-    private String findAllSanPhamSQL = "SELECT maSP, maLSP, tenDU, giaDU FROM SanPham";
+    private String findAllSanPhamSQL = "SELECT maSP, maLSP, tenDU, giaDU, hinhAnh FROM SanPham";
     private String findSanPhamByIdSQL = findAllSanPhamSQL + " WHERE maSP = ?";
-    private String updateSanPhamSQL = "UPDATE SanPham SET maLSP = ?, tenDU = ?,giaDU = ? WHERE maSP = ?";
+    private String updateSanPhamSQL = "UPDATE SanPham SET maLSP = ?, tenDU = ?,giaDU = ?, hinhAnh = ? WHERE maSP = ?";
 
         @Override
     public SanPham create(SanPham entity) {
         Object[] values = {
             entity.getMaLSP(),
             entity.getTenDU(),
-            entity.getGiaDU()
-
+            entity.getGiaDU(),
+            entity.getHinhAnh()
         };
         XJdbc.executeUpdate(createsql, values);
         return entity;
@@ -42,7 +43,8 @@ public class SanPhamimpl implements SanPhamDAO{
             entity.getMaLSP(),
             entity.getTenDU(),
             entity.getGiaDU(),
-            entity.getMaSP(),
+            entity.getHinhAnh(),
+            entity.getMaSP()
         };
         XJdbc.executeUpdate(updateSanPhamSQL, values);
     }

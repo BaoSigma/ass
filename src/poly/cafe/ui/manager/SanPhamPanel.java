@@ -4,8 +4,13 @@
  */
 package poly.cafe.ui.manager;
 
+import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import poly.cafe.controller.entityController.SanPhamCTR;
 import poly.cafe.dao.entityDAO.LoaiSanPhamDAO;
@@ -25,6 +30,8 @@ import poly.cafe.util.XDialog;
 public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     SanPhamDAO dao = new SanPhamimpl();
     List<SanPham> items = new ArrayList<>();
+    private File selectedImageFile = null;
+    private String tenAnh;
     /**
      * Creates new form SanPhamPanel
      */
@@ -58,6 +65,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
             item.getMaLSP(),
             item.getTenDU(),
             item.getGiaDU(),
+            item.getHinhAnh(),
             false
         };
         model.addRow(row);
@@ -93,6 +101,8 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         btnfind = new javax.swing.JButton();
         txtFind = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        lblAnh = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnRead = new javax.swing.JButton();
@@ -108,19 +118,19 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         jButton1.setContentAreaFilled(false);
         jButton1.setEnabled(false);
         jButton1.setFocusable(false);
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2, 1033, 487));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2, 760, 320));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tblSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã SP", "Mã Loại", "Tên đồ uống", "Giá đồ uống"
+                "Mã SP", "Mã Loại", "Tên đồ uống", "Giá đồ uống", "ảnh"
             }
         ));
         tblSP.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,6 +200,18 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Tìm mã sản phẩm");
 
+        lblAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAnh.setText("ảnh");
+        lblAnh.setToolTipText("");
+        lblAnh.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jButton2.setText("Chọn ảnh");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -217,7 +239,11 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtDU, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(155, 155, 155)
+                        .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,18 +257,18 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnfind)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnfind))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1051, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnMoveFirst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnMovePrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,23 +277,30 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                         .addComponent(jLabel7)
                         .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnfind, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblSP))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtDU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(lblSP))
+                                .addGap(9, 9, 9)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtDU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton2))
+                        .addGap(0, 20, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMoveFirst, btnMoveLast, btnMoveNext, btnMovePrevious});
@@ -430,6 +463,22 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
 
     }//GEN-LAST:event_btnfindActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setDialogTitle("Chọn ảnh sản phẩm");
+    fileChooser.setFileFilter(new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png"));
+
+    int result = fileChooser.showOpenDialog(this);
+    if (result == JFileChooser.APPROVE_OPTION) {
+        selectedImageFile = fileChooser.getSelectedFile();
+        tenAnh = selectedImageFile.getName();
+        ImageIcon icon = new ImageIcon(selectedImageFile.getAbsolutePath());
+        Image image = icon.getImage().getScaledInstance(195, 194, Image.SCALE_SMOOTH);
+        lblAnh.setIcon(new ImageIcon(image));
+    }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnADD;
@@ -443,6 +492,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnfind;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -452,6 +502,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAnh;
     private javax.swing.JLabel lblSP;
     private javax.swing.JTable tblSP;
     private javax.swing.JTextField txtDU;
@@ -469,7 +520,14 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         txtLoai.setText(String.valueOf(entity.getMaLSP()));
         txtDU.setText(entity.getTenDU());
         txtGia.setText(String.valueOf(entity.getGiaDU()));
+        String tenAnh = entity.getHinhAnh(); 
         
+   
+        String fullPath = "src/poly/cafe/icons/" + tenAnh;
+        ImageIcon icon = new ImageIcon(fullPath);
+        Image img = icon.getImage().getScaledInstance(195, 149, Image.SCALE_SMOOTH);
+        lblAnh.setIcon(new ImageIcon(img));
+    
     }
      public void setQuyen() {
     if (XAuth.isViewer()) {
@@ -496,12 +554,18 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
     @Override
     public SanPham getForm() {
         SanPham entity = new SanPham();
-        entity.setGiaDU(Double.valueOf(txtGia.getText()));
-        entity.setMaLSP(Integer.parseInt(txtLoai.getText()));
-        entity.setTenDU(txtDU.getText());
-        entity.setMaSP(lblSP.getText());
+         entity.setMaSP(lblSP.getText().trim());
+        entity.setTenDU(txtDU.getText().trim());
+        entity.setGiaDU(Double.parseDouble(txtGia.getText().trim()));
+        entity.setMaLSP(Integer.parseInt(txtLoai.getText().trim()));
+        entity.setHinhAnh(tenAnh); 
+        String fullPath = "src/poly/cafe/icons/" + tenAnh;
+        ImageIcon icon = new ImageIcon(fullPath);
+        Image img = icon.getImage().getScaledInstance(195, 149, Image.SCALE_SMOOTH);
+        lblAnh.setIcon(new ImageIcon(img));
+      
         return entity;
-    }
+    }                               
 
     @Override
     public void fillToTable() {
@@ -514,6 +578,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
                 item.getMaLSP(),
                 item.getTenDU(),
                 item.getGiaDU(),
+                item.getHinhAnh(),
                 false
             };
             model.addRow(rowData);

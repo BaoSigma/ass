@@ -12,19 +12,24 @@ public class SanPham extends LoaiSanPham{
     private String maSP;
     private String tenDU;
     private Double giaDU;
-
-    public SanPham(String maSP, String tenDU, Double giaDU, int maLSP, String tenLDU) {
+    private String hinhAnh;
+    public SanPham(String maSP, String tenDU, Double giaDU, int maLSP, String tenLDU, String hinhAnh) {
         super(maLSP, tenLDU);
         this.maSP = maSP;
         this.tenDU = tenDU;
         this.giaDU = giaDU;
+        this.hinhAnh = hinhAnh;
     }
 
-    public SanPham(String maSP, String tenDU, Double giaDU) {
-        this.maSP = maSP;
-        this.tenDU = tenDU;
-        this.giaDU = giaDU;
+    public String getHinhAnh() {
+        return hinhAnh;
     }
+
+    public void setHinhAnh(String hinhAnh) {
+        this.hinhAnh = hinhAnh;
+    }
+
+
 
     public SanPham() {
     }

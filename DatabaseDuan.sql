@@ -39,7 +39,8 @@ CREATE TABLE SanPham(
 maSP VARCHAR(5) PRIMARY KEY,
 maLSP int FOREIGN KEY REFERENCES LoaiSanPham(maLSP),
 tenDU nvarchar(50),
-giaDU float)
+giaDU float,
+hinhAnh nvarchar(255))
 
 CREATE TABLE Chitiethoadon (
 maCT int identity(1,1) primary key,
@@ -132,7 +133,8 @@ END
 CREATE PROCEDURE Insert_SanPham
     @maLSP INT,
     @tenDU NVARCHAR(50),
-    @giaDU MONEY
+    @giaDU MONEY,
+    @hinhAnh NVARCHAR(255)
 AS
 BEGIN
     DECLARE @newMaSP VARCHAR(5)
@@ -145,10 +147,9 @@ BEGIN
     SET @lastNum = ISNULL(@lastNum, 0) + 1
     SET @newMaSP = 'SP' + RIGHT('000' + CAST(@lastNum AS VARCHAR), 3)
 
-    INSERT INTO SanPham(maSP, maLSP, tenDU, giaDU)
-    VALUES (@newMaSP, @maLSP, @tenDU, @giaDU)
+    INSERT INTO SanPham(maSP, maLSP, tenDU, giaDU, hinhAnh)
+    VALUES (@newMaSP, @maLSP, @tenDU, @giaDU, @hinhAnh)
 END
-
 CREATE PROCEDURE Insert_ChiTietHoaDon
     @maHD VARCHAR(5),
     @maSP VARCHAR(5),

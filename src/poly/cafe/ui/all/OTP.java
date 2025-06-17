@@ -47,12 +47,11 @@ public class OTP extends javax.swing.JFrame {
     } else if (nv.getEmail() == null || !nv.getEmail().equalsIgnoreCase(email)) {
         XDialog.alert("Email không khớp với nhân viên!");
     } else {
-        String otp = generateOTP(); // sinh OTP
+        String otp = generateOTP(); 
         OTPStore.otp = otp;
         OTPStore.maNV = maNV;
         OTPStore.email = email;
-
-        XEmail.sendOTP(email, otp); // gửi mail
+        XEmail.sendOTP(email, otp);
         XDialog.alert(" Đã gửi OTP đến email của bạn!");
     }
 }
