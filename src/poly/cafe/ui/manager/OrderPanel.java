@@ -4,7 +4,6 @@
  */
 package poly.cafe.ui.manager;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GradientPaint;
@@ -12,38 +11,23 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.beans.Beans;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.Vector;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import poly.cafe.controller.entityController.OrderController;
-import poly.cafe.dao.entityDAO.ChiTietHoaDonDAO;
-import poly.cafe.dao.entityDAO.HoaDonDAO;
 import poly.cafe.dao.impl.ChiTietImpl;
-import poly.cafe.dao.impl.HoaDonimpl;
 import poly.cafe.dao.impl.Orderimpl;
-import poly.cafe.entity.ChiTietHoaDon;
 import poly.cafe.entity.HoaDon;
 import poly.cafe.entity.SanPham;
 import poly.cafe.entity.theDD;
 import poly.cafe.util.XAuth;
 import poly.cafe.util.XDate;
 import poly.cafe.util.XDialog;
-import poly.cafe.util.XJdbc;
-import poly.cafe.util.XQuery;
 
 /**
  *
@@ -117,7 +101,7 @@ public class OrderPanel extends javax.swing.JPanel implements OrderController{
     
     }
     public void filltoCombo(){
-        Orderimpl dao = new Orderimpl();
+    Orderimpl dao = new Orderimpl();
     cbTDD.removeAllItems();
     items = dao.findAll(); 
     if (items == null || items.isEmpty()) {
@@ -169,15 +153,16 @@ private double  tinhTongTien() {
     lblTongTien.setText(String.valueOf(tong));
     return tong;
 }
-
+    
     /**
      * Creates new form OrderPanel
      */
     public OrderPanel() {
         initComponents();
-         setOpaque(true);
-         filltoCombo();
-        DefaultTableModel modelDrink = new DefaultTableModel(
+         setOpaque(true);    
+if (!java.beans.Beans.isDesignTime()) {
+        filltoCombo(); // Chỉ gọi khi đang chạy thật, không phải thiết kế giao diện
+    }        DefaultTableModel modelDrink = new DefaultTableModel(
         new Object[]{"Mã sản phẩm", "Tên nước", "Giá tiền", "Ảnh"}, 0
         ) {
             @Override
@@ -205,6 +190,8 @@ private double  tinhTongTien() {
             }
         };
         tblOrder.setModel(modelOrder);
+        tblOrder.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
+
     }
     private void themVaoOrder(String maSP, String tenSP, double gia) {
     boolean found = false;
@@ -311,6 +298,8 @@ lblTongTien.setText(String.format("%.1f", tong));
                 "Mã sản phẩm", "Tên nước", "Giá tiền", "Ảnh"
             }
         ));
+        tblDrink.setShowHorizontalLines(true);
+        tblDrink.setShowVerticalLines(true);
         tblDrink.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblDrinkAncestorAdded(evt);
@@ -335,7 +324,7 @@ lblTongTien.setText(String.format("%.1f", tong));
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Nước uống", jPanel1);
@@ -351,6 +340,8 @@ lblTongTien.setText(String.format("%.1f", tong));
                 "Mã sản phẩm", "Tên món", "Giá tiền", "Ảnh"
             }
         ));
+        tblFOOD.setShowHorizontalLines(true);
+        tblFOOD.setShowVerticalLines(true);
         tblFOOD.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblFOODAncestorAdded(evt);
@@ -377,7 +368,7 @@ lblTongTien.setText(String.format("%.1f", tong));
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Thức ăn", jPanel2);
@@ -414,6 +405,11 @@ lblTongTien.setText(String.format("%.1f", tong));
 
         jButton2.setText("Hủy bỏ");
         jButton2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setForeground(new java.awt.Color(153, 153, 153));
 
@@ -475,8 +471,7 @@ lblTongTien.setText(String.format("%.1f", tong));
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(background2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
@@ -529,11 +524,11 @@ lblTongTien.setText(String.format("%.1f", tong));
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -555,7 +550,7 @@ lblTongTien.setText(String.format("%.1f", tong));
 
     private void cbTDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTDDActionPerformed
         // TODO add your handling code here:
-        filltoCombo();
+        
     }//GEN-LAST:event_cbTDDActionPerformed
 
     private void tblDrinkAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblDrinkAncestorAdded
@@ -596,6 +591,13 @@ lblTongTien.setText(String.format("%.1f", tong));
         // TODO add your handling code here:
     }//GEN-LAST:event_tblOrderAncestorAdded
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tblOrder.getModel();
+        model.setRowCount(0);
+        txtaBill.setText("\tPOLYCAFFEE\n");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private poly.cafe.ui.manager.background background2;
@@ -628,7 +630,7 @@ lblTongTien.setText(String.format("%.1f", tong));
     public void fillToTableDrink() {
         DefaultTableModel model = (DefaultTableModel) tblDrink.getModel();
         model.setRowCount(0);
-        
+        tblDrink.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
         tblDrink.setRowHeight(160);
         TableColumnModel columnModel = tblDrink.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100); 
@@ -669,6 +671,8 @@ lblTongTien.setText(String.format("%.1f", tong));
     public void fillToTableFood() {
         DefaultTableModel model = (DefaultTableModel) tblFOOD.getModel();
         model.setRowCount(0);
+        tblFOOD.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
+
         tblFOOD.setRowHeight(160);
         TableColumnModel columnModel = tblFOOD.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100); 

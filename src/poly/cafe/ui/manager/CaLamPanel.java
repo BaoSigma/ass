@@ -6,6 +6,7 @@ package poly.cafe.ui.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import poly.cafe.controller.entityController.CaLamCTR;
 import poly.cafe.dao.entityDAO.CaLamDAO;
@@ -33,6 +34,8 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
         fillToTable();
         setQuyen();
         setButtonVisible(visible);
+        tblCaLam.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
+
     }
     public void setButtonVisible(boolean visible) {
     jButton1.setVisible(visible);
@@ -114,7 +117,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1010, 310));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 1010, 320));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -277,10 +280,16 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
             }
         });
         add(btnMoveFirst, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 310, 130, -1));
-        add(txtFind, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 232, -1));
+
+        txtFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFindActionPerformed(evt);
+            }
+        });
+        add(txtFind, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 310, 232, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Tìm mã nhân viên");
+        jLabel6.setText("Tìm kiếm:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
 
         btnfind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/find.png"))); // NOI18N
@@ -289,7 +298,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
                 btnfindActionPerformed(evt);
             }
         });
-        add(btnfind, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 310, -1, 30));
+        add(btnfind, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 310, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblCaLamAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblCaLamAncestorAdded
@@ -364,6 +373,10 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
             moveFirst();
 
     }//GEN-LAST:event_btnfindActionPerformed
+
+    private void txtFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFindActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFindActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -472,11 +485,8 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
     @Override
     public void fillToTable() {
         DefaultTableModel model = (DefaultTableModel) tblCaLam.getModel();
-        // Xóa toàn bộ dữ liệu cũ trong bảng
         model.setRowCount(0);
-        // Lấy danh sách các ca làm từ DAO
         items = dao.findAll();
-        // Duyệt qua danh sách và thêm từng dòng vào bảng
                 items.forEach(item -> {
             Object[] rowData = {
                 item.getBuoi(),
@@ -486,8 +496,7 @@ public class CaLamPanel extends javax.swing.JPanel implements CaLamCTR{
             };
             model.addRow(rowData);
         });
-        }
-
+    }
     @Override
     public void edit() {
         CaLam entity = items.get(tblCaLam.getSelectedRow());

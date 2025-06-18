@@ -6,6 +6,8 @@ package poly.cafe.ui.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import poly.cafe.controller.entityController.ChiTietHoaDonCTR;
 import poly.cafe.dao.entityDAO.ChiTietHoaDonDAO;
@@ -29,6 +31,8 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         fillToTable();
         setQuyen();
         setButtonVisible(visible);
+        tblCT.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
+
     }
     public void setButtonVisible(boolean visible) {
     jButton1.setVisible(visible);
@@ -260,7 +264,7 @@ public class ChiTietPanel extends javax.swing.JPanel implements ChiTietHoaDonCTR
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Tìm mã hóa đơn");
+        jLabel6.setText("Tìm kiếm:");
 
         btnfind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/find.png"))); // NOI18N
         btnfind.addActionListener(new java.awt.event.ActionListener() {

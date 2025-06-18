@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import static javax.swing.SwingConstants.CENTER;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -38,6 +39,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements NhanVienCTR {
         initComponents();
         setQuyen();
         setButtonVisible(visible);
+        tblNhanVien.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
     }
     public void setButtonVisible(boolean visible) {
     jButton1.setVisible(visible);
@@ -306,7 +308,7 @@ try {
         add(txtHoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 319, 297, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Tìm mã nhân viên");
+        jLabel7.setText("Tìm kiếm");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, -1, -1));
         add(txtFind, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 250, 232, -1));
 

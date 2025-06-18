@@ -4,6 +4,8 @@
  */
 package poly.cafe.ui.manager;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
 import poly.cafe.ui.all.Menu;
 import poly.cafe.ui.all.PolyLogin;
 import poly.cafe.util.XAuth;
@@ -21,6 +23,15 @@ public class check extends javax.swing.JFrame {
     public check() {
         initComponents();
         setLocationRelativeTo(null);
+        OrderPanel order = new OrderPanel();
+
+        jPanel1.removeAll();       // Xóa hết các thành phần cũ trong jPanel1 (nếu có)
+        jPanel1.setLayout(new BorderLayout()); // Đặt layout để Panel hiển thị full
+        jPanel1.add(order, BorderLayout.CENTER); // Thêm OrderPanel vào giữa
+
+        jPanel1.revalidate();      // Cập nhật lại layout
+        jPanel1.repaint(); 
+
     }
 
     /**
@@ -32,24 +43,21 @@ public class check extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        orderPanel1 = new poly.cafe.ui.manager.OrderPanel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(orderPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1173, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(orderPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
         );
 
         pack();
@@ -97,6 +105,6 @@ public class check extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private poly.cafe.ui.manager.OrderPanel orderPanel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

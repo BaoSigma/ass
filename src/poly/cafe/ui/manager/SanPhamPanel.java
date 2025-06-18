@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import static javax.swing.SwingConstants.CENTER;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import poly.cafe.controller.entityController.SanPhamCTR;
 import poly.cafe.dao.entityDAO.LoaiSanPhamDAO;
@@ -40,7 +42,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         fillToTable();
         setQuyen();
         setButtonVisible(visible);
-
+        tblSP.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
     }
     public void setButtonVisible(boolean visible) {
     jButton1.setVisible(visible);
@@ -198,7 +200,7 @@ public class SanPhamPanel extends javax.swing.JPanel implements SanPhamCTR{
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Tìm mã sản phẩm");
+        jLabel7.setText("Tìm kiếm:");
 
         lblAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAnh.setText("ảnh");

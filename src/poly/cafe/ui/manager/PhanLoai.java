@@ -6,6 +6,8 @@ package poly.cafe.ui.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import poly.cafe.controller.entityController.LoaiSanPhamCTR;
 import poly.cafe.dao.entityDAO.HoaDonDAO;
@@ -33,6 +35,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         setEditable(true);
         setQuyen();
         setButtonVisible(visible);
+        tblPhanLoai.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
     }
     public void setButtonVisible(boolean visible) {
     jButton1.setVisible(visible);
@@ -241,7 +244,7 @@ public class PhanLoai extends javax.swing.JPanel implements LoaiSanPhamCTR{
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Tìm mã loại");
+        jLabel6.setText("Tìm kiếm:");
 
         btnMoveLast.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnMoveLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poly/cafe/icons/cuoi.png"))); // NOI18N

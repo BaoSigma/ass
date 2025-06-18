@@ -6,6 +6,8 @@ package poly.cafe.ui.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import static javax.swing.SwingConstants.CENTER;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import poly.cafe.controller.entityController.HoaDonCTR;
 import poly.cafe.dao.entityDAO.ChiTietHoaDonDAO;
@@ -35,6 +37,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         fillToTable();
         setQuyen();
         setButtonVisible(visible);
+        tblHD.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {{ setHorizontalAlignment(CENTER); }});
     }
     public void setButtonVisible(boolean visible) {
     jButton5.setVisible(visible);
@@ -222,7 +225,7 @@ public class HoaDonPanel extends javax.swing.JPanel implements HoaDonCTR{
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Tìm mã hóa đơn");
+        jLabel3.setText("Tìm kiếm");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

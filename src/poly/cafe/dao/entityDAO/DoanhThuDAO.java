@@ -15,9 +15,9 @@ import poly.cafe.entity.SanPham;
  *
  * @author baoha
  */
-public interface DoanhThuDAO{
+    public interface DoanhThuDAO{
     public Double layTongDoanhThu();
-List<HoaDon> DoanhThuTheoNgay();
+    List<HoaDon> DoanhThuTheoNgay();
     List<DoanhThuNhanVien> DoanhThuNhanVien();
     
 }
